@@ -1,0 +1,36 @@
+﻿<div class="modal fade" id="modalWork" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-uppercase" id="exampleModalLabel1">Tạo công việc</h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col mb-3">
+                        <label class="form-label text-none">Tên công việc</label>
+                        <input type="text" id="nameBasic" class="form-control" placeholder="Nhập tên công việc" />
+                    </div>
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label text-none" for="work-start">Ngày bắt đầu</label>
+                    <input class="form-control" type="date" value="" id="work-start" />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label text-none" for="work-end">Ngày kết thúc</label>
+                    <input class="form-control" type="date" value="" id="work-end" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnAddWork" data-bs-dismiss="modal"
+                        aria-label="Close">
+                    Lưu
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

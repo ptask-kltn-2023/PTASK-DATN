@@ -1,0 +1,267 @@
+﻿@{
+    Layout = "_LayoutProject";
+    ViewData["TitleMission"] = "Thêm nhiệm vụ";
+}
+<partial name="~/Views/Shared/Partial/_NavLeft.cshtml" view-data='@new ViewDataDictionary(ViewData) { { "TitleProject", "Tên dự án" } }' />
+<div class="main-wrapper bg-img">
+    <main class="main users chart-page" id="skip-target">
+        <div class="container-xxl flex-grow-1 container-p-y pb-0" style="margin-top: 2%;">
+            <div class="row mb-5">
+                <div class="col-md-6 col-lg-4">
+                    <h6 class="mt-2 mb-2 text-uppercase"><strong>Thời gian thực hiện dự án</strong></h6>
+                    <div class="card mb-4 card-effect bg-blur">
+                        <div class="card-body p-3">
+                            <h5 class="card-title">Từ ngày.... đến ngày....</h5>
+                            <div class="progress">
+                                <div class="progress-bar bg-success"
+                                     role="progressbar"
+                                     style="width: 40%"
+                                     aria-valuenow="40"
+                                     aria-valuemin="0"
+                                     aria-valuemax="100">
+                                    40%
+                                </div>
+                            </div>
+                            <h5 class="card-title mt-3">Ngày hiện tại</h5>
+                            <div class="calender mt-3">
+                                <div class="cal-item">
+                                    <div class="front">
+                                        <div class="contentfront">
+                                            <div class="month">
+                                                <table>
+                                                    <tr class="orangeTr">
+                                                        <th>M</th>
+                                                        <th>T</th>
+                                                        <th>W</th>
+                                                        <th>T</th>
+                                                        <th>F</th>
+                                                        <th>S</th>
+                                                        <th>S</th>
+                                                    </tr>
+                                                    <tr class="whiteTr">
+                                                        <th></th>
+                                                        <th>1</th>
+                                                        <th>2</th>
+                                                        <th>3</th>
+                                                        <th>4</th>
+                                                        <th>5</th>
+                                                        <th>6</th>
+                                                    </tr>
+                                                    <tr class="whiteTr">
+                                                        <th>7</th>
+                                                        <th>8</th>
+                                                        <th>9</th>
+                                                        <th>10</th>
+                                                        <th>11</th>
+                                                        <th>12</th>
+                                                        <th>13</th>
+                                                    </tr>
+                                                    <tr class="whiteTr">
+                                                        <th>14</th>
+                                                        <th>15</th>
+                                                        <th>16</th>
+                                                        <th>17</th>
+                                                        <th>18</th>
+                                                        <th>19</th>
+                                                        <th>20</th>
+                                                    </tr>
+                                                    <tr class="whiteTr">
+                                                        <th>21</th>
+                                                        <th>22</th>
+                                                        <th>23</th>
+                                                        <th>24</th>
+                                                        <th>25</th>
+                                                        <th>26</th>
+                                                        <th>27</th>
+                                                    </tr>
+                                                    <tr class="whiteTr">
+                                                        <th>28</th>
+                                                        <th>29</th>
+                                                        <th>30</th>
+                                                        <th>31</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="date">
+                                                <div class="datecont">
+                                                    <div id="date"></div>
+                                                    <div id="day"></div>
+                                                    <div id="month"></div>
+                                                    <i class="fa fa-pencil edit" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="back">
+                                        <div class="contentback">
+                                            <div class="backcontainer">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h6 class="mt-2 mb-2  text-uppercase"><strong>Công việc đã hoàn thành</strong> </h6>
+                    <div class="card mb-4 bg-blur">
+                        <div class="card-body">
+                            <h5 class="card-title">Hoàn thành: 35/50</h5>
+                            <div class="progress">
+                                <div class="progress-bar bg-success"
+                                     role="progressbar"
+                                     style="width: 40%"
+                                     aria-valuenow="40"
+                                     aria-valuemin="0"
+                                     aria-valuemax="100">
+                                    40%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <h6 class="mt-2 mb-2 text-uppercase"><strong>Danh sách các công việc</strong> </h6>
+                    <div class="card p-2 mb-4 card-effect  bg-blur">
+                        <a class="m-2 text-end text-primary view-detail">Xem chi tiết >></a>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex bg-white justify-content-between"
+                                data-bs-toggle="tooltip"
+                                data-popup="tooltip-custom"
+                                data-bs-placement="top"
+                                title="Hoàn thành">
+                                <strong>Cras justo odio</strong>
+                                <i class='text-success bx bx-check-circle'></i>
+                            </li>
+                            <li class="list-group-item d-flex bg-white justify-content-between"
+                                data-bs-toggle="tooltip"
+                                data-popup="tooltip-custom"
+                                data-bs-placement="top"
+                                title="Chưa phân công">
+                                <strong>Cras justo odio</strong>
+                                <i class='text-danger bx bx-error'></i>
+                            </li>
+                            <li class="list-group-item d-flex bg-white justify-content-between" data-bs-toggle="tooltip"
+                                data-popup="tooltip-custom"
+                                data-bs-placement="top"
+                                title="Đang thực hiện">
+                                <strong>Cras justo odio</strong>
+                                <i class='text-warning bx bx-tag-alt'></i>
+                            </li>
+                        </ul>
+                    </div>
+                    <h6 class="mt-2 mb-2 text-uppercase">List groups</h6>
+                    <div class="card mb-4">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Cras justo odio </li>
+                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                            <li class="list-group-item">Vestibulum at eros</li>
+                            <li class="list-group-item">Cras justo odio</li>
+                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                            <li class="list-group-item">Vestibulum at eros</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <h6 class="mt-2 mb-2  text-uppercase"><strong>Thành viên tham gia dự án</strong> </h6>
+                    <div class="card p-2 mb-4 card-effect bg-blur">
+                        <a class="m-2 text-end text-primary view-detail">Xem chi tiết >></a>
+                        <ul class="list-group list-group-flush member-accept">
+                            <li class="list-group-item bg-white rounded-1"
+                                data-bs-toggle="tooltip"
+                                data-popup="tooltip-custom"
+                                data-bs-placement="top"
+                                title="Lilian Fuller">
+                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
+                                <strong class="ms-2">Lilian Fuller</strong>
+                            </li>
+                            <li class="list-group-item bg-white rounded-1"
+                                data-bs-toggle="tooltip"
+                                data-popup="tooltip-custom"
+                                data-bs-placement="top"
+                                title="Lilian Fuller">
+                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
+                                <strong class="ms-2">Lilian Fuller</strong>
+                            </li>
+                            <li class="list-group-item bg-white rounded-1"
+                                data-bs-toggle="tooltip"
+                                data-popup="tooltip-custom"
+                                data-bs-placement="top"
+                                title="Lilian Fuller">
+                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
+                                <strong class="ms-2">Lilian Fuller</strong>
+                            </li>
+                            <li class="list-group-item bg-white rounded-1"
+                                data-bs-toggle="tooltip"
+                                data-popup="tooltip-custom"
+                                data-bs-placement="top"
+                                title="Lilian Fuller">
+                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
+                                <strong class="ms-2">Lilian Fuller</strong>
+                            </li>
+                            <li class="list-group-item bg-white rounded-1"
+                                data-bs-toggle="tooltip"
+                                data-popup="tooltip-custom"
+                                data-bs-placement="top"
+                                title="Lilian Fuller">
+                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
+                                <strong class="ms-2">Lilian Fuller</strong>
+                            </li>
+                            <li class="list-group-item bg-white rounded-1"
+                                data-bs-toggle="tooltip"
+                                data-popup="tooltip-custom"
+                                data-bs-placement="top"
+                                title="Lilian Fuller">
+                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
+                                <strong class="ms-2">Lilian Fuller</strong>
+                            </li>
+                            <li class="list-group-item bg-white rounded-1"
+                                data-bs-toggle="tooltip"
+                                data-popup="tooltip-custom"
+                                data-bs-placement="top"
+                                title="Lilian Fuller">
+                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
+                                <strong class="ms-2">Lilian Fuller</strong>
+                            </li>
+                            <li class="list-group-item bg-white rounded-1"
+                                data-bs-toggle="tooltip"
+                                data-popup="tooltip-custom"
+                                data-bs-placement="top"
+                                title="Lilian Fuller">
+                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
+                                <strong class="ms-2">Lilian Fuller</strong>
+                            </li>
+                            <li class="list-group-item bg-white rounded-1"
+                                data-bs-toggle="tooltip"
+                                data-popup="tooltip-custom"
+                                data-bs-placement="top"
+                                title="Lilian Fuller">
+                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
+                                <strong class="ms-2">Lilian Fuller</strong>
+                            </li>
+                            <li class="list-group-item bg-white rounded-1"
+                                data-bs-toggle="tooltip"
+                                data-popup="tooltip-custom"
+                                data-bs-placement="top"
+                                title="Lilian Fuller">
+                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
+                                <strong class="ms-2">Lilian Fuller</strong>
+                            </li>
+                            <li class="list-group-item bg-white rounded-1"
+                                data-bs-toggle="tooltip"
+                                data-popup="tooltip-custom"
+                                data-bs-placement="top"
+                                title="Lilian Fuller">
+                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
+                                <strong class="ms-2">Lilian Fuller</strong>
+                            </li> cds
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

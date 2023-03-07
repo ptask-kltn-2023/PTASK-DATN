@@ -1,0 +1,132 @@
+﻿@{
+    Layout = "_LayoutProject";
+    ViewData["TitleMission"] = "Thêm nhiệm vụ";
+}
+<partial name="~/Views/Shared/Partial/_NavLeft.cshtml" view-data='@new ViewDataDictionary(ViewData) { { "TitleProject", "Tên dự án" }, {"active","active"} }' />
+<div class="main-wrapper bg-img">
+    <main class="main users chart-page" id="skip-target">
+        <div class="container-xxl flex-grow-1 container-p-y" style="margin-top: 3%;">
+            <h5 class="mb-4">Danh sách công việc</h5>
+            <div class="alert alert-success" role="alert">This is a success alert — check it out!</div>
+            <div class="detailProject">
+                <div class="pb-5">
+                    <div class="card card-effect bg-blur item-work">
+                        <div class="card-header d-flex align-items-center dropend">
+                            <input class="mt-2 ms-2 ip-list" value="Cần làm">
+                            <div class="mt-2 ms-1 rounded-2 btn-operate"
+                                 data-bs-toggle="dropdown"
+                                 aria-haspopup="true"
+                                 aria-expanded="false">
+                                <i class='bx bx-dots-horizontal-rounded'></i>
+                            </div>
+                            <partial name="~/Views/DetailProject/ActionsWork.cshtml" />
+                        </div>
+                        <div class="ms-2 box " data-bs-toggle="modal"
+                             data-bs-target="#largeModal">
+                            <div class="target rounded-3" draggable="true">
+                                <h5 class="card-title">Primary card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up.</p>
+                            </div>
+                        </div>
+
+                        <div class="card-header d-flex justify-content-start align-items-center m-2 rounded-3 addNewMisson"
+                             data-bs-toggle="modal" data-bs-target="#modalMisson">
+                            <i class='bx bx-plus ps-2'></i>
+                            <div class="ms-2">Thêm nhiệm vụ mới</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pb-5">
+                    <div class="card card-effect bg-blur item-work">
+                        <div class="card-header d-flex align-items-center dropend">
+                            <input class="mt-2 ms-2 ip-list" value="Đang làm">
+                            <div class="mt-2 ms-1 rounded-2 btn-operate"
+                                 data-bs-toggle="dropdown"
+                                 aria-haspopup="true"
+                                 aria-expanded="false">
+                                <i class='bx bx-dots-horizontal-rounded'></i>
+                            </div>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
+                                <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li>
+                            </ul>
+                        </div>
+                        <div class="ms-2 box ">
+                            <div class="target rounded-3" draggable="true" data-bs-toggle="modal"
+                                 data-bs-target="#modalCenter">
+                                <h5 class="card-title">Primary card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up.</p>
+                            </div>
+                        </div>
+                        <div class="card-header d-flex justify-content-start align-items-center m-2 rounded-3 addNewMisson">
+                            <i class='bx bx-plus ps-2'></i>
+                            <div class="ms-2">Thêm nhiệm vụ mới</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pb-5">
+                    <div class="card card-effect bg-blur item-work">
+                        <div class="card-header d-flex align-items-center dropend">
+                            <input class="mt-2 ms-2 ip-list" value="Đã làm">
+                            <div class="mt-2 ms-1 rounded-2 btn-operate"
+                                 data-bs-toggle="dropdown"
+                                 aria-haspopup="true"
+                                 aria-expanded="false">
+                                <i class='bx bx-dots-horizontal-rounded'></i>
+                            </div>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
+                                <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li>
+                            </ul>
+                        </div>
+                        <div class="ms-2 box ">
+                            <div class="target rounded-3" draggable="true">
+                                <h5 class="card-title">Primary card title 1</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up.</p>
+                            </div>
+                            <div class="target rounded-3" draggable="true">
+                                <h5 class="card-title">Primary card title2</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up.</p>
+                            </div><div class="target rounded-3" draggable="true">
+                                <h5 class="card-title">Primary card title3</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up.</p>
+                            </div><div class="target rounded-3" draggable="true">
+                                <h5 class="card-title">Primary card title4</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up.</p>
+                            </div><div class="target rounded-3" draggable="true">
+                                <h5 class="card-title">Primary card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up.</p>
+                            </div>
+                        </div>
+                        <div class="card-header d-flex justify-content-start align-items-center m-2 rounded-3 addNewMisson">
+                            <i class='bx bx-plus ps-2'></i>
+                            <div class="ms-2">Thêm nhiệm vụ mới</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card add-new-list" data-bs-toggle="modal" data-bs-target="#modalWork">
+                    <div class="card-header d-flex align-items-center" style="height: 100%">
+                        <i class='ps-3 bx bx-plus'></i>
+                        <div class="ms-2">Thêm công việc mới</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<partial name="~/Views/DetailProject/AddMisson.cshtml" view-data="ViewData" />
+<partial name="~/Views/DetailProject/AddWork.cshtml" />
+<partial name="~/Views/DetailProject/DetailMisson.cshtml" />
+
+

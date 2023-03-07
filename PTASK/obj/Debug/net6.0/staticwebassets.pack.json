@@ -1,0 +1,1717 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\PTASK.bundle.scp.css",
+      "PackagePath": "staticwebassets\\PTASK.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\css\\calender.css",
+      "PackagePath": "staticwebassets\\assets\\css\\calender.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\css\\demo.css",
+      "PackagePath": "staticwebassets\\assets\\css\\demo.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\css\\style.css",
+      "PackagePath": "staticwebassets\\assets\\css\\style.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\css\\style.min.css",
+      "PackagePath": "staticwebassets\\assets\\css\\style.min.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\Gears.png",
+      "PackagePath": "staticwebassets\\assets\\img\\Gears.png"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\Integrations_Puzzle.png",
+      "PackagePath": "staticwebassets\\assets\\img\\Integrations_Puzzle.png"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\PTLOGO.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\PTLOGO.jpg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\Project-manager.png",
+      "PackagePath": "staticwebassets\\assets\\img\\Project-manager.png"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\Search_Value.png",
+      "PackagePath": "staticwebassets\\assets\\img\\Search_Value.png"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\avatars\\5.png",
+      "PackagePath": "staticwebassets\\assets\\img\\avatars\\5.png"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\avatars\\avatar-illustrated-02.png",
+      "PackagePath": "staticwebassets\\assets\\img\\avatars\\avatar-illustrated-02.png"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\avatars\\avatar-illustrated-02.webp",
+      "PackagePath": "staticwebassets\\assets\\img\\avatars\\avatar-illustrated-02.webp"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\categories\\01.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\categories\\01.jpg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\categories\\01.webp",
+      "PackagePath": "staticwebassets\\assets\\img\\categories\\01.webp"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\categories\\02.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\categories\\02.jpg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\categories\\02.webp",
+      "PackagePath": "staticwebassets\\assets\\img\\categories\\02.webp"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\categories\\03.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\categories\\03.jpg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\categories\\03.webp",
+      "PackagePath": "staticwebassets\\assets\\img\\categories\\03.webp"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\categories\\04.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\categories\\04.jpg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\categories\\04.webp",
+      "PackagePath": "staticwebassets\\assets\\img\\categories\\04.webp"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\elements\\1.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\1.jpg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\elements\\11.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\11.jpg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\elements\\12.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\12.jpg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\elements\\13.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\13.jpg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\elements\\17.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\17.jpg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\elements\\18.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\18.jpg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\elements\\19.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\19.jpg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\elements\\2.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\2.jpg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\elements\\20.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\20.jpg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\elements\\3.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\3.jpg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\elements\\4.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\4.jpg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\elements\\5.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\5.jpg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\elements\\7.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\elements\\7.jpg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\404.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\404.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\2 User.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\2 User.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\3-User-gray.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\3-User-gray.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\3-User-white.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\3-User-white.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Category-white.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Category-white.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Delete.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Delete.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Discount.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Discount.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Discovery.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Discovery.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Document-gray.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Document-gray.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Document-white.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Document-white.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Download.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Download.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Edit Square.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Edit Square.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Edit-gray.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Edit-gray.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Edit-white.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Edit-white.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Filter 2.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Filter 2.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Filter.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Filter.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Folder-gray.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Folder-gray.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Folder-white.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Folder-white.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Game.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Game.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Graph.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Graph.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Heart.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Heart.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Hide.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Hide.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Home-gray.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Home-gray.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Home-white.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Home-white.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Image 3.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Image 3.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Image-gray.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Image-gray.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Image-white.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Image-white.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Info Circle.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Info Circle.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Info Square.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Info Square.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Location.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Location.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Lock.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Lock.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Login.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Login.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Logout.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Logout.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Menu-toggle-gray.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Menu-toggle-gray.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Menu-toggle-white.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Menu-toggle-white.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Message-gray.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Message-gray.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Message-white.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Message-white.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\More Circle.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\More Circle.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\More Square.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\More Square.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Notification-gray.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Notification-gray.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Notification.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Notification.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Paper Download.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Paper Download.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Paper Fail.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Paper Fail.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Paper Negative.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Paper Negative.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Paper Plus.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Paper Plus.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Paper Upload.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Paper Upload.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Paper-gray.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Paper-gray.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Paper-white.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Paper-white.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Password.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Password.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Play.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Play.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Plus.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Plus.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Profile.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Profile.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Scan.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Scan.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Search.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Search.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Send.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Send.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Setting-gray.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Setting-gray.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Setting-white.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Setting-white.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Settings-line.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Settings-line.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Shield Done.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Shield Done.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Shield Fail.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Shield Fail.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Show.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Show.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Star.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Star.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Swap.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Swap.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Tick Square.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Tick Square.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Ticket Star.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Ticket Star.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Ticket.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Ticket.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Time Square.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Time Square.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\TimeCircle.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\TimeCircle.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Unlock.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Unlock.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Upload.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Upload.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Video.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Video.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Voice 3.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Voice 3.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Voice.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Voice.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Volume Down.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Volume Down.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Volume Off.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Volume Off.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Volume Up.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Volume Up.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Wallet.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Wallet.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\Work.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\Work.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\assign.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\assign.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\briefcase.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\briefcase.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\doing.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\doing.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\join.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\join.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\listWork.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\listWork.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\member.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\member.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\my-project.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\my-project.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\project-join.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\project-join.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\report.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\report.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\success.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\success.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Bulk\\work-success.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Bulk\\work-success.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\GoogleDrive.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\GoogleDrive.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\Logo.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\Logo.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\baloon.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\baloon.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\customers.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\customers.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\dropbox.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\dropbox.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\image-frame.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\image-frame.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\move.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\move.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\radio.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\radio.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\svg\\thumbnail.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\svg\\thumbnail.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\img\\why-us.png",
+      "PackagePath": "staticwebassets\\assets\\img\\why-us.png"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\js\\calender.js",
+      "PackagePath": "staticwebassets\\assets\\js\\calender.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\js\\config.js",
+      "PackagePath": "staticwebassets\\assets\\js\\config.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\js\\dashboards-analytics.js",
+      "PackagePath": "staticwebassets\\assets\\js\\dashboards-analytics.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\js\\extended-ui-perfect-scrollbar.js",
+      "PackagePath": "staticwebassets\\assets\\js\\extended-ui-perfect-scrollbar.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\js\\form-basic-inputs.js",
+      "PackagePath": "staticwebassets\\assets\\js\\form-basic-inputs.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\js\\main.js",
+      "PackagePath": "staticwebassets\\assets\\js\\main.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\js\\pages-account-settings-account.js",
+      "PackagePath": "staticwebassets\\assets\\js\\pages-account-settings-account.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\js\\project.js",
+      "PackagePath": "staticwebassets\\assets\\js\\project.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\js\\ui-modals.js",
+      "PackagePath": "staticwebassets\\assets\\js\\ui-modals.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\js\\ui-popover.js",
+      "PackagePath": "staticwebassets\\assets\\js\\ui-popover.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\js\\ui-toasts.js",
+      "PackagePath": "staticwebassets\\assets\\js\\ui-toasts.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\aos\\aos.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\aos\\aos.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\aos\\aos.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\aos\\aos.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap-icons\\bootstrap-icons.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap-icons\\bootstrap-icons.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap-icons\\bootstrap-icons.json",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap-icons\\bootstrap-icons.json"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap-icons\\fonts\\bootstrap-icons.woff",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap-icons\\fonts\\bootstrap-icons.woff"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap-icons\\fonts\\bootstrap-icons.woff2",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap-icons\\fonts\\bootstrap-icons.woff2"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap-icons\\index.html",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap-icons\\index.html"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\bootstrap\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\boxicons\\css\\animations.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\boxicons\\css\\animations.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\boxicons\\css\\boxicons.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\boxicons\\css\\boxicons.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\boxicons\\css\\boxicons.min.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\boxicons\\css\\boxicons.min.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\boxicons\\css\\transformations.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\boxicons\\css\\transformations.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\boxicons\\fonts\\boxicons.eot",
+      "PackagePath": "staticwebassets\\assets\\vendor\\boxicons\\fonts\\boxicons.eot"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\boxicons\\fonts\\boxicons.svg",
+      "PackagePath": "staticwebassets\\assets\\vendor\\boxicons\\fonts\\boxicons.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\boxicons\\fonts\\boxicons.ttf",
+      "PackagePath": "staticwebassets\\assets\\vendor\\boxicons\\fonts\\boxicons.ttf"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\boxicons\\fonts\\boxicons.woff",
+      "PackagePath": "staticwebassets\\assets\\vendor\\boxicons\\fonts\\boxicons.woff"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\boxicons\\fonts\\boxicons.woff2",
+      "PackagePath": "staticwebassets\\assets\\vendor\\boxicons\\fonts\\boxicons.woff2"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\css\\core.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\css\\core.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\css\\pages\\page-account-settings.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\css\\pages\\page-account-settings.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\css\\pages\\page-auth.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\css\\pages\\page-auth.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\css\\pages\\page-icons.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\css\\pages\\page-icons.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\css\\pages\\page-misc.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\css\\pages\\page-misc.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\css\\theme-default.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\css\\theme-default.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\fonts\\boxicons.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\fonts\\boxicons.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\fonts\\boxicons\\boxicons.eot",
+      "PackagePath": "staticwebassets\\assets\\vendor\\fonts\\boxicons\\boxicons.eot"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\fonts\\boxicons\\boxicons.svg",
+      "PackagePath": "staticwebassets\\assets\\vendor\\fonts\\boxicons\\boxicons.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\fonts\\boxicons\\boxicons.ttf",
+      "PackagePath": "staticwebassets\\assets\\vendor\\fonts\\boxicons\\boxicons.ttf"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\fonts\\boxicons\\boxicons.woff",
+      "PackagePath": "staticwebassets\\assets\\vendor\\fonts\\boxicons\\boxicons.woff"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\fonts\\boxicons\\boxicons.woff2",
+      "PackagePath": "staticwebassets\\assets\\vendor\\fonts\\boxicons\\boxicons.woff2"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\glightbox\\css\\glightbox.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\glightbox\\css\\glightbox.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\glightbox\\css\\glightbox.min.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\glightbox\\css\\glightbox.min.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\glightbox\\js\\glightbox.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\glightbox\\js\\glightbox.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\glightbox\\js\\glightbox.min.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\glightbox\\js\\glightbox.min.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\isotope-layout\\isotope.pkgd.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\isotope-layout\\isotope.pkgd.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\isotope-layout\\isotope.pkgd.min.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\isotope-layout\\isotope.pkgd.min.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\js\\chart.min.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\js\\chart.min.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\js\\feather.min.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\js\\feather.min.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\js\\helpers.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\js\\helpers.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\js\\menu.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\js\\menu.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\libs\\apex-charts\\apex-charts.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\libs\\apex-charts\\apex-charts.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\libs\\apex-charts\\apexcharts.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\libs\\apex-charts\\apexcharts.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\libs\\highlight\\highlight-github.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\libs\\highlight\\highlight-github.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\libs\\highlight\\highlight.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\libs\\highlight\\highlight.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\libs\\highlight\\highlight.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\libs\\highlight\\highlight.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\libs\\jquery\\jquery.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\libs\\jquery\\jquery.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\libs\\masonry\\masonry.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\libs\\masonry\\masonry.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\libs\\perfect-scrollbar\\perfect-scrollbar.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\libs\\perfect-scrollbar\\perfect-scrollbar.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\libs\\perfect-scrollbar\\perfect-scrollbar.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\libs\\perfect-scrollbar\\perfect-scrollbar.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\libs\\popper\\popper.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\libs\\popper\\popper.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\libs\\sweet\\sweetalert2.all.min.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\libs\\sweet\\sweetalert2.all.min.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\libs\\sweet\\sweetalert2.min.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\libs\\sweet\\sweetalert2.min.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\php-email-form\\validate.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\php-email-form\\validate.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\remixicon\\remixicon.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\remixicon\\remixicon.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\remixicon\\remixicon.eot",
+      "PackagePath": "staticwebassets\\assets\\vendor\\remixicon\\remixicon.eot"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\remixicon\\remixicon.less",
+      "PackagePath": "staticwebassets\\assets\\vendor\\remixicon\\remixicon.less"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\remixicon\\remixicon.svg",
+      "PackagePath": "staticwebassets\\assets\\vendor\\remixicon\\remixicon.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\remixicon\\remixicon.symbol.svg",
+      "PackagePath": "staticwebassets\\assets\\vendor\\remixicon\\remixicon.symbol.svg"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\remixicon\\remixicon.ttf",
+      "PackagePath": "staticwebassets\\assets\\vendor\\remixicon\\remixicon.ttf"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\remixicon\\remixicon.woff",
+      "PackagePath": "staticwebassets\\assets\\vendor\\remixicon\\remixicon.woff"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\remixicon\\remixicon.woff2",
+      "PackagePath": "staticwebassets\\assets\\vendor\\remixicon\\remixicon.woff2"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\swiper\\swiper-bundle.min.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\swiper\\swiper-bundle.min.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\swiper\\swiper-bundle.min.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\swiper\\swiper-bundle.min.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\assets\\vendor\\waypoints\\noframework.waypoints.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\waypoints\\noframework.waypoints.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\fonts\\Inter-Black.woff2",
+      "PackagePath": "staticwebassets\\fonts\\Inter-Black.woff2"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\fonts\\Inter-Bold.woff2",
+      "PackagePath": "staticwebassets\\fonts\\Inter-Bold.woff2"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\fonts\\Inter-ExtraBold.woff2",
+      "PackagePath": "staticwebassets\\fonts\\Inter-ExtraBold.woff2"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\fonts\\Inter-ExtraLight.woff2",
+      "PackagePath": "staticwebassets\\fonts\\Inter-ExtraLight.woff2"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\fonts\\Inter-Light.woff2",
+      "PackagePath": "staticwebassets\\fonts\\Inter-Light.woff2"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\fonts\\Inter-Medium.woff2",
+      "PackagePath": "staticwebassets\\fonts\\Inter-Medium.woff2"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\fonts\\Inter-Regular.woff2",
+      "PackagePath": "staticwebassets\\fonts\\Inter-Regular.woff2"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\fonts\\Inter-SemiBold.woff2",
+      "PackagePath": "staticwebassets\\fonts\\Inter-SemiBold.woff2"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\fonts\\Inter-Thin.woff2",
+      "PackagePath": "staticwebassets\\fonts\\Inter-Thin.woff2"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\fonts\\boxicons.scss",
+      "PackagePath": "staticwebassets\\fonts\\boxicons.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\fonts\\stylesheet.css",
+      "PackagePath": "staticwebassets\\fonts\\stylesheet.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\js\\helpers.js",
+      "PackagePath": "staticwebassets\\js\\helpers.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\js\\menu.js",
+      "PackagePath": "staticwebassets\\js\\menu.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\libs\\apex-charts\\apex-charts.scss",
+      "PackagePath": "staticwebassets\\libs\\apex-charts\\apex-charts.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\libs\\apex-charts\\apexcharts.js",
+      "PackagePath": "staticwebassets\\libs\\apex-charts\\apexcharts.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\libs\\highlight\\highlight-github.scss",
+      "PackagePath": "staticwebassets\\libs\\highlight\\highlight-github.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\libs\\highlight\\highlight.js",
+      "PackagePath": "staticwebassets\\libs\\highlight\\highlight.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\libs\\highlight\\highlight.scss",
+      "PackagePath": "staticwebassets\\libs\\highlight\\highlight.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\libs\\jquery\\jquery.js",
+      "PackagePath": "staticwebassets\\libs\\jquery\\jquery.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\libs\\masonry\\masonry.js",
+      "PackagePath": "staticwebassets\\libs\\masonry\\masonry.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\libs\\perfect-scrollbar\\perfect-scrollbar.js",
+      "PackagePath": "staticwebassets\\libs\\perfect-scrollbar\\perfect-scrollbar.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\libs\\perfect-scrollbar\\perfect-scrollbar.scss",
+      "PackagePath": "staticwebassets\\libs\\perfect-scrollbar\\perfect-scrollbar.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\libs\\popper\\popper.js",
+      "PackagePath": "staticwebassets\\libs\\popper\\popper.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_accordion.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_accordion.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_alert.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_alert.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_badge.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_badge.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_breadcrumb.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_breadcrumb.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_button-group.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_button-group.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_buttons.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_buttons.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_card.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_card.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_carousel.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_carousel.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_close.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_close.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_dropdown.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_dropdown.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_forms.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_forms.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_functions.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_functions.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_include.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_include.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_list-group.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_list-group.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_mixins.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_mixins.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_modal.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_modal.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_nav.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_nav.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_navbar.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_navbar.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_offcanvas.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_offcanvas.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_pagination.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_pagination.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_popover.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_popover.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_progress.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_progress.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_reboot.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_reboot.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_root.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_root.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_spinners.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_spinners.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_tables.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_tables.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_toasts.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_toasts.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_tooltip.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_tooltip.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_type.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_type.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_utilities-ltr.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_utilities-ltr.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_utilities.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_utilities.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\_variables.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\_variables.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\forms\\_floating-labels.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\forms\\_floating-labels.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\forms\\_form-control.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\forms\\_form-control.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\forms\\_form-range.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\forms\\_form-range.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\forms\\_form-select.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\forms\\_form-select.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\forms\\_input-group.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\forms\\_input-group.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\forms\\_labels.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\forms\\_labels.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\forms\\_validation.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\forms\\_validation.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\mixins\\_alert.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\mixins\\_alert.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\mixins\\_badge.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\mixins\\_badge.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\mixins\\_buttons.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\mixins\\_buttons.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\mixins\\_caret.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\mixins\\_caret.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\mixins\\_dropdown.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\mixins\\_dropdown.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\mixins\\_forms.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\mixins\\_forms.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\mixins\\_list-group.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\mixins\\_list-group.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\mixins\\_misc.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\mixins\\_misc.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\mixins\\_navs.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\mixins\\_navs.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\mixins\\_pagination.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\mixins\\_pagination.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\mixins\\_progress.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\mixins\\_progress.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\mixins\\_table-variants.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\mixins\\_table-variants.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap-extended\\mixins\\_toasts.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap-extended\\mixins\\_toasts.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_bootstrap.scss",
+      "PackagePath": "staticwebassets\\scss\\_bootstrap.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_colors.scss",
+      "PackagePath": "staticwebassets\\scss\\_colors.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_components.scss",
+      "PackagePath": "staticwebassets\\scss\\_components.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_components\\_app-brand.scss",
+      "PackagePath": "staticwebassets\\scss\\_components\\_app-brand.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_components\\_avatar.scss",
+      "PackagePath": "staticwebassets\\scss\\_components\\_avatar.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_components\\_base.scss",
+      "PackagePath": "staticwebassets\\scss\\_components\\_base.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_components\\_common.scss",
+      "PackagePath": "staticwebassets\\scss\\_components\\_common.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_components\\_footer.scss",
+      "PackagePath": "staticwebassets\\scss\\_components\\_footer.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_components\\_include.scss",
+      "PackagePath": "staticwebassets\\scss\\_components\\_include.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_components\\_layout.scss",
+      "PackagePath": "staticwebassets\\scss\\_components\\_layout.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_components\\_menu.scss",
+      "PackagePath": "staticwebassets\\scss\\_components\\_menu.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_components\\_mixins.scss",
+      "PackagePath": "staticwebassets\\scss\\_components\\_mixins.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_components\\_text-divider.scss",
+      "PackagePath": "staticwebassets\\scss\\_components\\_text-divider.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_components\\_variables.scss",
+      "PackagePath": "staticwebassets\\scss\\_components\\_variables.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_components\\mixins\\_app-brand.scss",
+      "PackagePath": "staticwebassets\\scss\\_components\\mixins\\_app-brand.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_components\\mixins\\_avatar.scss",
+      "PackagePath": "staticwebassets\\scss\\_components\\mixins\\_avatar.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_components\\mixins\\_footer.scss",
+      "PackagePath": "staticwebassets\\scss\\_components\\mixins\\_footer.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_components\\mixins\\_menu.scss",
+      "PackagePath": "staticwebassets\\scss\\_components\\mixins\\_menu.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_components\\mixins\\_misc.scss",
+      "PackagePath": "staticwebassets\\scss\\_components\\mixins\\_misc.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_components\\mixins\\_navbar.scss",
+      "PackagePath": "staticwebassets\\scss\\_components\\mixins\\_navbar.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_components\\mixins\\_text-divider.scss",
+      "PackagePath": "staticwebassets\\scss\\_components\\mixins\\_text-divider.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_custom-variables\\_bootstrap-extended.scss",
+      "PackagePath": "staticwebassets\\scss\\_custom-variables\\_bootstrap-extended.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_custom-variables\\_components.scss",
+      "PackagePath": "staticwebassets\\scss\\_custom-variables\\_components.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_custom-variables\\_libs.scss",
+      "PackagePath": "staticwebassets\\scss\\_custom-variables\\_libs.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_custom-variables\\_pages.scss",
+      "PackagePath": "staticwebassets\\scss\\_custom-variables\\_pages.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_custom-variables\\_support.scss",
+      "PackagePath": "staticwebassets\\scss\\_custom-variables\\_support.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_theme\\_common.scss",
+      "PackagePath": "staticwebassets\\scss\\_theme\\_common.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\_theme\\_theme.scss",
+      "PackagePath": "staticwebassets\\scss\\_theme\\_theme.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\core.scss",
+      "PackagePath": "staticwebassets\\scss\\core.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\pages\\page-account-settings.scss",
+      "PackagePath": "staticwebassets\\scss\\pages\\page-account-settings.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\pages\\page-auth.scss",
+      "PackagePath": "staticwebassets\\scss\\pages\\page-auth.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\pages\\page-icons.scss",
+      "PackagePath": "staticwebassets\\scss\\pages\\page-icons.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\pages\\page-misc.scss",
+      "PackagePath": "staticwebassets\\scss\\pages\\page-misc.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\scss\\theme-default.scss",
+      "PackagePath": "staticwebassets\\scss\\theme-default.scss"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\tasks\\build.js",
+      "PackagePath": "staticwebassets\\tasks\\build.js"
+    },
+    {
+      "Id": "D:\\DoAn\\PTASK\\PTASK\\wwwroot\\tasks\\prod.js",
+      "PackagePath": "staticwebassets\\tasks\\prod.js"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.PTASK.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.PTASK.props",
+      "PackagePath": "build\\PTASK.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.PTASK.props",
+      "PackagePath": "buildMultiTargeting\\PTASK.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.PTASK.props",
+      "PackagePath": "buildTransitive\\PTASK.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

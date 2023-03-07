@@ -1,0 +1,106 @@
+﻿@{
+    var title = ViewData["TitleMission"];
+}
+<div class="modal fade" id="modalMisson" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-uppercase" id="exampleModalLabel1">@title</h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body pb-1">
+                <form>
+                    <div class="row mb-3 align-items-center">
+                        <label class="col-sm-3 form-label text-none" for="name-mission">Tên</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="name-mission" placeholder="Nhập tên nhiệm vụ" />
+                        </div>
+                    </div>
+                    <div class="row mb-3 align-items-center">
+                        <label class="col-sm-3 form-label text-none" for="discription">Mô tả</label>
+                        <div class="col-sm-9">
+                            <textarea id="discription"
+                                      class="form-control"
+                                      placeholder="Nhập mô tả nhiệm vụ"
+                                      aria-describedby="basic-icon-default-message2"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mb-3 align-items-center">
+                        <label class="col-sm-3 form-label text-none" for="assignment">Phân công</label>
+                        <div class="col-sm-9">
+                            <input class="form-control"
+                                   list="datalistOptions"
+                                   id="assignment"
+                                   placeholder="Nhập để tìm kiếm" />
+                            <datalist id="datalistOptions">
+                                <option value="San Francisco"></option>
+                                <option value="New York"></option>
+                                <option value="Seattle"></option>
+                                <option value="Los Angeles"></option>
+                                <option value="Chicago Chicago Chicago"></option>
+                                <option value="Chicago"></option>
+                                <option value="Chicago"></option>
+                                <option value="Chicago"></option>
+                                <option value="Chicago"></option>
+                                <option value="Chicago"></option>
+                                <option value="Chicago"></option>
+                            </datalist>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="time-start" class="form-label text-none" style="margin-left: -6px">Thời gian bắt đầu</label>
+                        <input class="form-control" type="time" value="" id="time-start" style="margin-left: 10px; width: 71%" />
+                    </div>
+                    <div class="row mb-3">
+                        <label for="time-end" class="form-label text-none" style="margin-left: -6px">Thời gian kết thúc</label>
+                        <input class="form-control" type="time" value="" id="time-end" style="margin-left: 6px; width: 71%" />
+                    </div>
+                    <div class="row mb-3">
+                        <label for="date-start" class="form-label text-none" style="margin-left: -6px">Ngày bắt đầu</label>
+                        <input class="form-control" type="date" value="" id="date-start" style="margin-left: 37px; width: 71%" />
+                    </div>
+                    <div class="row mb-3">
+                        <label for="date-end" class="form-label text-none" style="margin-left: -6px">Ngày kết thúc</label>
+                        <input class="form-control" type="date" value="" id="date-end" style="margin-left: 33px; width: 71%" />
+                    </div>
+
+                    <div class="row align-items-center mb-3">
+                        <label class="col-sm-2 form-label text-none" for="basic-default-message">Cấp độ</label>
+                        <div class="col-sm-10 d-flex justify-content-between  ">
+                            <div class="d-flex justify-content-center align-items-center bg-info rounded-1 ps-2 pe-2">
+                                <input class="form-check-input inlineRadio"
+                                       type="radio"
+                                       name="inlineRadioOptions"
+                                       id="rdoAddNormal"
+                                       value="option1" />
+                                <label class="form-check-label text-white" for="rdoAddNormal">Bình thường</label>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center bg-warning rounded-1  ps-2 pe-2">
+                                <input class="form-check-input inlineRadio"
+                                       type="radio"
+                                       name="inlineRadioOptions"
+                                       id="rdoAddWarning"
+                                       value="option1" />
+                                <label class="form-check-label text-white" for="rdoAddWarning">Quan trọng</label>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center bg-danger rounded-1 ps-2 pe-2">
+                                <input class="form-check-input inlineRadio"
+                                       type="radio"
+                                       name="inlineRadioOptions"
+                                       id="rdoAddDanger"
+                                       value="option1" />
+                                <label class="form-check-label text-white" for="rdoAddDanger">Khẩn cấp</label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
