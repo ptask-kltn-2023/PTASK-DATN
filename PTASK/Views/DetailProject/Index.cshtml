@@ -2,10 +2,10 @@
     Layout = "_LayoutProject";
     ViewData["TitleMission"] = "Thêm nhiệm vụ";
 }
-<partial name="~/Views/Shared/Partial/_NavLeft.cshtml" view-data='@new ViewDataDictionary(ViewData) { { "TitleProject", "Tên dự án" } }' />
-<div class="main-wrapper bg-img">
+<partial name="~/Views/Shared/Partial/_NavLeft.cshtml" view-data='@new ViewDataDictionary(ViewData) { { "TitleProject", "Tên Dự án" } }' />
+<div class="main-wrapper ">
     <main class="main users chart-page" id="skip-target">
-        <div class="container-xxl flex-grow-1 container-p-y pb-0" style="margin-top: 2%;">
+        <div class="container-xxl flex-grow-1" style="margin-top: 5%;">
             <div class="row mb-5">
                 <div class="col-md-6 col-lg-4">
                     <h6 class="mt-2 mb-2 text-uppercase"><strong>Thời gian thực hiện dự án</strong></h6>
@@ -106,9 +106,14 @@
                         </div>
                     </div>
                     <h6 class="mt-2 mb-2  text-uppercase"><strong>Công việc đã hoàn thành</strong> </h6>
-                    <div class="card mb-4 bg-blur">
-                        <div class="card-body">
-                            <h5 class="card-title">Hoàn thành: 35/50</h5>
+                    <div class="card mb-4 card-effect bg-blur">
+                        <div class="card-body p3">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Hoàn thành: 40/50</span>
+                                <span>
+                                    <a asp-area="" asp-controller="DetailProject" asp-action="ListWorks" class="text-primary view-detail">Xem chi tiết >></a>
+                                </span>
+                            </div>
                             <div class="progress">
                                 <div class="progress-bar bg-success"
                                      role="progressbar"
@@ -125,8 +130,13 @@
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <h6 class="mt-2 mb-2 text-uppercase"><strong>Danh sách các công việc</strong> </h6>
-                    <div class="card p-2 mb-4 card-effect  bg-blur">
-                        <a class="m-2 text-end text-primary view-detail">Xem chi tiết >></a>
+                    <div class="card p-2 card-effect bg-blur">
+                        <div class="d-flex justify-content-between p-1">
+                            <span>Tổng số: 40</span>
+                            <span>
+                                <a asp-area="" asp-controller="DetailProject" asp-action="ListWorks" class="text-primary view-detail">Xem chi tiết >></a>
+                            </span>
+                        </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex bg-white justify-content-between"
                                 data-bs-toggle="tooltip"
@@ -168,7 +178,12 @@
                 <div class="col-md-6 col-lg-4">
                     <h6 class="mt-2 mb-2  text-uppercase"><strong>Thành viên tham gia dự án</strong> </h6>
                     <div class="card p-2 mb-4 card-effect bg-blur">
-                        <a class="m-2 text-end text-primary view-detail">Xem chi tiết >></a>
+                        <div class="d-flex justify-content-between p-1">
+                            <span>Tổng số: 40</span>
+                            <span>
+                                <a asp-area="" asp-controller="Member" asp-action="index" class="text-primary view-detail">Xem chi tiết >></a>
+                            </span>
+                        </div>
                         <ul class="list-group list-group-flush member-accept">
                             <li class="list-group-item bg-white rounded-1"
                                 data-bs-toggle="tooltip"

@@ -232,3 +232,11 @@
 .view-detail{
     cursor: pointer;
 }
+
+.tbl-members {
+    padding: 1.5rem 1.5rem;
+}
+
+.btn-viewListTask{
+    cursor:pointer
+}
