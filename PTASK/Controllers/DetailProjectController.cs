@@ -18,7 +18,7 @@ namespace PTASK.Controllers
             return View();
         }
 
-        public IActionResult WorksSuccess()
+        public IActionResult ListTasks()
         {
             return View();
         }
