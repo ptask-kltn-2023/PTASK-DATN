@@ -11,6 +11,11 @@ namespace PTASK.Controllers
             return View();
         }
 
+        // GET: MemberController
+        public ActionResult ListGroups()
+        {
+            return View();
+        }
         // GET: MemberController/Details/5
         public ActionResult Details(int id)
         {
