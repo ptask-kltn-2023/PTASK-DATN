@@ -1,14 +1,25 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PTASK.Interface;
+using PTASK.Models;
 
 namespace PTASK.Controllers
 {
     public class ProjectController : Controller
     {
+        private readonly IProject _project;
+
+        public ProjectController(IProject project)
+        {
+            _project = project;
+        }
+
         // GET: ProjectController
         public ActionResult Index()
         {
-            return View();
+            List<Project> projects = _project.List();
+            var data = projects.ToList();
+            return View(data);
         }
 
         public IActionResult Dashboard()

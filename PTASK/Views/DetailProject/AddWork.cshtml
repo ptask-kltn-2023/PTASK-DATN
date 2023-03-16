@@ -24,6 +24,33 @@
                     <label class="form-label text-none" for="work-end">Ngày kết thúc</label>
                     <input class="form-control" type="date" value="" id="work-end" />
                 </div>
+                <div class="mb-2">
+                    <div class="mb-2 d-flex justify-content-between align-items-center">
+                        <label class="form-label text-none">Nhiệm vụ cần làm</label>
+                        <button data-bs-toggle="modal"
+                                data-bs-target="#modalMisson"
+                                type="button"
+                                class="btn btn-outline-success">
+                            <i class='bx bx-plus'></i>Thêm
+                        </button>
+                    </div>
+                    <ul class="list-group listToDo">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>Soufflé pastry pie ice</span>
+                            <img src="../assets/img/avatars/5.png"
+                                 alt="Avatar"
+                                 class="rounded-circle pull-up"
+                                 width="30"
+                                 data-bs-toggle="tooltip"
+                                 data-popup="tooltip-custom"
+                                 data-bs-placement="top"
+                                 title="Lilian Fuller" />
+                        </li>
+                        <li class="list-group-item">
+                            Bear claw cake biscuit
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="btnAddWork" data-bs-dismiss="modal"
