@@ -18,6 +18,11 @@ namespace PTASK.Controllers
             return View();
         }
 
+        public IActionResult WorksSuccess()
+        {
+            return View();
+        }
+
         // GET: DetailProjectController/Details/5
         public ActionResult Details(int id)
         {
