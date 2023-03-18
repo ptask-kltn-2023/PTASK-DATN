@@ -222,11 +222,14 @@
                             </a>
                         </li>
                         <li>
-                            <a class="danger" href="##">
-                                <i data-feather="log-out"
-                                   aria-hidden="true"></i>
-                                <span>Log out</span>
-                            </a>
+
+                            <form method="post" asp-controller="Account" asp-action="Logout">
+                                <button type="submit" class="danger">
+                                    <i data-feather="log-out"
+                                       aria-hidden="true"></i>
+                                    <span>Đăng xuất</span>
+                                </button>
+                            </form>
                         </li>
                     </ul>
                 </div>

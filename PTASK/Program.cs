@@ -19,6 +19,7 @@ builder.Services.AddCustomHttpClient("apiLogin", apiUrl);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddMvc();
+builder.Services.AddHttpContextAccessor();
 
 //Add session
 builder.Services.AddDistributedMemoryCache();
@@ -38,6 +39,7 @@ builder.Services.AddSingleton<IProjectService, ProjectService>();
 builder.Services.AddSingleton<IAuthService, AuthService>();
 builder.Services.AddSingleton<IJwtService, JwtService>();
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
