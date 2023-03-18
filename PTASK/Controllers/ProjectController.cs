@@ -7,19 +7,19 @@ namespace PTASK.Controllers
 {
     public class ProjectController : Controller
     {
-        private readonly IProject _project;
+        private readonly IProjectService _project;
 
-        public ProjectController(IProject project)
+        public ProjectController(IProjectService project)
         {
             _project = project;
         }
 
         // GET: ProjectController
-        public ActionResult Index()
+        [HttpGet]
+        public async Task<ActionResult> Index()
         {
-            List<Project> projects = _project.List();
-            var data = projects.ToList();
-            return View(data);
+            var result = await _project.List();
+            return View(result);
         }
 
         public IActionResult Dashboard()
