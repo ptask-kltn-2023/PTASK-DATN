@@ -36,8 +36,14 @@ namespace PTASK.Controllers
                 ModelState.AddModelError("", "Đăng nhập không thành công");
                 return View(model);
             }
+        } 
+          
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
-         
+
         // GET: LoginController
         public ActionResult Register()
         {
