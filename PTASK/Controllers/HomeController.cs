@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using PTASK.Models;
 using System.Diagnostics;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace PTASK.Controllers
 {
@@ -19,8 +21,10 @@ namespace PTASK.Controllers
             if (_httpContextAccessor != null && _httpContextAccessor.HttpContext != null)
             {
                 var token = _httpContextAccessor.HttpContext.Session.GetString("Token");
+               
                 if (token == null)
                 {
+
                     return View();
                 }
                 else

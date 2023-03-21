@@ -50,23 +50,19 @@
     <!-- Content -->
     <div class="container-xxl">
         <div class="authentication-wrapper authentication-basic container-p-y">
-            <div class="authentication-inner">
-                <!-- Register -->
-                <div class="card">
-                    <div class="card-body">
-                        <!-- Logo -->
-                        <div class="app-brand justify-content-center">
-                            <a href="~/index.html" class="app-brand-link gap-2">
-                                <span class="app-brand-logo demo">
-                                    <img src="~/assets/img/PTLOGO.jpg" alt="" width="50" height="50">
-                                </span>
-                                <span class="app-brand-text demo text-body fw-bolder">PTASK</span>
-                            </a>
-                        </div>
-                        @RenderBody()
+            <div class="card">
+                <div class="card-body">
+                    <!-- Logo -->
+                    <div class="app-brand justify-content-center">
+                        <a href="~/index.html" class="app-brand-link gap-2">
+                            <span class="app-brand-logo demo">
+                                <img src="~/assets/img/PTLOGO.jpg" alt="" width="50" height="50">
+                            </span>
+                            <span class="app-brand-text demo text-body fw-bolder">PTASK</span>
+                        </a>
                     </div>
+                    @RenderBody()
                 </div>
-                <!-- /Register -->
             </div>
         </div>
     </div>
@@ -85,6 +81,7 @@
     <script src="~/assets/js/main.js"></script>
 
     <!-- Page JS -->
+    <script src="../assets/js/pages-account-settings-account.js"></script>
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     @await RenderSectionAsync("Scripts", required: false)

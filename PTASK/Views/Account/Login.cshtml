@@ -4,9 +4,9 @@
 }
 <!-- /Logo -->
 <h4 class="mb-2">Chào mừng đến với PTASK! 👋</h4>
-<p class="mb-4">Vui lòng đăng nhập vào tài khoản của bạn và bắt đầu trãi nghiệm với chúng tôi</p>
+<p class="mb-4">Vui lòng đăng nhập vào tài khoản của bạn và bắt đầu trải nghiệm với chúng tôi</p>
 
-<form id="formAuthentication" class="mb-3" method="POST" asp-controller="Account" asp-action="Login">
+<form class="mb-3" method="POST" asp-controller="Account" asp-action="Login">
     <div class="mb-3">
         <label asp-for="email" class="form-label">Email</label>
         <input type="text"
@@ -44,7 +44,7 @@
 
 <p class="text-center">
     <span>Bạn chưa có tài khoản?</span>
-    <a href="../Register/auth-register-basic.html">
+    <a asp-controller="Account" asp-action="Register">
         <span>Đăng ký ngay</span>
     </a>
-</p>
+</p> 

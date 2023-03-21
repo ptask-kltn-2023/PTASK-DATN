@@ -15,6 +15,8 @@ var apiUrl = configuration.GetValue<string>("ApiUrl");
 
 builder.Services.AddCustomHttpClient("apiAllProject", apiUrl);
 builder.Services.AddCustomHttpClient("apiLogin", apiUrl);
+builder.Services.AddCustomHttpClient("apiRegister", apiUrl);
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
