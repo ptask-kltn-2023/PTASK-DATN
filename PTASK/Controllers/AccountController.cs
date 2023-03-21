@@ -45,6 +45,7 @@ namespace PTASK.Controllers
         }
 
         // GET: LoginController
+        [HttpGet]
         public ActionResult Register()
         {
             return View();
@@ -52,16 +53,18 @@ namespace PTASK.Controllers
 
         // POST: LoginController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Register(IFormCollection collection)
+        public async Task<IActionResult> Register(User model)
         {
-            try
+            var result = await _auth.Register(model);
+
+            if (result != null)
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Project");
             }
-            catch
+            else
             {
-                return View();
+                ModelState.AddModelError("", "Đăng ký không thành công");
+                return View(model);
             }
         }
 
