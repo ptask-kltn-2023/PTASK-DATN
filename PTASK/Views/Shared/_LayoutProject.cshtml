@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en"
       class="light-style layout-menu-fixed"
       dir="ltr"
@@ -239,9 +240,8 @@
     <div class="page-flex">
         @RenderBody()
     </div>
-
+    @await Html.PartialAsync("~/Views/Project/AddProject.cshtml", new Project())
     <!-- Modal -->
-    <partial name="~/Views/Project/AddProject.cshtml" />
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script src="~/assets/vendor/libs/jquery/jquery.js"></script>

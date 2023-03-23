@@ -1,4 +1,8 @@
-﻿<div class="modal fade" id="basicModal" tabindex="-1" style="display: none" aria-labelledby="modalCenterTitle" aria-hidden="true">
+﻿@model Project
+@{
+    var user = ViewData["User"];
+}
+    <div class="modal fade" id="basicModal" tabindex="-1" style="display: none" aria-labelledby="modalCenterTitle" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -9,15 +13,17 @@
                         aria-label="Close"></button>
             </div>
             <div class="modal-body p-3">
-                <form>
+                <form method="POST" asp-controller="Project" asp-action="Create">
+                    <input asp-for="mainProject" value="@null" hidden />
                     <div class="mb-2">
-                        <label class="form-label">Hình nền</label>
+                        <label class="form-label" for="upload" asp-for="background" >Hình nền</label>
                         <div class="d-flex align-items-start align-items-sm-center gap-4">
                             <label for="upload" tabindex="0">
                                 <i class="bx bx-upload d-block d-sm-none"></i>
                                 <input type="file"
-                                       id="upload"
                                        class="account-file-input"
+                                       asp-for="background"
+                                       id="upload"
                                        hidden
                                        accept="image/png, image/jpeg" />
                                 <img src="/assets/img/elements/1.jpg"
@@ -30,76 +36,21 @@
                         </div>
                     </div>
                     <div class="mb-2">
-                        <label class="form-label" for="basic-default-fullname">Tên dự án</label>
-                        <input type="text" class="form-control" id="basic-default-fullname" placeholder="Nhập tên dự án" />
+                        <label class="form-label" asp-for="name">Tên dự án</label>
+                        <input type="text" asp-for="name" class="form-control" placeholder="Nhập tên dự án" />
                     </div>
                     <div class="mb-2">
-                        <label class="form-label" for="project-start">Ngày bắt đầu</label>
-                        <input class="form-control" type="date" value="" id="project-start" />
+                        <label class="form-label" asp-for="startTime">Ngày bắt đầu</label>
+                        <input class="form-control" type="date" value="" asp-for="startTime" />
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="project-end">Ngày kết thúc</label>
-                        <input class="form-control" type="date" value="" id="project-end" />
+                        <label class="form-label" asp-for="finishTime">Ngày kết thúc</label>
+                        <input class="form-control" type="date" value="" asp-for="finishTime" />
                     </div>
-                    <div class="mb-2 d-flex">
-                        <div class="btn-group dropend">
-                            <button class="btn btn-outline-success"
-                               data-bs-toggle="dropdown"
-                               aria-haspopup="true"
-                               aria-expanded="false">
-                                <i class='me-2 bx bx-user-plus'></i>Thêm thành viên
-                            </button>
-                            <div class="dropdown-menu w-px-300 p-2">
-                                <form onsubmit="return false">
-                                    <div class="mb-3">
-                                        <label for="exampleDropdownFormEmail1" class="form-label">Nhập địa chỉ email</label>
-                                        <input type="email"
-                                               class="form-control"
-                                               id="exampleDropdownFormEmail1"
-                                               placeholder="email@gmail.com" />
-                                    </div>
-                                    <button type="button" class="btn btn-outline-secondary">Hủy</button>
-                                    <button type="button" class="btn btn-primary btn-add-member">Thêm</button>
-                                </form>
-                            </div>
-                        </div>
-
-                        <ul class="ms-2 list-unstyled users-list m-0 avatar-group d-flex align-items-center" id="list-member-groups">
-                            <li data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                class="avatar avatar-xs pull-up"
-                                title="Lilian Fuller">
-                                <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-                            </li>
-                            <li data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                class="avatar avatar-xs pull-up"
-                                title="Sophia Wilkerson">
-                                <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-                            </li>
-                            <li data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                class="avatar avatar-xs pull-up"
-                                title="Christina Parker">
-                                <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-                            </li>
-                            <li data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                class="avatar avatar-xs pull-up"
-                                title="Christina Parker">
-                                <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-                            </li>
-                        </ul>
-                    </div>
+                    <button type="submit" class="btn btn-primary">Tạo dự án</button>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Tạo dự án</button>
-            </div>
+           
         </div>
     </div>
 </div>

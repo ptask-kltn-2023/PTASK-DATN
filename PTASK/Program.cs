@@ -16,6 +16,10 @@ var apiUrl = configuration.GetValue<string>("ApiUrl");
 builder.Services.AddCustomHttpClient("apiAllProject", apiUrl);
 builder.Services.AddCustomHttpClient("apiLogin", apiUrl);
 builder.Services.AddCustomHttpClient("apiRegister", apiUrl);
+builder.Services.AddCustomHttpClient("apiCreateProject", apiUrl);
+builder.Services.AddCustomHttpClient("apiGetUserByEmail", apiUrl);
+builder.Services.AddCustomHttpClient("apiGetProjectById", apiUrl);
+builder.Services.AddCustomHttpClient("apiGetAllWork", apiUrl);
 
 
 // Add services to the container.
@@ -39,6 +43,8 @@ builder.Services.Configure<JwtSettings>(jwtSettings);
 //Register
 builder.Services.AddSingleton<IProjectService, ProjectService>();
 builder.Services.AddSingleton<IAuthService, AuthService>();
+builder.Services.AddSingleton<IUserService, UserService>();
+builder.Services.AddSingleton<IWorkService, WorkService>();
 builder.Services.AddSingleton<IJwtService, JwtService>();
 var app = builder.Build();
 

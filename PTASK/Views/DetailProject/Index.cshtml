@@ -1,8 +1,35 @@
-﻿@{
+﻿@model Project
+
+@{
     Layout = "_LayoutProject";
     ViewData["TitleMission"] = "Thêm nhiệm vụ";
+    // Tính phần trăm ngày hiện tại so với ngày bắt đầu và ngày kết thúc
+    int roundedNumber = 0;
+    if (DateTime.Today < Model.startTime)
+    {
+        // Ngày hiện tại chưa đến ngày bắt đầu, phần trăm là số âm
+        roundedNumber = 0;
+    }
+    else if (DateTime.Today >= Model.finishTime)
+    {
+        // Ngày hiện tại đã qua ngày kết thúc, phần trăm là 100%
+        roundedNumber = 100;
+    }
+    else
+    {
+        // Tính phần trăm giữa ngày bắt đầu và ngày kết thúc
+        double daysElapsed = (DateTime.Now - Model.startTime).Days;
+        double totalDays = (Model.finishTime - Model.startTime).Days;
+        double percent = daysElapsed / totalDays * 100;
+        roundedNumber = (int)Math.Round(percent, 0, MidpointRounding.AwayFromZero);
+    }
+  
+    if(roundedNumber > 100)
+    {
+        roundedNumber = 100;
+    }
 }
-<partial name="~/Views/Shared/Partial/_NavLeft.cshtml" view-data='@new ViewDataDictionary(ViewData) { { "TitleProject", "Tên Dự án" } }' />
+<partial name="~/Views/Shared/Partial/_NavLeft.cshtml"  />
 <div class="main-wrapper ">
     <main class="main users chart-page" id="skip-target">
         <div class="container-xxl flex-grow-1" style="margin-top: 5%;">
@@ -11,15 +38,17 @@
                     <h6 class="mt-2 mb-2 text-uppercase"><strong>Thời gian thực hiện dự án</strong></h6>
                     <div class="card mb-4 card-effect bg-blur">
                         <div class="card-body p-3">
-                            <h5 class="card-title">Từ ngày.... đến ngày....</h5>
+                            <h6 class="card-title">
+                                Từ ngày @Model.startTime.ToString("dd-MM-yyyy") đến ngày @Model.finishTime.ToString("dd-MM-yyyy")
+                            </h6>
                             <div class="progress">
                                 <div class="progress-bar bg-success"
                                      role="progressbar"
-                                     style="width: 40%"
-                                     aria-valuenow="40"
+                                     style="width: @roundedNumber%"
+                                     aria-valuenow="@roundedNumber"
                                      aria-valuemin="0"
                                      aria-valuemax="100">
-                                    40%
+                                    @roundedNumber%
                                 </div>
                             </div>
                             <h5 class="card-title mt-3">Ngày hiện tại</h5>
