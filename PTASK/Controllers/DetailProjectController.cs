@@ -1,23 +1,38 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PTASK.Interface;
+using PTASK.Models;
 
 namespace PTASK.Controllers
 {
     public class DetailProjectController : Controller
     {
-        // GET: DetailProjectController
-        public IActionResult Index()
-        {
+        private readonly IProjectService _project;
 
-            return View();
+        public DetailProjectController(IProjectService project)
+        {
+            _project = project;
+        }
+        // GET: DetailProjectController
+        [HttpGet]
+        public async Task<IActionResult> Index(string projectId)
+        {
+            var result = await _project.GetProjectById(projectId);
+            TempData["ProjectID"] = projectId;
+            TempData["TitleProject"] = result.name;
+            TempData.Keep("ProjectID");
+            TempData.Keep("TitleProject");
+            if (result != null)
+            {
+                return View(result);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Project");
+
+            }
         }
         // GET: DetailProjectController/ListWorks
-        public IActionResult ListWorks()
-        {
-
-            return View();
-        }
-
         public IActionResult ListTasks()
         {
             return View();

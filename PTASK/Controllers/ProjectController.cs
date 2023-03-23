@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PTASK.Interface;
 using PTASK.Models;
+using System.Reflection;
 
 namespace PTASK.Controllers
 {
@@ -27,30 +28,37 @@ namespace PTASK.Controllers
             return View();
         }
         // GET: ProjectController/Details/5
-        public ActionResult Details(int id)
+        [HttpGet]
+        public ActionResult Details(int projectId)
         {
+
             return View();
         }
 
         // GET: ProjectController/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
-            return View();
+            Project project = new Project();
+            
+            return PartialView("~/Views/Project/AddProject.cshtml", project);
         }
 
         // POST: ProjectController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(Project project)
         {
-            try
+            var result = await _project.Create(project);
+
+            if (result)
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Project");
             }
-            catch
+            else
             {
-                return View();
+                return PartialView("~/Views/Project/AddProject.cshtml", project);
             }
+            
         }
 
         // GET: ProjectController/Edit/5
