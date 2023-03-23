@@ -8,7 +8,6 @@ namespace PTASK.Models
         public string name { get; set; }
         public string mainProject { get; set; }
         public string background { get; set; }
-
         public DateTime startTime { get; set; }
         public DateTime finishTime { get; set; }
         public bool status { get; set; }
