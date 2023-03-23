@@ -1,6 +1,7 @@
 ﻿@{
-    var title = ViewData["TitleProject"];
+    var title = TempData["TitleProject"];
     var active = ViewData["active"];
+    var projectId = TempData["ProjectID"];
 }
 <aside class="sidebar">
     <div class="sidebar-start">
@@ -76,23 +77,29 @@
             <div class="sidebar-body">
                 <ul class="sidebar-body-menu">
                     <li>
-                        <a class="btn-event" asp-area="" asp-controller="DetailProject" asp-action="Index">
+                        <a class="btn-event" asp-controller="DetailProject"
+                       asp-action="Index"
+                       asp-route-projectId="@projectId">
                             <span class="icon dashboard"></span>Tổng quan dự án
                         </a>
                     </li>
                     <li>
-                        <a class="btn-event @active" asp-area="" asp-controller="DetailProject" asp-action="ListWorks">
+                        <a class="btn-event @active"
+                       asp-area="" asp-controller="Work" asp-action="Index" asp-route-projectId="@projectId">
                             <span class="icon listWork"></span>Danh sách công việc
                         </a>
                     </li>
                     <li>
-                        <a class="btn-event" asp-area="" asp-controller="DetailProject" asp-action="ListTasks">
+                        <a class="btn-event">
                             <span class="icon workSuccess" aria-hidden="true"></span>Danh sách nhiệm vụ
                         </a>
-                       
+
                     </li>
                     <li>
-                        <a class="btn-event" class="btn-event" asp-area="" asp-controller="Member" asp-action="ListGroups">
+                        <a class="btn-event"
+                       asp-area=""
+                       asp-controller="Member"
+                       asp-action="ListGroups">
                             <span class="icon successProject" aria-hidden="true"></span>Nhóm tham gia
                         </a>
                     </li>

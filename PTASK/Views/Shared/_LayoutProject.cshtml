@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en"
       class="light-style layout-menu-fixed"
       dir="ltr"
@@ -222,11 +223,14 @@
                             </a>
                         </li>
                         <li>
-                            <a class="danger" href="##">
-                                <i data-feather="log-out"
-                                   aria-hidden="true"></i>
-                                <span>Log out</span>
-                            </a>
+
+                            <form method="post" asp-controller="Account" asp-action="Logout">
+                                <button type="submit" class="danger">
+                                    <i data-feather="log-out"
+                                       aria-hidden="true"></i>
+                                    <span>Đăng xuất</span>
+                                </button>
+                            </form>
                         </li>
                     </ul>
                 </div>
@@ -236,9 +240,8 @@
     <div class="page-flex">
         @RenderBody()
     </div>
-
+    @await Html.PartialAsync("~/Views/Project/AddProject.cshtml", new Project())
     <!-- Modal -->
-    <partial name="~/Views/Project/AddProject.cshtml" />
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script src="~/assets/vendor/libs/jquery/jquery.js"></script>

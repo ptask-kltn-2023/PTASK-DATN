@@ -1,51 +1,110 @@
-﻿@{
+﻿@model User
+@{
     Layout = "_LayoutLogin";
 }
 <!-- /Logo -->
 <h4 class="mb-2">Đăng ký tài khoản 🚀</h4>
-<p class="mb-4">Hãy tạo tài khoản để bắt đầu công việc nào!</p>
-<form id="formAuthentication" class="mb-3" asp-controller="Home" asp-action="Index" method="POST">
-    <div class="mb-3">
-        <label for="username" class="form-label">Tên tài khoản</label>
-        <input type="text"
-               class="form-control"
-               id="username"
-               name="username"
-               placeholder="Nhập tên của bạn"
-               autofocus />
-    </div>
-    <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="text" class="form-control" id="email" name="email" placeholder="Nhập email của bạn" />
-    </div>
-    <div class="mb-3 form-password-toggle">
-        <label class="form-label" for="password">Mật khẩu</label>
-        <div class="input-group input-group-merge">
-            <input type="password"
-                   id="password"
-                   class="form-control"
-                   name="password"
-                   placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                   aria-describedby="password" />
-            <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+<span>Hãy tạo tài khoản để bắt đầu công việc nào!</span>
+<!-- Account -->
+<div class="mb-2 mt-2">
+    <form method="POST" asp-controller="Account" asp-action="Register">
+        <div class="row">   
+            <div class="col-md-6 text-center">
+                <label><b>Thông tin đăng nhập</b></label>
+            </div>
+            <div class="col-md-6 text-center">
+                <label><b>Thông tin cá nhân</b></label>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" asp-for="email" placeholder="Nhập email của bạn" />
+            </div>
+            <div class="mb-3 col-md-6">
+                <div class="d-flex align-items-start align-items-sm-center gap-4">
+                    <img src="../assets/img/avatars/5.png"
+                         alt="user-avatar"
+                         class="d-block rounded"
+                         height="60"
+                         width="60"/>
+                    <div class="button-wrapper">
+                        <label asp-for="avatarImage" class="btn btn-primary me-2" tabindex="0">
+                            <span class="d-none d-sm-block">Chọn ảnh đại diện</span>
+                            <i class="bx bx-upload d-block d-sm-none"></i>
+                            <input type="file"
+                                   asp-for="avatarImage"
+                                   class="account-file-input"
+                                   hidden
+                                   accept="image/png, image/jpeg" />
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label class="form-label" asp-for="password">Mật khẩu</label>
+                <div class="input-group input-group-merge">
+                    <input type="password"
+                           asp-for="password"
+                           class="form-control"
+                           placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
+                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                </div>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="fullName" class="form-label">Họ và Tên</label>
+                <input class="form-control" type="text" asp-for="fullName" placeholder="Nhập họ tên"/>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label class="form-label" asp-for="confirmPassword">Nhập lại mật khẩu</label>
+                <div class="input-group input-group-merge">
+                    <input type="password"
+                           asp-for="confirmPassword"
+                           class="form-control"
+                           placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
+                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                </div>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="phoneNumber" class="form-label">Số điện thoại</label>
+                <input class="form-control" type="text" asp-for="phoneNumber" placeholder="1234" />
+            </div>
+            <div class="mb-3 col-md-6">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="birthday" class="col-form-label">Ngày sinh</label>
+                <input class="form-control" type="date" value="" asp-for="birthday" />
+            </div>
+            <div class="mb-3 col-md-6">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="gender" class="form-label me-2">Giới tính</label>
+                <div class="form-check form-check-inline mt-3">
+                    <input class="form-check-input"
+                           type="radio"
+                           asp-for="gender"
+                           value="0" />
+                    <label class="form-check-label" for="inlineRadio1">Nam</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input"
+                           type="radio"
+                           asp-for="gender"
+                           value="1" />
+                    <label class="form-check-label" for="inlineRadio2">Nữ</label>
+                </div>
+            </div>
+            <div class="mb-3 col-md-6">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="address" class="form-label">Địa chỉ</label>
+                <input class="form-control" type="text" asp-for="address" placeholder="Nhập địa chỉ" />
+            </div>
         </div>
-    </div>
-
-    <div class="mb-3">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
-            <label class="form-check-label" for="terms-conditions">
-                Tôi đồng ý với
-                <a href="javascript:void(0);">chính sách và điều khoản</a>
-            </label>
-        </div>
-    </div>
-    <button class="btn btn-primary d-grid w-100">Đăng ký</button>
-</form>
-
-<p class="text-center">
-    <span>Bạn đã có tài khoản?</span>
-    <a href="../Login/login.html">
+        <button type="submit" class="btn btn-primary me-2">Đăng ký</button>
+    </form>
+</div>
+<span>
+    Bạn đã có tài khoản?
+    <a asp-controller="Account" asp-action="Login">
         <span>Đăng nhập ngay</span>
     </a>
-</p>
+</span>

@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<PTASK.Models.Project>
-
 @{
     Layout = "_LayoutProject";
+    TempData["TitleProject"] = "PTASK";
 }
-<partial name="~/Views/Shared/Partial/_NavLeft.cshtml" view-data='@new ViewDataDictionary(ViewData) { { "TitleProject", "PTASK" } }' />
+<partial name="~/Views/Shared/Partial/_NavLeft.cshtml" view-data='@new ViewDataDictionary(ViewData) { { "TitleProject",  TempData["TitleProject"]} }' />
 <div class="main-wrapper ">
     <main class="main users chart-page" id="skip-target">
         <div class="container-xxl flex-grow-1 container-p-y" style="margin-top: 5%;">
@@ -12,9 +12,13 @@
                 @foreach (var item in Model)
                 {
                     <div class="col-md-3 card-img-overlay text-white">
-                        <a class="card mb-3 card-effect p-3" asp-controller="DetailProject" asp-action="Index">
-                            <!-- <img class="card-img" src="~/assets/img/elements/11.jpg" alt="Card image" /> -->
-                            <h5 class="card-title">@item.name</h5>
+                        <a class="card mb-3 card-effect p-3"
+                            asp-controller="DetailProject"
+                            asp-action="Index"
+                            asp-route-projectId="@item._id"
+                           style="background-image: url('@item.background')">
+                            @*<img class="card-img" src="@item.background" alt="card image" />*@
+                            <h5 class="card-title text-white">@item.name</h5>
                             <p class="card-text mt-4">Tiến độ dự án</p>
                             <div class="progress mt-2">
                                 <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
@@ -30,150 +34,6 @@
                     </div>
                 }
             </div>
-            <h5 class="pb-1 mb-4">Dự án đã hoàn thành</h5>
-            <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
-                <div class="col-md-3 card-img-overlay text-white">
-                    <a class="card mb-3 card-effect p-3" asp-controller="DetailProject" asp-action="Index">
-                        <!-- <img class="card-img" src="~/assets/img/elements/11.jpg" alt="Card image" /> -->
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text mt-4">Tiến độ dự án</p>
-                        <div class="progress mt-2">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                                 role="progressbar"
-                                 style="width: 75%"
-                                 aria-valuenow="75"
-                                 aria-valuemin="0"
-                                 aria-valuemax="100">
-                                75
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3 card-img-overlay text-white">
-                    <a class="card mb-3 card-effect p-3" asp-controller="DetailProject" asp-action="Index">
-                        <!-- <img class="card-img" src="~/assets/img/elements/11.jpg" alt="Card image" /> -->
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text mt-4">Tiến độ dự án</p>
-                        <div class="progress mt-2">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                                 role="progressbar"
-                                 style="width: 75%"
-                                 aria-valuenow="75"
-                                 aria-valuemin="0"
-                                 aria-valuemax="100">
-                                75
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3 card-img-overlay text-white">
-                    <a class="card mb-3 card-effect p-3" asp-controller="DetailProject" asp-action="Index">
-                        <!-- <img class="card-img" src="~/assets/img/elements/11.jpg" alt="Card image" /> -->
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text mt-4">Tiến độ dự án</p>
-                        <div class="progress mt-2">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                                 role="progressbar"
-                                 style="width: 75%"
-                                 aria-valuenow="75"
-                                 aria-valuemin="0"
-                                 aria-valuemax="100">
-                                75
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3 card-img-overlay text-white">
-                    <a class="card mb-3 card-effect p-3" asp-controller="DetailProject" asp-action="Index">
-                        <!-- <img class="card-img" src="~/assets/img/elements/11.jpg" alt="Card image" /> -->
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text mt-4">Tiến độ dự án</p>
-                        <div class="progress mt-2">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                                 role="progressbar"
-                                 style="width: 75%"
-                                 aria-valuenow="75"
-                                 aria-valuemin="0"
-                                 aria-valuemax="100">
-                                75
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-            </div>
-            <h5 class="pb-1 mb-4">Dự án được tham gia</h5>
-            <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
-                <div class="col-md-3 card-img-overlay text-white">
-                    <a class="card mb-3 card-effect p-3" asp-controller="DetailProject" asp-action="Index">
-                        <!-- <img class="card-img" src="~/assets/img/elements/11.jpg" alt="Card image" /> -->
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text mt-4">Tiến độ dự án</p>
-                        <div class="progress mt-2">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                                 role="progressbar"
-                                 style="width: 75%"
-                                 aria-valuenow="75"
-                                 aria-valuemin="0"
-                                 aria-valuemax="100">
-                                75
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3 card-img-overlay text-white">
-                    <a class="card mb-3 card-effect p-3" asp-controller="DetailProject" asp-action="Index">
-                        <!-- <img class="card-img" src="~/assets/img/elements/11.jpg" alt="Card image" /> -->
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text mt-4">Tiến độ dự án</p>
-                        <div class="progress mt-2">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                                 role="progressbar"
-                                 style="width: 75%"
-                                 aria-valuenow="75"
-                                 aria-valuemin="0"
-                                 aria-valuemax="100">
-                                75
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3 card-img-overlay text-white">
-                    <a class="card mb-3 card-effect p-3" asp-controller="DetailProject" asp-action="Index">
-                        <!-- <img class="card-img" src="~/assets/img/elements/11.jpg" alt="Card image" /> -->
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text mt-4">Tiến độ dự án</p>
-                        <div class="progress mt-2">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                                 role="progressbar"
-                                 style="width: 75%"
-                                 aria-valuenow="75"
-                                 aria-valuemin="0"
-                                 aria-valuemax="100">
-                                75
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3 card-img-overlay text-white">
-                    <a class="card mb-3 card-effect p-3" asp-controller="DetailProject" asp-action="Index">
-                        <!-- <img class="card-img" src="~/assets/img/elements/11.jpg" alt="Card image" /> -->
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text mt-4">Tiến độ dự án</p>
-                        <div class="progress mt-2">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                                 role="progressbar"
-                                 style="width: 75%"
-                                 aria-valuenow="75"
-                                 aria-valuemin="0"
-                                 aria-valuemax="100">
-                                75
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-            </div>
         </div>
     </main>
 </div>
@@ -181,7 +41,7 @@
 
 @section Scripts{
     <script>
-        $('.card-effect').css({ 'background-image': 'url(/assets/img/elements/7.jpg)' })
+        //$('.card-effect').css({ 'background-image': 'url(/assets/img/elements/7.jpg)' })
         const main = document.querySelector('.card-effect');
         const styles = window.getComputedStyle(main);
         const image = styles.backgroundImage;

@@ -1,11 +1,21 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PTASK.Interface;
+using PTASK.Models;
+using System.Net.Http;
+using System.Reflection;
 
 namespace PTASK.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly IAuthService _auth;
+        public AccountController(IAuthService auth)
+        {
+            _auth = auth;
+        }
         // GET: LoginController
+        [HttpGet]
         public ActionResult Login()
         {
             return View();
@@ -13,21 +23,29 @@ namespace PTASK.Controllers
 
         // POST: LoginController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(IFormCollection collection)
+        public async Task<IActionResult> Login(User model)
         {
-            
-            try
+            var result = await _auth.Login(model);
+          
+            if (result != null)
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Project");
             }
-            catch
+            else
             {
-                return View();
+                ModelState.AddModelError("", "Đăng nhập không thành công");
+                return View(model);
             }
+        } 
+          
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: LoginController
+        [HttpGet]
         public ActionResult Register()
         {
             return View();
@@ -35,16 +53,18 @@ namespace PTASK.Controllers
 
         // POST: LoginController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Register(IFormCollection collection)
+        public async Task<IActionResult> Register(User model)
         {
-            try
+            var result = await _auth.Register(model);
+
+            if (result != null)
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Project");
             }
-            catch
+            else
             {
-                return View();
+                ModelState.AddModelError("", "Đăng ký không thành công");
+                return View(model);
             }
         }
 
