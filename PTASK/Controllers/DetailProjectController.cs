@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using PTASK.Interface;
 using PTASK.Models;
 
@@ -8,29 +9,35 @@ namespace PTASK.Controllers
     public class DetailProjectController : Controller
     {
         private readonly IProjectService _project;
+        private readonly IWorkService _work;
 
-        public DetailProjectController(IProjectService project)
+
+        public DetailProjectController(IProjectService project, IWorkService work)
         {
             _project = project;
+            _work = work;
         }
         // GET: DetailProjectController
         [HttpGet]
         public async Task<IActionResult> Index(string projectId)
         {
-            var result = await _project.GetProjectById(projectId);
-            TempData["ProjectID"] = projectId;
-            TempData["TitleProject"] = result.name;
-            TempData.Keep("ProjectID");
-            TempData.Keep("TitleProject");
-            if (result != null)
-            {
-                return View(result);
-            }
-            else
-            {
-                return RedirectToAction("Index", "Project");
+            var resultProject = await _project.GetProjectById(projectId);
+            var resultWork = await _work.GetAllWorkByIdProject(projectId);
 
-            }
+            //Gán dữ liệu vào bộ nhớ tạm
+            var cache = HttpContext.RequestServices.GetRequiredService<IMemoryCache>();
+            cache.Set("TitleProject", resultProject.name);
+            cache.Set("ProjectID", projectId);
+
+            ViewData["TitleProject"] = cache.Get<string>("TitleProject");
+            ViewData["ProjectID"] = cache.Get<string>("ProjectID");
+
+            var detailProject = new DetailProject
+            {
+                Project = resultProject,
+                Works = resultWork,
+            };
+            return View(detailProject);
         }
         // GET: DetailProjectController/ListWorks
         public IActionResult ListTasks()

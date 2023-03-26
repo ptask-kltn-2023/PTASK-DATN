@@ -20,13 +20,15 @@ builder.Services.AddCustomHttpClient("apiCreateProject", apiUrl);
 builder.Services.AddCustomHttpClient("apiGetUserByEmail", apiUrl);
 builder.Services.AddCustomHttpClient("apiGetProjectById", apiUrl);
 builder.Services.AddCustomHttpClient("apiGetAllWork", apiUrl);
+builder.Services.AddCustomHttpClient("apiAllTask", apiUrl);
+builder.Services.AddCustomHttpClient("apiCreateProject", apiUrl);
 
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddMvc();
 builder.Services.AddHttpContextAccessor();
-
+builder.Services.AddMemoryCache();
 //Add session
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
@@ -36,15 +38,16 @@ builder.Services.AddSession(options =>
 });
 
 // Set Jwt
-builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
-var jwtSettings = builder.Configuration.GetSection("JwtSettings");
-builder.Services.Configure<JwtSettings>(jwtSettings);
+//builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+//var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+//builder.Services.Configure<JwtSettings>(jwtSettings);
 
 //Register
 builder.Services.AddSingleton<IProjectService, ProjectService>();
 builder.Services.AddSingleton<IAuthService, AuthService>();
 builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddSingleton<IWorkService, WorkService>();
+builder.Services.AddSingleton<ITaskService, PTaskService>();
 builder.Services.AddSingleton<IJwtService, JwtService>();
 var app = builder.Build();
 
