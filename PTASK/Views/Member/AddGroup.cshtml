@@ -1,0 +1,96 @@
+﻿<div class="modal fade" id="modalGroup" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-uppercase" id="exampleModalLabel1">Tạo nhóm</h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col mb-3">
+                        <label class="form-label">Tên nhóm</label>
+                        <input type="text" id="nameBasic" class="form-control" placeholder="Nhập tên công việc" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="exampleDropdownFormEmail1" class="form-label">Trưởng nhóm</label>
+                        <input class="form-control"
+                               list="datalistOptions"
+                               id="exampleDropdownFormEmail1"
+                               placeholder="Nhập để tìm kiếm" />
+                        <datalist id="datalistOptions">
+                            <option value="San Francisco"></option>
+                            <option value="New York"></option>
+                            <option value="Seattle"></option>
+                            <option value="Los Angeles"></option>
+                            <option value="Chicago Chicago Chicago"></option>
+                            <option value="Chicago"></option>
+                            <option value="Chicago"></option>
+                            <option value="Chicago"></option>
+                            <option value="Chicago"></option>
+                            <option value="Chicago"></option>
+                            <option value="Chicago"></option>
+                        </datalist>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3 ">
+                        <label for="exampleDropdownFormEmail1" class="form-label">Thành viên</label>
+                        <div class=" d-flex mb-2">
+                            <input type="email"
+                                   class="form-control me-2"
+                                   id="exampleDropdownFormEmail1"
+                                   placeholder="Nhập địa chỉ email" />
+                            <button type="button"
+                                    class="btn btn-outline-info"
+                                    style="width: 150px">
+                                <i class='bx bx-plus'></i>Thêm
+                            </button>
+                        </div>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <img src="../assets/img/avatars/5.png"
+                                     alt="Avatar"
+                                     class="rounded-circle"
+                                     width="30" />
+                                <strong class="ms-2">Lilian Fuller</strong>
+                            </li>
+                            <li class="list-group-item">
+                                <img src="../assets/img/avatars/5.png"
+                                     alt="Avatar"
+                                     class="rounded-circle"
+                                     width="30" />
+                                <strong class="ms-2">Lilian Fuller</strong>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
+                        <label class="form-label">Quyền trưởng nhóm</label>
+                        <ul class="list-group listToDo">
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="" />
+                                Thêm nhiệm vụ
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="" />
+                                Thêm thành viên
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnAddWork" data-bs-dismiss="modal"
+                        aria-label="Close">
+                    Lưu
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
