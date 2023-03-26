@@ -1,8 +1,6 @@
 ﻿@model Project
-@{
-    var user = ViewData["User"];
-}
-    <div class="modal fade" id="basicModal" tabindex="-1" style="display: none" aria-labelledby="modalCenterTitle" aria-hidden="true">
+
+<div class="modal fade" id="basicModal" tabindex="-1" style="display: none" aria-labelledby="modalCenterTitle" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -16,7 +14,7 @@
                 <form method="POST" asp-controller="Project" asp-action="Create">
                     <input asp-for="mainProject" value="@null" hidden />
                     <div class="mb-2">
-                        <label class="form-label" for="upload" asp-for="background" >Hình nền</label>
+                        <label class="form-label" for="upload" asp-for="background">Hình nền</label>
                         <div class="d-flex align-items-start align-items-sm-center gap-4">
                             <label for="upload" tabindex="0">
                                 <i class="bx bx-upload d-block d-sm-none"></i>
@@ -44,13 +42,13 @@
                         <input class="form-control" type="date" value="" asp-for="startTime" />
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" asp-for="finishTime">Ngày kết thúc</label>
-                        <input class="form-control" type="date" value="" asp-for="finishTime" />
+                        <label class="form-label" asp-for="endTime">Ngày kết thúc</label>
+                        <input class="form-control" type="date" value="" asp-for="endTime" />
                     </div>
                     <button type="submit" class="btn btn-primary">Tạo dự án</button>
                 </form>
             </div>
-           
+
         </div>
     </div>
 </div>

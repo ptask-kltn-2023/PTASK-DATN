@@ -1,7 +1,8 @@
 ﻿@{
-    var title = TempData["TitleProject"];
     var active = ViewData["active"];
-    var projectId = TempData["ProjectID"];
+    var projectId = ViewData["ProjectID"];
+    var title = ViewData["TitleProject"];
+
 }
 <aside class="sidebar">
     <div class="sidebar-start">
@@ -90,7 +91,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="btn-event">
+                        <a class="btn-event" asp-area="" asp-controller="Task" asp-action="Index" asp-route-projectId="@projectId">
                             <span class="icon workSuccess" aria-hidden="true"></span>Danh sách nhiệm vụ
                         </a>
 

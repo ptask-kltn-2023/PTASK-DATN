@@ -1,5 +1,4 @@
-﻿using MongoDB.Bson;
-
+﻿
 namespace PTASK.Models
 {
     public class Project
@@ -9,8 +8,8 @@ namespace PTASK.Models
         public string mainProject { get; set; }
         public string background { get; set; }
         public DateTime startTime { get; set; }
-        public DateTime finishTime { get; set; }
+        public DateTime endTime { get; set; }
         public bool status { get; set; }
-        public string[] roleIds { get; set; }
+        public string[] teamIds { get; set; }
     }
 }

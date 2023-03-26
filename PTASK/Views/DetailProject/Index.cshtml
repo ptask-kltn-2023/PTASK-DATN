@@ -1,16 +1,16 @@
-﻿@model Project
+﻿@model DetailProject
 
 @{
     Layout = "_LayoutProject";
     ViewData["TitleMission"] = "Thêm nhiệm vụ";
     // Tính phần trăm ngày hiện tại so với ngày bắt đầu và ngày kết thúc
     int roundedNumber = 0;
-    if (DateTime.Today < Model.startTime)
+    if (DateTime.Today < Model.Project.startTime)
     {
         // Ngày hiện tại chưa đến ngày bắt đầu, phần trăm là số âm
         roundedNumber = 0;
     }
-    else if (DateTime.Today >= Model.finishTime)
+    else if (DateTime.Today >= Model.Project.endTime)
     {
         // Ngày hiện tại đã qua ngày kết thúc, phần trăm là 100%
         roundedNumber = 100;
@@ -18,28 +18,32 @@
     else
     {
         // Tính phần trăm giữa ngày bắt đầu và ngày kết thúc
-        double daysElapsed = (DateTime.Now - Model.startTime).Days;
-        double totalDays = (Model.finishTime - Model.startTime).Days;
+        double daysElapsed = (DateTime.Now - Model.Project.startTime).Days;
+        double totalDays = (Model.Project.endTime - Model.Project.startTime).Days;
         double percent = daysElapsed / totalDays * 100;
         roundedNumber = (int)Math.Round(percent, 0, MidpointRounding.AwayFromZero);
     }
-  
-    if(roundedNumber > 100)
+
+    if (roundedNumber > 100)
     {
         roundedNumber = 100;
     }
+    // Sắp xếp công việc theo tên
+    var sortWork = Model.Works.OrderBy(w => w.name);
+    // Lấy tổng số công việc của dự án
+    var totalWork = Model.Works.Count;
 }
-<partial name="~/Views/Shared/Partial/_NavLeft.cshtml"  />
+<partial name="~/Views/Shared/Partial/_NavLeft.cshtml" />
 <div class="main-wrapper ">
     <main class="main users chart-page" id="skip-target">
-        <div class="container-xxl flex-grow-1" style="margin-top: 5%;">
-            <div class="row mb-5">
+        <div class="container-xxl flex-grow-1 pt-3">
+            <div class="row mt-5">
                 <div class="col-md-6 col-lg-4">
                     <h6 class="mt-2 mb-2 text-uppercase"><strong>Thời gian thực hiện dự án</strong></h6>
                     <div class="card mb-4 card-effect bg-blur">
                         <div class="card-body p-3">
                             <h6 class="card-title">
-                                Từ ngày @Model.startTime.ToString("dd-MM-yyyy") đến ngày @Model.finishTime.ToString("dd-MM-yyyy")
+                                Từ ngày @Model.Project.startTime.ToString("dd-MM-yyyy") đến ngày @Model.Project.endTime.ToString("dd-MM-yyyy")
                             </h6>
                             <div class="progress">
                                 <div class="progress-bar bg-success"
@@ -161,20 +165,74 @@
                     <h6 class="mt-2 mb-2 text-uppercase"><strong>Danh sách các công việc</strong> </h6>
                     <div class="card p-2 card-effect bg-blur">
                         <div class="d-flex justify-content-between p-1">
+                            <span>Tổng số: @totalWork</span>
+                            <span>
+                                <a asp-area=""
+                                   asp-controller="Work"
+                                   asp-action="index"
+                                   asp-route-projectId="@Model.Project._id"
+                                   class="text-primary view-detail">Xem chi tiết >></a>
+                            </span>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            @foreach (var item in sortWork)
+                            {
+                                <li class="list-group-item d-flex bg-white justify-content-between"
+                                    data-bs-toggle="tooltip"
+                                    data-popup="tooltip-custom"
+                                    data-bs-placement="top"
+                                    title="@(item.status ? "Hoàn thành" : "Đang thực hiện")">
+                                    <strong>@item.name</strong>
+                                    <i class="@(item.status ? "text-success bx bx-check-circle" : "text-warning bx bx-tag-alt")"></i>
+                                </li>
+                            }
+
+                            @*<li class="list-group-item d-flex bg-white justify-content-between"
+                            data-bs-toggle="tooltip"
+                            data-popup="tooltip-custom"
+                            data-bs-placement="top"
+                            title="Hoàn thành">
+                            <strong>Cras justo odio</strong>
+                            <i class='text-success bx bx-check-circle'></i>
+                            </li>
+                            <li class="list-group-item d-flex bg-white justify-content-between"
+                            data-bs-toggle="tooltip"
+                            data-popup="tooltip-custom"
+                            data-bs-placement="top"
+                            title="Chưa phân công">
+                            <strong>Cras justo odio</strong>
+                            <i class='text-danger bx bx-error'></i>
+                            </li>
+                            <li class="list-group-item d-flex bg-white justify-content-between" data-bs-toggle="tooltip"
+                            data-popup="tooltip-custom"
+                            data-bs-placement="top"
+                            title="Đang thực hiện">
+                            <strong>Cras justo odio</strong>
+                            <i class='text-warning bx bx-tag-alt'></i>
+                            </li>*@
+                        </ul>
+                    </div>
+                    <h6 class="mt-2 mb-2 text-uppercase"><strong>Danh sách các nhiệm vụ</strong> </h6>
+                    <div class="card p-2 card-effect bg-blur">
+                        <div class="d-flex justify-content-between p-1">
                             <span>Tổng số: 40</span>
                             <span>
                                 <a asp-area="" asp-controller="DetailProject" asp-action="ListWorks" class="text-primary view-detail">Xem chi tiết >></a>
                             </span>
                         </div>
                         <ul class="list-group list-group-flush">
+                            @*@foreach(var item in Model.Works)
+                            {
                             <li class="list-group-item d-flex bg-white justify-content-between"
-                                data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                title="Hoàn thành">
-                                <strong>Cras justo odio</strong>
-                                <i class='text-success bx bx-check-circle'></i>
+                            data-bs-toggle="tooltip"
+                            data-popup="tooltip-custom"
+                            data-bs-placement="top"
+                            title="Hoàn thành">
+                            <strong>@item.name</strong>
+                            <i class='text-success bx bx-check-circle'></i>
                             </li>
+                            }*@
+
                             <li class="list-group-item d-flex bg-white justify-content-between"
                                 data-bs-toggle="tooltip"
                                 data-popup="tooltip-custom"
@@ -192,21 +250,10 @@
                             </li>
                         </ul>
                     </div>
-                    <h6 class="mt-2 mb-2 text-uppercase">List groups</h6>
-                    <div class="card mb-4">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Cras justo odio </li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
-                    </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <h6 class="mt-2 mb-2  text-uppercase"><strong>Thành viên tham gia dự án</strong> </h6>
-                    <div class="card p-2 mb-4 card-effect bg-blur">
+                    <div class="card p-2 card-effect bg-blur">
                         <div class="d-flex justify-content-between p-1">
                             <span>Tổng số: 40</span>
                             <span>
@@ -301,7 +348,7 @@
                                 title="Lilian Fuller">
                                 <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
                                 <strong class="ms-2">Lilian Fuller</strong>
-                            </li> cds
+                            </li>
                         </ul>
                     </div>
                 </div>
