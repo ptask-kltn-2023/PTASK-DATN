@@ -26,7 +26,7 @@ namespace PTASK.Controllers
         public async Task<IActionResult> Login(User model)
         {
             var result = await _auth.Login(model);
-          
+
             if (result != null)
             {
                 return RedirectToAction("Index", "Project");

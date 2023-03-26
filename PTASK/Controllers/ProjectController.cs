@@ -20,7 +20,7 @@ namespace PTASK.Controllers
         public async Task<ActionResult> Index()
         {
             var result = await _project.List();
-            return View(result);
+            return View( result);
         }
 
         public IActionResult Dashboard()
@@ -56,7 +56,7 @@ namespace PTASK.Controllers
             }
             else
             {
-                return PartialView("~/Views/Project/AddProject.cshtml", project);
+                return BadRequest();
             }
             
         }
