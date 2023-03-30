@@ -1,5 +1,4 @@
 using PTASK.Interface;
-using PTASK.Models;
 using PTASK.Reponsitory;
 using PTASK.Extensions;
 
@@ -13,15 +12,22 @@ var configuration = new ConfigurationBuilder()
     .Build();
 var apiUrl = configuration.GetValue<string>("ApiUrl");
 
+// API GET ALL
 builder.Services.AddCustomHttpClient("apiAllProject", apiUrl);
-builder.Services.AddCustomHttpClient("apiLogin", apiUrl);
-builder.Services.AddCustomHttpClient("apiRegister", apiUrl);
+builder.Services.AddCustomHttpClient("apiAllTask", apiUrl);
+builder.Services.AddCustomHttpClient("apiAllTeams", apiUrl);
+builder.Services.AddCustomHttpClient("apiGetAllWork", apiUrl);
+
+// API CREATE
 builder.Services.AddCustomHttpClient("apiCreateProject", apiUrl);
+builder.Services.AddCustomHttpClient("apiRegister", apiUrl);
+
+//API GET BY ...
 builder.Services.AddCustomHttpClient("apiGetUserByEmail", apiUrl);
 builder.Services.AddCustomHttpClient("apiGetProjectById", apiUrl);
-builder.Services.AddCustomHttpClient("apiGetAllWork", apiUrl);
-builder.Services.AddCustomHttpClient("apiAllTask", apiUrl);
-builder.Services.AddCustomHttpClient("apiCreateProject", apiUrl);
+
+//API LOGIN
+builder.Services.AddCustomHttpClient("apiLogin", apiUrl);
 
 
 // Add services to the container.
@@ -37,18 +43,15 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-// Set Jwt
-//builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
-//var jwtSettings = builder.Configuration.GetSection("JwtSettings");
-//builder.Services.Configure<JwtSettings>(jwtSettings);
-
 //Register
 builder.Services.AddSingleton<IProjectService, ProjectService>();
 builder.Services.AddSingleton<IAuthService, AuthService>();
 builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddSingleton<IWorkService, WorkService>();
-builder.Services.AddSingleton<ITaskService, PTaskService>();
+builder.Services.AddSingleton<ITaskService, TaskService>();
+builder.Services.AddSingleton<ITeamService, TeamService>();
 builder.Services.AddSingleton<IJwtService, JwtService>();
+
 var app = builder.Build();
 
 

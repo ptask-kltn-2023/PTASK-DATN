@@ -4,19 +4,20 @@ using PTASK.Models;
 
 namespace PTASK.Reponsitory
 {
-    public class PTaskService : ITaskService
+    public class TaskService : ITaskService
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        public PTaskService(IHttpClientFactory httpClientFactory)
+        public TaskService(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
         public async Task<List<PTask>> GetAllTasks(string productId)
         {
             var api = _httpClientFactory.CreateClient("apiAllTask");
-            var response = await api.GetAsync($"/api/v1//tasks/get-task-in-project/{productId}");
+            var response = await api.GetAsync($"/api/tasks/get-task-in-project/{productId}");
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<List<PTask>>(content);
+
             return result;
         }
     }
