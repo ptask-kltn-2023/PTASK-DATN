@@ -30,7 +30,7 @@ namespace PTASK.Reponsitory
             // Format json
             var jsonContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             // Truyền json vào api
-            var response = await api.PostAsync("/api/v1/projects/create", jsonContent);
+            var response = await api.PostAsync("/api/projects/create", jsonContent);
             //Kiểm tra dữ liệu trả về
             if (response.IsSuccessStatusCode)
             {
@@ -50,7 +50,7 @@ namespace PTASK.Reponsitory
         public async Task<Project> GetProjectById(string projectId)
         {
             var api = _httpClientFactory.CreateClient("apiGetProjectById");
-            var response = await api.GetAsync($"/api/v1/projects/{projectId}");
+            var response = await api.GetAsync($"/api/projects/{projectId}");
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<Project>(content);
             return result;
@@ -59,7 +59,7 @@ namespace PTASK.Reponsitory
         public async Task<List<Project>> List()
         {
             var api = _httpClientFactory.CreateClient("apiAllProject");
-            var response = await api.GetAsync("/api/v1/projects");
+            var response = await api.GetAsync("/api/projects");
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<List<Project>>(content);
             return result;

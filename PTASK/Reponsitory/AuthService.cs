@@ -29,7 +29,7 @@ namespace PTASK.Reponsitory
                 new KeyValuePair<string, string>("email", model.email),
                 new KeyValuePair<string, string>("password", model.password)
             });
-            var response = await api.PostAsync("/api/v1/auths/sign-in", content);
+            var response = await api.PostAsync("/api/auths/sign-in", content);
             if (response.IsSuccessStatusCode)
             {
                 var result = await response.Content.ReadAsStringAsync();
@@ -64,7 +64,7 @@ namespace PTASK.Reponsitory
                 new KeyValuePair<string, string>("gender", model.gender.ToString()),
                 new KeyValuePair<string, string>("avatarImage", model.avatarImage)
             });
-            var response = await api.PostAsync("/api/v1/auths/sign-up", content);
+            var response = await api.PostAsync("/api/auths/sign-up", content);
             if (response.IsSuccessStatusCode)
             {
                 var token = await response.Content.ReadAsStringAsync();

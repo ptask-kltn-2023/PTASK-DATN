@@ -14,7 +14,7 @@ namespace PTASK.Reponsitory
         public async Task<User> GetUserByEmail(string email)
         {
             var api = _httpClientFactory.CreateClient("apiGetUserByEmail");
-            var response = await api.GetAsync($"/api/v1/users/email/{email}");
+            var response = await api.GetAsync($"/api/users/email/{email}");
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<User>(content);
             return result;
