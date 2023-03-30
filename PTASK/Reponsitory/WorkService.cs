@@ -47,7 +47,7 @@ namespace PTASK.Reponsitory
         public async Task<List<Work>> GetAllWorkByIdProject(string projectId)
         {
             var api = _httpClientFactory.CreateClient("apiGetAllWork");
-            var response = await api.GetAsync($"api/v1/works/all-work-project/{projectId}");
+            var response = await api.GetAsync($"api/works/all-work-project/{projectId}");
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<List<Work>>(content);
             return result;
