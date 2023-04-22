@@ -1,4 +1,4 @@
-﻿@model User
+﻿@model Auth
 @{
     Layout = "_LayoutLogin";
 }
@@ -7,7 +7,7 @@
 <span>Hãy tạo tài khoản để bắt đầu công việc nào!</span>
 <!-- Account -->
 <div class="mb-2 mt-2">
-    <form method="POST" asp-controller="Account" asp-action="Register">
+    <form method="POST" asp-controller="Account" asp-action="Register" enctype="multipart/form-data">
         <div class="row">   
             <div class="col-md-6 text-center">
                 <label><b>Thông tin đăng nhập</b></label>
@@ -27,11 +27,10 @@
                          height="60"
                          width="60"/>
                     <div class="button-wrapper">
-                        <label asp-for="avatarImage" class="btn btn-primary me-2" tabindex="0">
+                        <label asp-for="avatar" class="btn btn-primary me-2" tabindex="0">
                             <span class="d-none d-sm-block">Chọn ảnh đại diện</span>
-                            <i class="bx bx-upload d-block d-sm-none"></i>
                             <input type="file"
-                                   asp-for="avatarImage"
+                                   asp-for="avatar"
                                    class="account-file-input"
                                    hidden
                                    accept="image/png, image/jpeg" />
@@ -81,14 +80,14 @@
                     <input class="form-check-input"
                            type="radio"
                            asp-for="gender"
-                           value="0" />
+                           value=false />
                     <label class="form-check-label" for="inlineRadio1">Nam</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input"
                            type="radio"
                            asp-for="gender"
-                           value="1" />
+                           value=true />
                     <label class="form-check-label" for="inlineRadio2">Nữ</label>
                 </div>
             </div>

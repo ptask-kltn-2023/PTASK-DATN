@@ -5,6 +5,6 @@ namespace PTASK.Interface
     public interface IWorkService
     {
         Task<List<Work>> GetAllWorkByIdProject(string projectId);
-        Task<bool> CreateWork(Work work);
+        Task<bool> CreateWork(WorkCreate work, string projectId);
     }
 }

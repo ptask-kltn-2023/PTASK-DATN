@@ -2,7 +2,6 @@
 
 @{
     Layout = "_LayoutProject";
-    ViewData["TitleMission"] = "Thêm nhiệm vụ";
     // Tính phần trăm ngày hiện tại so với ngày bắt đầu và ngày kết thúc
     int roundedNumber = 0;
     if (DateTime.Today < Model.Project.startTime)
@@ -29,152 +28,41 @@
         roundedNumber = 100;
     }
     // Sắp xếp công việc theo tên
-    var sortWork = Model.Works.OrderBy(w => w.name);
-    // Lấy tổng số công việc của dự án
-    var totalWork = Model.Works.Count;
+    var sortWork = Model.Works.OrderBy(w => w.endTime);
+
+    var countSuccessWork = 0;
+
+    foreach (var work in Model.Works)
+    {
+        if (work.status)
+        {
+            countSuccessWork++;
+        }
+    }
+
+    int percentWork = (countSuccessWork * 100) / Model.Works.Count;
 }
 <partial name="~/Views/Shared/Partial/_NavLeft.cshtml" />
 <div class="main-wrapper ">
     <main class="main users chart-page" id="skip-target">
         <div class="container-xxl flex-grow-1 pt-3">
             <div class="row mt-5">
-                <div class="col-md-6 col-lg-4">
-                    <h6 class="mt-2 mb-2 text-uppercase"><strong>Thời gian thực hiện dự án</strong></h6>
-                    <div class="card mb-4 card-effect bg-blur">
-                        <div class="card-body p-3">
-                            <h6 class="card-title">
-                                Từ ngày @Model.Project.startTime.ToString("dd-MM-yyyy") đến ngày @Model.Project.endTime.ToString("dd-MM-yyyy")
-                            </h6>
-                            <div class="progress">
-                                <div class="progress-bar bg-success"
-                                     role="progressbar"
-                                     style="width: @roundedNumber%"
-                                     aria-valuenow="@roundedNumber"
-                                     aria-valuemin="0"
-                                     aria-valuemax="100">
-                                    @roundedNumber%
-                                </div>
-                            </div>
-                            <h5 class="card-title mt-3">Ngày hiện tại</h5>
-                            <div class="calender mt-3">
-                                <div class="cal-item">
-                                    <div class="front">
-                                        <div class="contentfront">
-                                            <div class="month">
-                                                <table>
-                                                    <tr class="orangeTr">
-                                                        <th>M</th>
-                                                        <th>T</th>
-                                                        <th>W</th>
-                                                        <th>T</th>
-                                                        <th>F</th>
-                                                        <th>S</th>
-                                                        <th>S</th>
-                                                    </tr>
-                                                    <tr class="whiteTr">
-                                                        <th></th>
-                                                        <th>1</th>
-                                                        <th>2</th>
-                                                        <th>3</th>
-                                                        <th>4</th>
-                                                        <th>5</th>
-                                                        <th>6</th>
-                                                    </tr>
-                                                    <tr class="whiteTr">
-                                                        <th>7</th>
-                                                        <th>8</th>
-                                                        <th>9</th>
-                                                        <th>10</th>
-                                                        <th>11</th>
-                                                        <th>12</th>
-                                                        <th>13</th>
-                                                    </tr>
-                                                    <tr class="whiteTr">
-                                                        <th>14</th>
-                                                        <th>15</th>
-                                                        <th>16</th>
-                                                        <th>17</th>
-                                                        <th>18</th>
-                                                        <th>19</th>
-                                                        <th>20</th>
-                                                    </tr>
-                                                    <tr class="whiteTr">
-                                                        <th>21</th>
-                                                        <th>22</th>
-                                                        <th>23</th>
-                                                        <th>24</th>
-                                                        <th>25</th>
-                                                        <th>26</th>
-                                                        <th>27</th>
-                                                    </tr>
-                                                    <tr class="whiteTr">
-                                                        <th>28</th>
-                                                        <th>29</th>
-                                                        <th>30</th>
-                                                        <th>31</th>
-                                                        <th></th>
-                                                        <th></th>
-                                                        <th></th>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                            <div class="date">
-                                                <div class="datecont">
-                                                    <div id="date"></div>
-                                                    <div id="day"></div>
-                                                    <div id="month"></div>
-                                                    <i class="fa fa-pencil edit" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="back">
-                                        <div class="contentback">
-                                            <div class="backcontainer">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <h6 class="mt-2 mb-2  text-uppercase"><strong>Công việc đã hoàn thành</strong> </h6>
-                    <div class="card mb-4 card-effect bg-blur">
-                        <div class="card-body p3">
-                            <div class="d-flex justify-content-between mb-2">
-                                <span>Hoàn thành: 40/50</span>
-                                <span>
-                                    <a asp-area="" asp-controller="DetailProject" asp-action="ListWorks" class="text-primary view-detail">Xem chi tiết >></a>
-                                </span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar bg-success"
-                                     role="progressbar"
-                                     style="width: 40%"
-                                     aria-valuenow="40"
-                                     aria-valuemin="0"
-                                     aria-valuemax="100">
-                                    40%
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <h6 class="mt-2 mb-2 text-uppercase"><strong>Danh sách các công việc</strong> </h6>
+                <div class="col-md-8 col-lg-6">
+                    <h6 class="mt-2 mb-2 text-uppercase">
+                        <strong>Danh sách các công việc</strong>
+                       
+                        </h6>
                     <div class="card p-2 card-effect bg-blur">
                         <div class="d-flex justify-content-between p-1">
-                            <span>Tổng số: @totalWork</span>
                             <span>
                                 <a asp-area=""
                                    asp-controller="Work"
                                    asp-action="index"
-                                   asp-route-projectId="@Model.Project._id"
+                                   asp-route-isBack="true"
                                    class="text-primary view-detail">Xem chi tiết >></a>
                             </span>
                         </div>
-                        <ul class="list-group list-group-flush">
+                        <ul class="list-group list-group-flush listWorks">
                             @foreach (var item in sortWork)
                             {
                                 <li class="list-group-item d-flex bg-white justify-content-between"
@@ -182,174 +70,114 @@
                                     data-popup="tooltip-custom"
                                     data-bs-placement="top"
                                     title="@(item.status ? "Hoàn thành" : "Đang thực hiện")">
-                                    <strong>@item.name</strong>
+                                    <strong style="width: 30%">@item.name</strong>
+                                    <span>@item.startTime.ToString("MM-dd-yyyy") - @item.endTime.ToString("MM-dd-yyyy")</span>
                                     <i class="@(item.status ? "text-success bx bx-check-circle" : "text-warning bx bx-tag-alt")"></i>
                                 </li>
                             }
-
-                            @*<li class="list-group-item d-flex bg-white justify-content-between"
-                            data-bs-toggle="tooltip"
-                            data-popup="tooltip-custom"
-                            data-bs-placement="top"
-                            title="Hoàn thành">
-                            <strong>Cras justo odio</strong>
-                            <i class='text-success bx bx-check-circle'></i>
-                            </li>
-                            <li class="list-group-item d-flex bg-white justify-content-between"
-                            data-bs-toggle="tooltip"
-                            data-popup="tooltip-custom"
-                            data-bs-placement="top"
-                            title="Chưa phân công">
-                            <strong>Cras justo odio</strong>
-                            <i class='text-danger bx bx-error'></i>
-                            </li>
-                            <li class="list-group-item d-flex bg-white justify-content-between" data-bs-toggle="tooltip"
-                            data-popup="tooltip-custom"
-                            data-bs-placement="top"
-                            title="Đang thực hiện">
-                            <strong>Cras justo odio</strong>
-                            <i class='text-warning bx bx-tag-alt'></i>
-                            </li>*@
                         </ul>
+                         <div class="ps-2 pt-2 d-flex justify-content-between align-items-center">
+                                <span>Hoàn thành: @countSuccessWork/@Model.Works.Count</span>
+                                <div class="progress" style="width: 75%">
+                                    <div class="progress-bar bg-success"
+                                         role="progressbar"
+                                         style="width: @percentWork%"
+                                         aria-valuenow="@percentWork"
+                                         aria-valuemin="0"
+                                         aria-valuemax="100">
+                                        <span>@percentWork</span>
+                                    </div>
+                                </div>
+                         </div>
                     </div>
-                    <h6 class="mt-2 mb-2 text-uppercase"><strong>Danh sách các nhiệm vụ</strong> </h6>
+                    
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <h6 class="mt-2 mb-2 text-uppercase d-flex justify-content-between">
+                        <strong>Danh sách các nhiệm vụ</strong>
+                        <i class='bx bx-calendar'
+                           data-bs-toggle="offcanvas"
+                           data-bs-target="#offcanvasEnd"
+                           aria-controls="offcanvasEnd"></i>
+                    </h6>
                     <div class="card p-2 card-effect bg-blur">
                         <div class="d-flex justify-content-between p-1">
-                            <span>Tổng số: 40</span>
+                            <span>Tổng số: @Model.PTasks.Count</span>
                             <span>
-                                <a asp-area="" asp-controller="DetailProject" asp-action="ListWorks" class="text-primary view-detail">Xem chi tiết >></a>
+                                <a asp-area="" asp-controller="Task" asp-action="Index" asp-route-isBack="true" class="text-primary view-detail">Xem chi tiết >></a>
                             </span>
                         </div>
-                        <ul class="list-group list-group-flush">
-                            @*@foreach(var item in Model.Works)
+                        <ul class="list-group listTask">
+                            @foreach(var item in Model.PTasks)
                             {
-                            <li class="list-group-item d-flex bg-white justify-content-between"
-                            data-bs-toggle="tooltip"
-                            data-popup="tooltip-custom"
-                            data-bs-placement="top"
-                            title="Hoàn thành">
-                            <strong>@item.name</strong>
-                            <i class='text-success bx bx-check-circle'></i>
-                            </li>
-                            }*@
-
-                            <li class="list-group-item d-flex bg-white justify-content-between"
+                                <li class="list-group-item d-flex bg-white justify-content-between"
                                 data-bs-toggle="tooltip"
                                 data-popup="tooltip-custom"
                                 data-bs-placement="top"
-                                title="Chưa phân công">
-                                <strong>Cras justo odio</strong>
-                                <i class='text-danger bx bx-error'></i>
-                            </li>
-                            <li class="list-group-item d-flex bg-white justify-content-between" data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                title="Đang thực hiện">
-                                <strong>Cras justo odio</strong>
-                                <i class='text-warning bx bx-tag-alt'></i>
-                            </li>
+                                title="Hoàn thành">
+                                <strong>@item.name</strong>
+                                <i class='text-success bx bx-check-circle'></i>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <h6 class="mt-2 mb-2  text-uppercase"><strong>Thành viên tham gia dự án</strong> </h6>
-                    <div class="card p-2 card-effect bg-blur">
-                        <div class="d-flex justify-content-between p-1">
-                            <span>Tổng số: 40</span>
-                            <span>
-                                <a asp-area="" asp-controller="Member" asp-action="index" class="text-primary view-detail">Xem chi tiết >></a>
-                            </span>
+                       
+                <div class="offcanvas offcanvas-end"
+                     tabindex="-1"
+                     id="offcanvasEnd"
+                     aria-labelledby="offcanvasEndLabel">
+                    <div class="offcanvas-header">
+                        <h5 id="offcanvasEndLabel" class="offcanvas-title text-uppercase"><strong>Thời gian thực hiện dự án</strong></h5>
+                        <button type="button"
+                                class="btn-close text-reset"
+                                data-bs-dismiss="offcanvas"
+                                aria-label="Close">
+                         </button>
+                    </div>
+                    <div class="offcanvas-body flex-grow-0">
+                        <h6 class="card-title">
+                            Từ ngày @Model.Project.startTime.ToString("dd-MM-yyyy") đến ngày @Model.Project.endTime.ToString("dd-MM-yyyy")
+                        </h6>
+                        <div class="progress">
+                            <div class="progress-bar bg-success"
+                                 role="progressbar"
+                                 style="width: @roundedNumber%"
+                                 aria-valuenow="@roundedNumber"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100">
+                                @roundedNumber%
+                            </div>
                         </div>
-                        <ul class="list-group list-group-flush member-accept">
-                            <li class="list-group-item bg-white rounded-1"
-                                data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                title="Lilian Fuller">
-                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
-                                <strong class="ms-2">Lilian Fuller</strong>
-                            </li>
-                            <li class="list-group-item bg-white rounded-1"
-                                data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                title="Lilian Fuller">
-                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
-                                <strong class="ms-2">Lilian Fuller</strong>
-                            </li>
-                            <li class="list-group-item bg-white rounded-1"
-                                data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                title="Lilian Fuller">
-                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
-                                <strong class="ms-2">Lilian Fuller</strong>
-                            </li>
-                            <li class="list-group-item bg-white rounded-1"
-                                data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                title="Lilian Fuller">
-                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
-                                <strong class="ms-2">Lilian Fuller</strong>
-                            </li>
-                            <li class="list-group-item bg-white rounded-1"
-                                data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                title="Lilian Fuller">
-                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
-                                <strong class="ms-2">Lilian Fuller</strong>
-                            </li>
-                            <li class="list-group-item bg-white rounded-1"
-                                data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                title="Lilian Fuller">
-                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
-                                <strong class="ms-2">Lilian Fuller</strong>
-                            </li>
-                            <li class="list-group-item bg-white rounded-1"
-                                data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                title="Lilian Fuller">
-                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
-                                <strong class="ms-2">Lilian Fuller</strong>
-                            </li>
-                            <li class="list-group-item bg-white rounded-1"
-                                data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                title="Lilian Fuller">
-                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
-                                <strong class="ms-2">Lilian Fuller</strong>
-                            </li>
-                            <li class="list-group-item bg-white rounded-1"
-                                data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                title="Lilian Fuller">
-                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
-                                <strong class="ms-2">Lilian Fuller</strong>
-                            </li>
-                            <li class="list-group-item bg-white rounded-1"
-                                data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                title="Lilian Fuller">
-                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
-                                <strong class="ms-2">Lilian Fuller</strong>
-                            </li>
-                            <li class="list-group-item bg-white rounded-1"
-                                data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                title="Lilian Fuller">
-                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
-                                <strong class="ms-2">Lilian Fuller</strong>
-                            </li>
-                        </ul>
+                       
+                        <h6 class="mt-3 mb-2 text-uppercase d-flex justify-content-between">
+                            <strong>Thành viên tham gia dự án</strong>
+                        </h6>
+                        <div class="card p-2 card-effect bg-blur">
+                            <div class="d-flex justify-content-between p-1">
+                                <span>Tổng số: @Model.Members.Count</span>
+                                <span>
+                                    <a asp-area="" 
+                                        asp-controller="Team" 
+                                        asp-action="ListMembers" 
+                                        asp-route-isBack="true" class="text-primary view-detail">Xem chi tiết >></a>
+                                </span>
+                            </div>
+                            <ul class="list-group list-group-flush member-accept">
+                                @foreach (var member in Model.Members)
+                                {
+                                    <li class="list-group-item bg-white rounded-1"
+                                        data-bs-toggle="tooltip"
+                                        data-popup="tooltip-custom"
+                                        data-bs-placement="top"
+                                        title="@((member.position == "Leader") ? $"Nhóm trưởng {member.teamName}" : $"Thành viên {member.teamName}")">
+                                        <img src="@member.avatar" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
+                                        <strong class="ms-2">@member.name</strong>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
                     </div>
                 </div>
             </div>

@@ -526,14 +526,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         itemWork.forEach(function (item) {
             var box = item.querySelector('.box');
-            
+
             if (!box.querySelector('.target')) {
                 box.style.height = null;
             } else { }
             item.addEventListener('dragover', function (e) {
                 e.preventDefault();
                 box.appendChild(currentTarget);
-                
+
                 boxes.forEach(function (boxElement) {
                     if (!boxElement.querySelector('.target')) {
                         boxElement.style.height = null;
@@ -566,7 +566,7 @@ document.addEventListener('DOMContentLoaded', function () {
     (function () {
         var input = document.querySelectorAll('.ip-list');
         input.forEach(function (item) {
-            item.addEventListener('focus', function() {
+            item.addEventListener('focus', function () {
                 this.style.cursor = 'auto';
                 this.style.backgroundColor = '#fff';
                 this.style.border = '2px solid rgb(5, 126, 214)';
@@ -580,42 +580,162 @@ document.addEventListener('DOMContentLoaded', function () {
     })();
 
 
-
-    const url = localStorage.getItem('url');
-    $('.bg-img').css({
-        'background-image': 'url(' + url + ')',
-        'background-position': 'center',
-        'background-repeat': 'no-repeat',
-        'background-size': 'cover',
-    })
-
     var frameMember = document.querySelector('.member-accept');
     if (frameMember !== null) {
-        if (frameMember.offsetHeight > 542) {
+        if (frameMember.offsetHeight > 465) {
             frameMember.style.overflowY = "scroll";
-            frameMember.style.height = '543px';
+            frameMember.style.height = '466px';
         } else {
             frameMember.style.overflowY = 'auto';
             frameMember.style.height = 'auto';
         }
     }
 
+    var listWorks = document.querySelector('.listWorks');
+    if (listWorks !== null) {
+        if (listWorks.offsetHeight > 500) {
+            listWorks.style.overflowY = "scroll";
+            listWorks.style.height = '501px';
+        } else {
+            listWorks.style.overflowY = 'auto';
+            listWorks.style.height = 'auto';
+        }
+    }
+
+    var listTask = document.querySelector('.listTask');
+    if (listTask !== null) {
+        if (listTask.offsetHeight > 500) {
+            listTask.style.overflowY = "scroll";
+            listTask.style.height = '501px';
+        } else {
+            listTask.style.overflowY = 'auto';
+            listTask.style.height = 'auto';
+        }
+    }
+
     var user = "<li data-bs-toggle='tooltip' data-popup='tooltip-custom' data-bs-placement='top' class='avatar avatar-xs pull-up' title='Christina Parker'> <img src='../assets/img/avatars/5.png' alt='Avatar' class='rounded-circle' /> </li>"
-    
     $('.btn-add-member').click(function () {
         $('#list-member-groups').append(user);
     })
 
-    $('#txt-toDo').hide();
-    $('#btn-toDo').click(function () {
-        $('#txt-toDo').show();
+    $("#addNewMember").click(function () {
+        var email = document.getElementById("emailMember").value;
+        addUser(email, true);
+        document.getElementById("emailMember").value = '';
+    });
+
+    $("#addLeader").click(function () {
+        var email = document.getElementById("emailLeader").value;
+        addUser(email, false);
+        document.getElementById("emailLeader").value = '';
+    });
+
+    var memberList = [];
+    function addUser(email, isMember) {
+        searchUser(email).then(function (data) {
+            if (data._id != null) {
+                if (isMember) {
+                    if (!memberList.includes(data._id)) {
+                        if ($("#leaderId").val() == data._id) {
+                            alert("Không thể thêm thành viên là nhóm trưởng")
+                        } else {
+                            memberList.push(data._id);
+                            generateItemUser(data, $("#memberList"), $("#listIdMember"),  memberList);
+                        }
+                    }
+                    $("#listIdMember").val(memberList.join(','));
+                } else {
+                    $("#leaderList").empty();
+                    generateItemUser(data, $("#leaderList"), $("#leaderId"), memberList);
+                    $("#leaderId").val(data._id)
+                }
+            } else {
+                alert("Email này chưa có tài khoản")
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
+
+   
+
+    var idTeam = null;
+    var teamName = null;
+    function getSelectedOption() {
+        // Lấy giá trị và nội dung của option được chọn
+        idTeam = $("#dataListTeam").val();
+        teamName = $("#dataListTeam").find("option:selected").text();
+    }
+
+    $("#dataListTeam").change(function () {
+        getSelectedOption();
+    });
+
+    var listTeam = [];
+
+    $("#btnAddTeam").click(function () {
+        getSelectedOption();
+        addTeam();
+        $("#teamId").val(listTeam.join(','));
     })
-    var toDo = "<li class='list-group-item'><input class='form-check-input me-1' type = 'checkbox' value = '' /> Bear claw cake biscuit </li >"
-    $('#btn-addToDo').click(function () {
-        $('.listToDo').append(toDo);
-        $('#txt-toDo').hide();
+
+    function addTeam() {
+        if (!listTeam.includes(idTeam)) {
+            listTeam.push(idTeam);
+            var formTeam = $("#formTeam");
+            var li = $("<li></li>").addClass("list-group-item d-flex justify-content-between align-items-center").css("height", "100%");
+            var span = $("<span></span>")
+            var index = listTeam.indexOf(idTeam);
+            var removeButton = createRemoveButton(li, listTeam, $("#teamId"), index)
+            span.text(teamName);
+            li.append(span);
+            li.append(removeButton);
+            formTeam.append(li);
+        }
+    }
+
+    //button back
+    $("#goBack").click(function () {
+        window.history.back();
     })
+
+    // Lắng nghe sự kiện khi người dùng chọn một option trong datalist
+    $("#selectWork").on("input", function () {
+        var selectedOption = $("#datalistWorks option[value='" + $(this).val() + "']");
+        if (selectedOption.length > 0) {
+            $("#workId").val(selectedOption.attr("id"));
+        }
+        if ($("#workId").val() != '') {
+            getMembersByIdWork($("#workId").val());
+        }
+    });
     
+    var listMemberByWorkId = [];
+    $('#assignment').change(function () {
+        var selectedValue = $(this).val();
+        var selectedOption = $("#datalistMembers option[value='" + $(this).val() + "']");
+        var removeButton = $("<button></button>").addClass("btn btn-sm btn-danger").html('<i class="bx bx-x"></i>');
+        var listItem = $("<li></li>").addClass("list-group-item d-flex justify-content-between");
+        if (!listMemberByWorkId.includes(selectedOption.attr("id"))) {
+            removeButton.on("click", function () {
+                listItem.remove();
+            });
+            listItem.text(selectedValue);
+            listItem.append(removeButton);
+           
+            $('.list_assign').append(listItem);
+
+            listMemberByWorkId.push(selectedOption.attr("id"));
+        }
+        $("#memberId").val(listMemberByWorkId.join(','));
+        $(this).val('');
+    });
+
+    // gán giá trị level lúc tạo task
+    $('input[name="selectLevel"]').change(function () {
+        var selectedValue = $('input[name="selectLevel"]:checked').val();
+        $("#level").val(selectedValue);
+    });
 });
 
 
