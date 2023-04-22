@@ -657,27 +657,15 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-   
-
     var idTeam = null;
     var teamName = null;
+    var listTeam = [];
+
     function getSelectedOption() {
         // Lấy giá trị và nội dung của option được chọn
         idTeam = $("#dataListTeam").val();
         teamName = $("#dataListTeam").find("option:selected").text();
     }
-
-    $("#dataListTeam").change(function () {
-        getSelectedOption();
-    });
-
-    var listTeam = [];
-
-    $("#btnAddTeam").click(function () {
-        getSelectedOption();
-        addTeam();
-        $("#teamId").val(listTeam.join(','));
-    })
 
     function addTeam() {
         if (!listTeam.includes(idTeam)) {
@@ -693,6 +681,16 @@ document.addEventListener('DOMContentLoaded', function () {
             formTeam.append(li);
         }
     }
+
+    $("#dataListTeam").change(function () {
+        getSelectedOption();
+    });
+
+    $("#btnAddTeam").click(function () {
+        getSelectedOption();
+        addTeam();
+        $("#teamId").val(listTeam.join(','));
+    })
 
     //button back
     $("#goBack").click(function () {
@@ -714,12 +712,11 @@ document.addEventListener('DOMContentLoaded', function () {
     $('#assignment').change(function () {
         var selectedValue = $(this).val();
         var selectedOption = $("#datalistMembers option[value='" + $(this).val() + "']");
-        var removeButton = $("<button></button>").addClass("btn btn-sm btn-danger").html('<i class="bx bx-x"></i>');
-        var listItem = $("<li></li>").addClass("list-group-item d-flex justify-content-between");
+       
+        var listItem = $("<li></li>").addClass("list-group-item d-flex justify-content-between align-items-center");
+        var index = listTeam.indexOf(idTeam);
+        var removeButton = createRemoveButton(listItem, listMemberByWorkId, $("#memberId"), index)
         if (!listMemberByWorkId.includes(selectedOption.attr("id"))) {
-            removeButton.on("click", function () {
-                listItem.remove();
-            });
             listItem.text(selectedValue);
             listItem.append(removeButton);
            
