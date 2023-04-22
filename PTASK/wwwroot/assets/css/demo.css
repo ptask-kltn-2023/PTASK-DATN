@@ -239,3 +239,7 @@
 .btn-viewListTask{
     cursor:pointer
 }
+
+.page-link{
+    background-color: white;
+}

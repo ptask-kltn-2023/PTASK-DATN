@@ -1,8 +1,6 @@
 ﻿@{
     var active = ViewData["active"];
-    var projectId = ViewData["ProjectID"];
     var title = ViewData["TitleProject"];
-
 }
 <aside class="sidebar">
     <div class="sidebar-start">
@@ -65,11 +63,7 @@
                             <span class="icon successProject" aria-hidden="true"></span>Dự án đã hoàn thành
                         </a>
                     </li>
-                    <li>
-                        <a class="btn-event" href="##">
-                            <span class="icon report" aria-hidden="true"></span>Thống kê công việc
-                        </a>
-                    </li>
+                   
                 </ul>
             </div>
         }
@@ -78,33 +72,38 @@
             <div class="sidebar-body">
                 <ul class="sidebar-body-menu">
                     <li>
-                        <a class="btn-event" asp-controller="DetailProject"
-                       asp-action="Index"
-                       asp-route-projectId="@projectId">
+                        <a class="btn-event" asp-controller="DetailProject" asp-action="Index">
                             <span class="icon dashboard"></span>Tổng quan dự án
                         </a>
                     </li>
                     <li>
                         <a class="btn-event @active"
-                       asp-area="" asp-controller="Work" asp-action="Index" asp-route-projectId="@projectId">
+                            asp-area="" 
+                            asp-controller="Work" 
+                            asp-action="Index" 
+                            asp-route-isBack="false">
                             <span class="icon listWork"></span>Danh sách công việc
                         </a>
                     </li>
                     <li>
-                        <a class="btn-event" asp-area="" asp-controller="Task" asp-action="Index" asp-route-projectId="@projectId">
+                        <a class="btn-event" asp-area="" asp-controller="Task" asp-action="Index" asp-route-isBack="false">
                             <span class="icon workSuccess" aria-hidden="true"></span>Danh sách nhiệm vụ
                         </a>
 
                     </li>
                     <li>
-                        <a class="btn-event"
-                       asp-area="" asp-controller="Team" asp-action="ListGroups" asp-route-projectId="@projectId">
+                        <a class="btn-event" asp-area="" asp-controller="Team" asp-action="ListGroups">
                             <span class="icon successProject" aria-hidden="true"></span>Nhóm tham gia
                         </a>
                     </li>
                     <li>
-                        <a class="btn-event" class="btn-event" asp-area="" asp-controller="Member" asp-action="Index">
+                        <a class="btn-event" class="btn-event" asp-area="" asp-controller="Team" asp-action="ListMembers" asp-route-isBack="false">
                             <span class="icon member" aria-hidden="true"></span>Thành viên tham gia
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn-event" asp-controller="DetailProject" asp-action="Report">
+                            <span class="icon report" aria-hidden="true"></span>Thống kê công việc
                         </a>
                     </li>
                 </ul>

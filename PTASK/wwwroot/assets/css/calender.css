@@ -1,6 +1,6 @@
 
 .calender{
-  width:400px;
+  width:320px;
   height:200px;
   -webkit-perspective: 1000;
 }
@@ -25,7 +25,7 @@
   -webkit-backface-visibility:hidden;
 }
 .contentfront{
-  width:100%;
+  width:110%;
   height:100%;
   float:left;
   transform:translatez(60px);
@@ -60,25 +60,25 @@
   -o-backface-visibility: hidden;
   backface-visibility: hidden;
 }
-.front{
-  text-transform:uppercase;
-  background-color:#232227;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -o-backface-visibility: hidden;
-  backface-visibility: hidden;
+.front {
+    text-transform: uppercase;
+    background-color: rgb(222, 254, 215);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
-.date{
-  height:100%;
-  width:130px;
-  float:left;
-  background-color:#E76642;
-  border-radius:0 6px 6px 0;
-  text-align:right;
-  padding:10px 30px;
-  box-sizing:border-box;
-  transform-style:preserve-3d;
-  -webkit-transform-style:preserve-3d;
+.date {
+    height: 100%;
+    width: 90px;
+    float: left;
+    background-color: rgb(47, 124, 238);
+    border-radius: 0 6px 6px 0;
+    text-align: right;
+    padding: 10px 30px;
+    box-sizing: border-box;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
 }
 .datecont{
   height:100%;
@@ -118,7 +118,7 @@
 }
 .month{
   height:100%;
-  width:222px;
+  width:225px;
   float:left;
   padding:20px 30px;
   box-sizing:border-box;
@@ -127,16 +127,15 @@
   width:100%;
 }
 .orangeTr{
-  color:#E76642;
+  color:red;
 }
-.whiteTr{
-  color:#ECECE7;
-  
+.whiteTr {
+    color: rgb(94, 200, 68);
 }
-.whiteTr th:hover{
-  color:#E76642;
-  transition:.3s ease;
-}
+    .whiteTr th:hover {
+        color: red;
+        transition: .3s ease;
+    }
 .month tr{
   height:24px;
 }

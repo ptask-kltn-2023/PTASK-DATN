@@ -11,16 +11,15 @@
                         aria-label="Close"></button>
             </div>
             <div class="modal-body p-3">
-                <form method="POST" asp-controller="Project" asp-action="Create">
+                <form method="POST" asp-controller="Project" asp-action="Create" enctype="multipart/form-data">
                     <input asp-for="mainProject" value="@null" hidden />
                     <div class="mb-2">
-                        <label class="form-label" for="upload" asp-for="background">Hình nền</label>
+                        <label class="form-label" for="upload">Hình nền</label>
                         <div class="d-flex align-items-start align-items-sm-center gap-4">
-                            <label for="upload" tabindex="0">
-                                <i class="bx bx-upload d-block d-sm-none"></i>
+                            <label asp-for="BackgroundFile" tabindex="0">
                                 <input type="file"
                                        class="account-file-input"
-                                       asp-for="background"
+                                       asp-for="BackgroundFile"
                                        id="upload"
                                        hidden
                                        accept="image/png, image/jpeg" />
