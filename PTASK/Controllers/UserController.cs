@@ -22,11 +22,10 @@ namespace PTASK.Controllers
         [HttpGet]
         public ActionResult GetUserByEmail(string email)
         {
-            var result = _user.GetUserByEmail(email);
-            ViewData["User"]= result;
             return PartialView("~/Views/Project/AddProject.cshtml", new Project());
         }
 
+       
         // GET: UserController/Details/5
         public ActionResult Details(int id)
         {

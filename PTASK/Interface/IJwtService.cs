@@ -5,6 +5,6 @@ namespace PTASK.Interface
 {
     public interface IJwtService
     {
-        JwtSecurityToken DecodeToken(string token);
+        dynamic DecodeToken(string token);
     }
 }

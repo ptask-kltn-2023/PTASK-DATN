@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using PTASK.Interface;
 using PTASK.Models;
@@ -9,39 +10,60 @@ namespace PTASK.Reponsitory
     public class WorkService : IWorkService
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IMemoryCache _cache;
 
-        public WorkService(IHttpClientFactory httpClientFactory)
+        public WorkService(IHttpClientFactory httpClientFactory, IMemoryCache cache)
         {
             _httpClientFactory = httpClientFactory;
+            _cache = cache;
         }
 
-        public async Task<bool> CreateWork(Work work)
+        public async Task<bool> CreateWork(WorkCreate work, string projectId)
         {
-            return true;
-            //var api = _httpClientFactory.CreateClient("apiCreateWork");
-            //// Tạo json data
-            //string jsonData = JsonConvert.SerializeObject(new
-            //{
-            //    work.name,
-            //    startTime = work.startTime.ToString("MM-dd-yyyy"),
-            //    endTime = work.endTime.ToString("MM-dd-yyyy"),
-            //    work.createId,
-            //    work.teamId,
-            //    work.projectId
-            //});
-            //// Format json
-            //var jsonContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            //// Truyền json vào api
-            //var response = await api.PostAsync("api/v1/works", jsonContent);
-            ////Kiểm tra dữ liệu trả về
-            //if (response.IsSuccessStatusCode)
-            //{
-            //    return true;
-            //}
-            //else
-            //{
-            //    return false;
-            //}
+            var api = _httpClientFactory.CreateClient("apiCreateWork");
+            string[] outputArray;
+            if (work.teamId.Count > 0)
+            {
+                if (work.teamId[0].IsNullOrEmpty())
+                {
+                    outputArray = new string[] {};
+                }
+                else
+                {
+                    outputArray = work.teamId[0].Split(',');
+                }
+            }
+            else
+            {
+                outputArray = new string[] {};
+            }
+            //work.createId = _cache.Get<string>("UserId");
+            work.createId = _cache.Get<string>("UserId");
+            work.leaderId = "6429449e32e69be96008c5a0";
+            // Tạo json data
+            string jsonData = JsonConvert.SerializeObject(new
+            {
+                work.name,
+                startTime = work.startTime.ToString("MM-dd-yyyy"),
+                endTime = work.endTime.ToString("MM-dd-yyyy"),
+                work.createId,
+                teamId = outputArray,
+                projectId,
+                work.leaderId
+            });
+            // Format json
+            var jsonContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            // Truyền json vào api
+            var response = await api.PostAsync("api/works", jsonContent);
+            //Kiểm tra dữ liệu trả về
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public async Task<List<Work>> GetAllWorkByIdProject(string projectId)

@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
+using Newtonsoft.Json;
+using NuGet.Common;
 using PTASK.Interface;
 using PTASK.Models;
 using System.Net.Http;
@@ -10,9 +13,12 @@ namespace PTASK.Controllers
     public class AccountController : Controller
     {
         private readonly IAuthService _auth;
-        public AccountController(IAuthService auth)
+        private readonly IJwtService _jwtService;
+
+        public AccountController(IAuthService auth, IJwtService jwtService)
         {
             _auth = auth;
+            _jwtService = jwtService;
         }
         // GET: LoginController
         [HttpGet]
@@ -23,13 +29,22 @@ namespace PTASK.Controllers
 
         // POST: LoginController/Create
         [HttpPost]
-        public async Task<IActionResult> Login(User model)
+        public async Task<IActionResult> Login(Auth model)
         {
             var result = await _auth.Login(model);
 
             if (result != null)
             {
-                return RedirectToAction("Index", "Project");
+                var payload = _jwtService.DecodeToken(result);
+
+                var userJson = payload["user"].ToString();
+                dynamic user = JsonConvert.DeserializeObject<dynamic>(userJson);
+                string idUser = user._id;
+
+                var cache = HttpContext.RequestServices.GetRequiredService<IMemoryCache>();
+                cache.Set("UserId", idUser);
+
+                return RedirectToAction("Index", "Project"); 
             }
             else
             {
@@ -53,7 +68,7 @@ namespace PTASK.Controllers
 
         // POST: LoginController/Create
         [HttpPost]
-        public async Task<IActionResult> Register(User model)
+        public async Task<IActionResult> Register(Auth model)
         {
             var result = await _auth.Register(model);
 

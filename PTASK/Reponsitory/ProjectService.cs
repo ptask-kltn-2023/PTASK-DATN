@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Amazon.Runtime.Internal.Util;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 using PTASK.Interface;
 using PTASK.Models;
@@ -11,26 +13,34 @@ namespace PTASK.Reponsitory
     public class ProjectService : IProjectService
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        public ProjectService(IHttpClientFactory httpClientFactory)
+        private readonly IMemoryCache _cache;
+
+        public ProjectService(IHttpClientFactory httpClientFactory, IMemoryCache cache)
         {
             _httpClientFactory = httpClientFactory;
+            _cache = cache;
         }
         public async Task<bool> Create(Project project)
         {
             var api = _httpClientFactory.CreateClient("apiCreateProject");
-            // Tạo json data
-            string jsonData = JsonConvert.SerializeObject(new
+            project.mainProject = _cache.Get<string>("UserId");
+           
+            var content = new MultipartFormDataContent();
+            content.Add(new StringContent(project.name),"name");
+            content.Add(new StringContent(project.mainProject), "mainProject");
+            content.Add(new StringContent(project.startTime.ToString("MM-dd-yyyy")), "startTime");
+            content.Add(new StringContent(project.endTime.ToString("MM-dd-yyyy")), "endTime");
+            if (project.teamIds != null)
             {
-                project.name,
-                startTime = project.startTime.ToString("MM-dd-yyyy"),
-                endTime = project.endTime.ToString("MM-dd-yyyy"),
-                project.mainProject,
-                teamIds = project.teamIds ?? new string[] { }
-            });
-            // Format json
-            var jsonContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            // Truyền json vào api
-            var response = await api.PostAsync("/api/projects/create", jsonContent);
+                foreach (var teamId in project.teamIds)
+                {
+                    content.Add(new StringContent(teamId), "teamIds");
+                }
+            }
+            var fileContent = new StreamContent(project.BackgroundFile.OpenReadStream());
+            content.Add(fileContent, "background", project.BackgroundFile.FileName);
+            
+            var response = await api.PostAsync("/api/projects/create", content);
             //Kiểm tra dữ liệu trả về
             if (response.IsSuccessStatusCode)
             {

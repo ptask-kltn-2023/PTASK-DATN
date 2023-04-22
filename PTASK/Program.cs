@@ -15,20 +15,25 @@ var apiUrl = configuration.GetValue<string>("ApiUrl");
 // API GET ALL
 builder.Services.AddCustomHttpClient("apiAllProject", apiUrl);
 builder.Services.AddCustomHttpClient("apiAllTask", apiUrl);
+builder.Services.AddCustomHttpClient("apiAllMembers", apiUrl);
 builder.Services.AddCustomHttpClient("apiAllTeams", apiUrl);
 builder.Services.AddCustomHttpClient("apiGetAllWork", apiUrl);
 
+
 // API CREATE
 builder.Services.AddCustomHttpClient("apiCreateProject", apiUrl);
-builder.Services.AddCustomHttpClient("apiRegister", apiUrl);
+builder.Services.AddCustomHttpClient("apiCreateTeam", apiUrl);
+builder.Services.AddCustomHttpClient("apiCreateWork", apiUrl);
+builder.Services.AddCustomHttpClient("apiCreateTask", apiUrl);
 
 //API GET BY ...
 builder.Services.AddCustomHttpClient("apiGetUserByEmail", apiUrl);
 builder.Services.AddCustomHttpClient("apiGetProjectById", apiUrl);
+builder.Services.AddCustomHttpClient("apiMembersByWorkId", apiUrl);
 
 //API LOGIN
 builder.Services.AddCustomHttpClient("apiLogin", apiUrl);
-
+builder.Services.AddCustomHttpClient("apiRegister", apiUrl);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

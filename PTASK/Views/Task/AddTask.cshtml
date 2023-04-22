@@ -1,0 +1,111 @@
+﻿@model PTASK.Models.PTask
+<div class="modal fade" id="modalMisson" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-uppercase" id="exampleModalLabel1">Thêm nhiệm vụ</h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body pb-1">
+                <form asp-area="" asp-controller="Task" asp-action="Create">
+                    <div class="row mb-3 align-items-center">
+                        <label class="col-sm-3 form-label text-none" asp-for="name">Tên</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" asp-for="name" placeholder="Nhập tên nhiệm vụ" />
+                        </div>
+                    </div>
+                    <div class="row mb-3 align-items-center">
+                        <label class="col-sm-3 form-label text-none" asp-for="description">Mô tả</label>
+                        <div class="col-sm-9">
+                            <textarea asp-for="description"
+                                      class="form-control"
+                                      placeholder="Nhập mô tả nhiệm vụ"
+                                      aria-describedby="basic-icon-default-message2"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mb-3 align-items-center">
+                        <label class="col-sm-3 form-label text-none" for="selectWork">Thuộc công việc</label>
+                        <div class="col-sm-9">
+                            <input class="form-control"
+                                   list="datalistWorks"
+                                   id="selectWork"
+                                   placeholder="Nhập để tìm kiếm" autocomplete="off" />
+                            <datalist id="datalistWorks">
+                            </datalist>
+                            <input type="hidden" asp-for="workId" id="workId" />
+                        </div>
+                    </div>
+                    <div class="row mb-3 align-items-center">
+                        <label class="col-sm-3 form-label text-none" for="assignment">Phân công</label>
+                        <div class="col-sm-9">
+                            <input class="form-control"
+                                   list="datalistMembers"
+                                   id="assignment"
+                                   placeholder="Nhập để tìm kiếm" autocomplete="off" />
+                            <datalist id="datalistMembers">
+                            </datalist>
+                            <div class="demo-inline-spacing">
+                                <ul class="list-group list_assign">
+                                </ul>
+                            </div>
+                            <input type="hidden" asp-for="membersId" id="memberId" />
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <label asp-for="startHour" class="form-label text-none" style="margin-left: -6px">Thời gian bắt đầu</label>
+                        <input class="form-control" type="time" value="" asp-for="startHour" style="margin-left: 10px; width: 71%" />
+                    </div>
+                    <div class="row mb-3">
+                        <label asp-for="endHour" class="form-label text-none" style="margin-left: -6px">Thời gian kết thúc</label>
+                        <input class="form-control" type="time" value="" asp-for="endHour" style="margin-left: 6px; width: 71%" />
+                    </div>
+                    <div class="row mb-3">
+                        <label asp-for="startDay" class="form-label text-none" style="margin-left: -6px">Ngày bắt đầu</label>
+                        <input class="form-control" type="date" value="" asp-for="startDay" style="margin-left: 37px; width: 71%" />
+                    </div>
+                    <div class="row mb-3">
+                        <label asp-for="endDay" class="form-label text-none" style="margin-left: -6px">Ngày kết thúc</label>
+                        <input class="form-control" type="date" value="" asp-for="endDay" style="margin-left: 33px; width: 71%" />
+                    </div>
+
+                    <div class="row align-items-center mb-3">
+                        <label class="col-sm-2 form-label text-none" for="basic-default-message">Cấp độ</label>
+                        <div class="col-sm-10 d-flex justify-content-between  ">
+                            <div class="d-flex justify-content-center align-items-center bg-info rounded-1 ps-2 pe-2">
+                                <input class="form-check-input inlineRadio"
+                                       type="radio"
+                                       name="selectLevel"
+                                       id="rdoAddNormal"
+                                       checked="checked"
+                                       value="1"/>
+                                <label class="form-check-label text-white" asp-for="level" for="rdoAddNormal">Bình thường</label>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center bg-warning rounded-1  ps-2 pe-2">
+                                <input class="form-check-input inlineRadio"
+                                       type="radio"
+                                       name="selectLevel"
+                                       id="rdoAddWarning"
+                                       value="2" />
+                                <label class="form-check-label text-white" asp-for="level" for="rdoAddWarning">Quan trọng</label>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center bg-danger rounded-1 ps-2 pe-2">
+                                <input class="form-check-input inlineRadio"
+                                       type="radio"
+                                       name="selectLevel"
+                                       id="rdoAddDanger"
+                                       value="3" />
+                                <label class="form-check-label text-white" asp-for="level" for="rdoAddDanger">Khẩn cấp</label>
+                            </div>
+                            <input type="hidden" asp-for="level" id="level" value="1" />
+                        </div>
+                    </div>
+                    <button type="submit" class="mb-2 btn btn-primary">Thêm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

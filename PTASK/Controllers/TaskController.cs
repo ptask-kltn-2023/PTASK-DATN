@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using Newtonsoft.Json;
 using PTASK.Interface;
 using PTASK.Models;
 
@@ -17,14 +18,34 @@ namespace PTASK.Controllers
             _cache = cache;
         }
         // GET: TaskController
-        public async Task<IActionResult> Index(string projectId)
+        public async Task<IActionResult> Index(bool? isBack, int pg=1)
         {
+            string projectId = _cache.Get<string>("ProjectID");
             var result = await _task.GetAllTasks(projectId);
-            //Lấy dữ liệu từ bộ nhớ tạm gán vào View Data
             ViewData["TitleProject"] = _cache.Get<string>("TitleProject");
-            ViewData["ProjectID"] = _cache.Get<string>("ProjectID");
+            ViewData["isBack"] = isBack;
+            TempData["isBack"] = ViewData["isBack"];
 
-            return View(result);
+            const int pageSize = 9;
+            if (pg < 1)
+                pg = 1;
+            int resCount = result.Count();
+            var pager = new Pager(resCount, pg, pageSize);
+
+            int resSkip = (pg - 1) * pageSize;
+
+            var data = result.Skip(resSkip).Take(pager.PageSize).ToList();
+
+            ViewBag.Pager = pager;
+
+            string dataJson = JsonConvert.SerializeObject(data);
+            string pagerJson = JsonConvert.SerializeObject(pager);
+            TempData["data"] = dataJson;
+            TempData["pager"] = pagerJson;
+
+            TempData["pg"] = pg;
+
+            return View(data);
         }
 
         // GET: TaskController/Details/5
@@ -42,15 +63,52 @@ namespace PTASK.Controllers
         // POST: TaskController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(PTask task)
         {
-            try
+            bool isBack = (bool)TempData["isBack"];
+
+            string dataJson = TempData["data"] as string;
+            List<PTask> tasks = JsonConvert.DeserializeObject<List<PTask>>(dataJson);
+
+            string pagerJson = TempData["pager"] as string;
+            Pager page = JsonConvert.DeserializeObject<Pager>(pagerJson);
+            int pg = (int)TempData["pg"];
+
+            int lastPageElementsCount = page.TotalItems % 9;
+            if (lastPageElementsCount == 0 && page.TotalItems > 0)
             {
-                return RedirectToAction(nameof(Index));
+                lastPageElementsCount = 9;
             }
-            catch
+
+            if (tasks.Count >= 9)
             {
-                return View();
+                if (page.EndPage == pg)
+                {
+                    pg++;
+                }
+                else
+                {
+                    if (lastPageElementsCount >= 9)
+                    {
+                        pg = ++page.EndPage;
+                    }
+                    else
+                    {
+                        pg = page.EndPage;
+                    }
+                }
+
+            }
+
+            var result = await _task.CreateTask(task);
+
+            if (result)
+            {
+                return RedirectToAction("Index", "Task", new { isBack, pg });
+            }
+            else
+            {
+                return BadRequest();
             }
         }
 
