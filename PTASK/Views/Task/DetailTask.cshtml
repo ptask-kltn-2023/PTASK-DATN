@@ -15,28 +15,6 @@
                             <span>Mô tả chi tiết nhiệm vụ</span>
                         </div>
                     </div>
-                    <hr/>
-                    <div class="row g-2">
-                        <b>Việc cần làm</b>
-                    </div>
-                    <div class="demo-inline-spacing">
-                        <ul class="list-group listToDo">
-                            <li class="list-group-item">
-                                <input class="form-check-input me-1" type="checkbox" value="" />
-                                Soufflé pastry pie ice
-                            </li>
-                            <li class="list-group-item">
-                                <input class="form-check-input me-1" type="checkbox" value="" />
-                                Bear claw cake biscuit
-                            </li>
-                        </ul>
-                    </div>
-                    <div class=" g-2 mt-2" id="txt-toDo">
-                        <input type="text"
-                               class="form-control"
-                               placeholder="Thêm việc cần làm" />
-                        <button id="btn-addToDo" type="button" class="mt-2 btn btn-outline-success"><i class='bx bx-plus'></i>Thêm</button>
-                    </div>
                     <hr />
                     <div class="row gy-1">
                         <b class="ps-1">Cấp độ</b>
@@ -92,8 +70,20 @@
                             <input class="form-control" type="date" value="" id="date-end" />
                         </div>
                     </div>
+                    <div class="row g-2">
+                        <b>Tiến độ công việc</b>
+                        <div class="progress mt-2">
+                            <div class="progress-bar bg-success"
+                                 role="progressbar"
+                                 style="width: 40%"
+                                 aria-valuenow="40"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100">
+                                40%
+                            </div>
+                        </div>
+                    </div>
                     <hr />
-
                     <div class="row mt-2">
                         <div class="col mb-3 ">
                             <label for="nameWithTitle" class="form-label">
@@ -125,21 +115,6 @@
                             <a href="javascript:void(0);" class="list-group-item list-group-item-action">
                                 <i class='bx bx-user-plus me-2'></i>Phân công
                             </a>
-                            <a href="javascript:void(0);" id="btn-toDo" class="list-group-item list-group-item-action">
-                                <i class='bx bx-check-double me-2'></i>Việc cần làm
-                            </a>
-                            <a href="javascript:void(0);" t class="list-group-item list-group-item-action">
-                                <i class='bx bx-link me-2'></i>Đính kèm
-                            </a>
-                            <a href="javascript:void(0);" t class="list-group-item list-group-item-action">
-                                <i class='bx bx-receipt me-2'></i>Báo cáo
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col m-2">
-                            <b>File đính kèm</b>
-                            
                         </div>
                     </div>
                     <div class="row">
@@ -172,19 +147,6 @@
                                 <strong class="ms-2">Lilian Fuller</strong>
                             </li>
                         </ul>
-                    </div>
-                    <div class="row">
-                        <div class="col m-2">
-                            <b>Tiến độ nhiệm vụ</b>
-                            <div class="progress mt-2">
-                                <div class="progress-bar bg-success"
-                                     role="progressbar"
-                                     style="width: 40%"
-                                     aria-valuenow="40"
-                                     aria-valuemin="0"
-                                     aria-valuemax="100">40%</div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
