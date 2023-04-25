@@ -709,25 +709,57 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     
     var listMemberByWorkId = [];
-    $('#assignment').change(function () {
+   
+    $('#assignment').change(function () { 
         var selectedValue = $(this).val();
-        var selectedOption = $("#datalistMembers option[value='" + $(this).val() + "']");
-       
+
+        if (!isEmail(selectedValue)) {
+            var selectedOption = $("#datalistMembers option[value='" + $(this).val() + "']");
+            genarateAssignment(selectedValue, selectedOption.attr("id"));
+            $(this).val('');
+        }
+    });
+
+    // Click vào buttom thêm thành viên
+    $('#btnAssignment').click(function () {
+        var email = $("#assignment").val();
+
+        searchUser(email).then(function (data) {
+            if (data._id != null) {
+                if (!memberList.includes(data._id)) {
+                    genarateAssignment(data.fullName, data._id);
+                    $(this).val('');
+                }
+            } else {
+                alert("Email này chưa có tài khoản")
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
+    });
+    //Check có phải email k
+    function isEmail(input) {
+        // Biểu thức chính quy để kiểm tra định dạng email
+        const emailRegex = /^\S+@\S+\.\S+$/;
+        // Kiểm tra xem chuỗi input có khớp với biểu thức chính quy hay không
+        return emailRegex.test(input);
+    }
+    // Hàm tạo danh sách thành viên phân công
+    function genarateAssignment(text, id) {
         var listItem = $("<li></li>").addClass("list-group-item d-flex justify-content-between align-items-center");
         var index = listTeam.indexOf(idTeam);
         var removeButton = createRemoveButton(listItem, listMemberByWorkId, $("#memberId"), index)
-        if (!listMemberByWorkId.includes(selectedOption.attr("id"))) {
-            listItem.text(selectedValue);
+        if (!listMemberByWorkId.includes(id)) {
+            listItem.text(text);
             listItem.append(removeButton);
-           
+
             $('.list_assign').append(listItem);
 
-            listMemberByWorkId.push(selectedOption.attr("id"));
+            listMemberByWorkId.push(id);
         }
         $("#memberId").val(listMemberByWorkId.join(','));
-        $(this).val('');
-    });
-
+    }
+    
     // gán giá trị level lúc tạo task
     $('input[name="selectLevel"]').change(function () {
         var selectedValue = $('input[name="selectLevel"]:checked').val();

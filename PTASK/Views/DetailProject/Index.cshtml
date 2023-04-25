@@ -31,16 +31,20 @@
     var sortWork = Model.Works.OrderBy(w => w.endTime);
 
     var countSuccessWork = 0;
-
-    foreach (var work in Model.Works)
+    int percentWork = 0;
+    if (Model.Works.Count > 0)
     {
-        if (work.status)
+        foreach (var work in Model.Works)
         {
-            countSuccessWork++;
+            if (work.status)
+            {
+                countSuccessWork++;
+            }
         }
+        percentWork = (countSuccessWork * 100) / Model.Works.Count;
     }
 
-    int percentWork = (countSuccessWork * 100) / Model.Works.Count;
+
 }
 <partial name="~/Views/Shared/Partial/_NavLeft.cshtml" />
 <div class="main-wrapper ">
@@ -50,7 +54,6 @@
                 <div class="col-md-8 col-lg-6">
                     <h6 class="mt-2 mb-2 text-uppercase">
                         <strong>Danh sách các công việc</strong>
-                       
                         </h6>
                     <div class="card p-2 card-effect bg-blur">
                         <div class="d-flex justify-content-between p-1">
@@ -95,7 +98,7 @@
                 <div class="col-md-6 col-lg-6">
                     <h6 class="mt-2 mb-2 text-uppercase d-flex justify-content-between">
                         <strong>Danh sách các nhiệm vụ</strong>
-                        <i class='bx bx-calendar'
+                        <i class='bx bxs-info-circle text-primary' 
                            data-bs-toggle="offcanvas"
                            data-bs-target="#offcanvasEnd"
                            aria-controls="offcanvasEnd"></i>
@@ -177,7 +180,6 @@
                                 }
                             </ul>
                         </div>
-
                     </div>
                 </div>
             </div>

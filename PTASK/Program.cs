@@ -35,6 +35,9 @@ builder.Services.AddCustomHttpClient("apiMembersByWorkId", apiUrl);
 builder.Services.AddCustomHttpClient("apiLogin", apiUrl);
 builder.Services.AddCustomHttpClient("apiRegister", apiUrl);
 
+//Delete
+builder.Services.AddCustomHttpClient("removeWork", apiUrl);
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddMvc();

@@ -6,9 +6,51 @@
 <div class="main-wrapper ">
     <main class="main users chart-page" id="skip-target">
         <div class="container-xxl flex-grow-1" style="margin-top: 6%;">
+            <button class="btn btn-success mb-2">Xuất excel</button>
             <div class="chart">
                 <canvas id="myChart" aria-label="Site statistics" role="img"></canvas>
             </div>
         </div>
     </main>
 </div>
+
+@section Scripts{
+    <script>
+        // Lấy tham chiếu đến thẻ canvas
+        var canvas = document.getElementById('myChart');
+        var ctx = canvas.getContext('2d');
+
+        // Dữ liệu cho biểu đồ
+        var data = {
+            labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5'],
+            datasets: [{
+                label: 'Doanh thu',
+                data: [2000, 3500, 2800, 4500, 5200],
+                borderColor: 'blue',
+                fill: false,
+                tension: 0.4
+            }, {
+                label: 'Lợi nhuận',
+                data: [1000, 2000, 1500, 2500, 3000],
+                borderColor: 'green',
+                fill: false,
+                tension: 0.2,
+                borderDash: [] // Tắt đường kẻ ngang
+            }]
+        };
+
+        // Tạo biểu đồ đường
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Doanh thu và Lợi nhuận hàng tháng'
+                }
+            }
+        });
+
+    </script>   
+}
