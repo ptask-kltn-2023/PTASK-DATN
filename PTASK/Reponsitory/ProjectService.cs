@@ -37,6 +37,10 @@ namespace PTASK.Reponsitory
                     content.Add(new StringContent(teamId), "teamIds");
                 }
             }
+            else
+            {
+                content.Add(new StringContent(""), "teamIds");
+            }
             var fileContent = new StreamContent(project.BackgroundFile.OpenReadStream());
             content.Add(fileContent, "background", project.BackgroundFile.FileName);
             

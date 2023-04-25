@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Caching.Memory;
+﻿using Microsoft.CodeAnalysis;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using PTASK.Interface;
@@ -37,7 +38,6 @@ namespace PTASK.Reponsitory
             {
                 outputArray = new string[] {};
             }
-            //work.createId = _cache.Get<string>("UserId");
             work.createId = _cache.Get<string>("UserId");
             work.leaderId = "6429449e32e69be96008c5a0";
             // Tạo json data
@@ -64,6 +64,13 @@ namespace PTASK.Reponsitory
             {
                 return false;
             }
+        }
+
+        public async Task<bool> DeleteWork(string workId)
+        {
+            var api = _httpClientFactory.CreateClient("removeWork");
+            var response = await api.DeleteAsync($"api/works/{workId}");
+            return response.IsSuccessStatusCode;
         }
 
         public async Task<List<Work>> GetAllWorkByIdProject(string projectId)
