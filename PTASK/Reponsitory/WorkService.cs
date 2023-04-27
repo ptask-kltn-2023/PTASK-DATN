@@ -70,7 +70,14 @@ namespace PTASK.Reponsitory
         {
             var api = _httpClientFactory.CreateClient("removeWork");
             var response = await api.DeleteAsync($"api/works/{workId}");
-            return response.IsSuccessStatusCode;
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public async Task<List<Work>> GetAllWorkByIdProject(string projectId)

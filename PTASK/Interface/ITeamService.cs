@@ -8,5 +8,6 @@ namespace PTASK.Interface
         Task<List<Member>> GetAllMembers(string projectId);
         Task<List<Team>> GetMembersByWorkId(string workId);
         Task<bool> CreateTeam(TeamCreate team, string projectId);
+        Task<bool> Delete(string teamId);
     }
 }

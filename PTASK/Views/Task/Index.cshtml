@@ -29,59 +29,68 @@
                 </form>
                 <button data-bs-toggle="modal" data-bs-target="#modalMisson" class="btn btn-outline-success" type="submit"><i class='bx bx-bookmark-plus me-2'></i>Thêm nhiệm vụ</button>
             </div>
-            <div class="card">
-                <h5 class="tbl-members text-uppercase"><strong>Danh sách nhiệm vụ</strong></h5>
-                <div class="table-responsive text-nowrap">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Tên nhiệm vụ</th>
-                                <th>Người thực hiện</th>
-                                <th>Thuộc công việc</th>
-                                <th>Cấp độ</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-border-bottom-0">
-                            @foreach (var item in Model)
-                            {
+            @if (Model.Count() > 0)
+            {
+                <div class="card">
+                    <h5 class="tbl-members text-uppercase"><strong>Danh sách nhiệm vụ</strong></h5>
+                    <div class="table-responsive text-nowrap">
+                        <table class="table table-hover">
+                            <thead>
                                 <tr>
-                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>@item.name</strong></td>
-                                    <td>
-                                        <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                            @foreach (var member in item.members)
-                                            {
-                                                <li data-bs-toggle="tooltip"
-                                                    data-popup="tooltip-custom"
-                                                    data-bs-placement="top"
-                                                    class="avatar avatar-xs pull-up"
-                                                    title="@member.name">
-                                                    <img src="@member.avatar" alt="Avatar" class="rounded-circle" />
-                                                </li>
-                                            }
-                                        </ul>
-                                    </td>
-                                    <td>@item.workName</td>
-                                    <td>
-                                        <span class="badge bg-label-@(item.level == 1 ? "primary" : (item.level == 2 ? "warning" : "danger")) me-1">
-                                            @(item.level == 1 ? "Bình thường" : (item.level == 2 ? "Quan trọng" : "Khẩn cấp"))
-                                        </span>
-                                    </td>
-
-                                    <td>
-                                        <a data-bs-toggle="modal"
-                                           data-bs-target="#largeModal" href="javascript:void(0);"><i class='bx bx-edit-alt me-1 text-warning'></i></a> ||
-                                        <a href="javascript:void(0);"><i class="bx bx-trash me-1 text-danger"></i></a>
-                                    </td>
+                                    <th>Tên nhiệm vụ</th>
+                                    <th>Người thực hiện</th>
+                                    <th>Thuộc công việc</th>
+                                    <th>Cấp độ</th>
+                                    <th></th>
                                 </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>@item.name</strong></td>
+                                        <td>
+                                            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+                                                @foreach (var member in item.members)
+                                                {
+                                                    <li data-bs-toggle="tooltip"
+                                                        data-popup="tooltip-custom"
+                                                        data-bs-placement="top"
+                                                        class="avatar avatar-xs pull-up"
+                                                        title="@member.name">
+                                                        <img src="@member.avatar" alt="Avatar" class="rounded-circle" />
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </td>
+                                        <td>@item.workName</td>
+                                        <td>
+                                            <span class="badge bg-label-@(item.level == 1 ? "primary" : (item.level == 2 ? "warning" : "danger")) me-1">
+                                                @(item.level == 1 ? "Bình thường" : (item.level == 2 ? "Quan trọng" : "Khẩn cấp"))
+                                            </span>
+                                        </td>
+
+                                        <td>
+                                            <a data-bs-toggle="modal"
+                                               data-bs-target="#largeModal" href="javascript:void(0);"><i class='bx bx-edit-alt me-1 text-warning'></i></a> ||
+                                            <a href="javascript:void(0);"><i class="bx bx-trash me-1 text-danger"></i></a>
+                                        </td>
+                                    </tr>
                                 }
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <partial name="~/Views/Shared/Partial/_Pager.cshtml" 
-                     model="@pager" 
+                <partial name="~/Views/Shared/Partial/_Pager.cshtml"
+                     model="@pager"
                      view-data='@new ViewDataDictionary(ViewData) { { "Controller",  "Task"}, {"Action", "Index"} }' />
+            } else
+            {
+                <div class="container text-center mt-4">
+                    <h5>Bạn chưa có nhiệm vụ. Hãy tạo nhiệm vụ nào nào!</h5>
+                </div>
+            }
+            
         </div>
     </main>
 </div>

@@ -1,7 +1,9 @@
-﻿@model DetailProject
+﻿@using Microsoft.Extensions.Caching.Memory;
+@model DetailProject
 
 @{
     Layout = "_LayoutProject";
+    var cache = Context.RequestServices.GetRequiredService<IMemoryCache>();
     // Tính phần trăm ngày hiện tại so với ngày bắt đầu và ngày kết thúc
     int roundedNumber = 0;
     if (DateTime.Today < Model.Project.startTime)
@@ -43,9 +45,9 @@
         }
         percentWork = (countSuccessWork * 100) / Model.Works.Count;
     }
-
-
+    var userId = cache.Get("UserId");
 }
+
 <partial name="~/Views/Shared/Partial/_NavLeft.cshtml" />
 <div class="main-wrapper ">
     <main class="main users chart-page" id="skip-target">
@@ -152,9 +154,11 @@
                                 @roundedNumber%
                             </div>
                         </div>
-                       
-                        <h6 class="mt-3 mb-2 text-uppercase d-flex justify-content-between">
-                            <strong>Thành viên tham gia dự án</strong>
+                        <h6 class="mt-3 mb-2 d-flex justify-content-between card-title">
+                            <span>Chủ dự án: <strong class="text-uppercase">@Model.Project.mainName</strong></span>
+                        </h6>
+                        <h6 class="mt-3 mb-2 d-flex justify-content-between card-title">
+                            <span>Thành viên tham gia dự án</span>
                         </h6>
                         <div class="card p-2 card-effect bg-blur">
                             <div class="d-flex justify-content-between p-1">

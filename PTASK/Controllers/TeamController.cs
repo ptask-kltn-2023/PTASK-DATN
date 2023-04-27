@@ -1,6 +1,7 @@
 ﻿using Amazon.Runtime.Internal.Util;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 using PTASK.Interface;
@@ -165,21 +166,6 @@ namespace PTASK.Controllers
         public ActionResult Delete(int id)
         {
             return View();
-        }
-
-        // POST: MemberController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }
