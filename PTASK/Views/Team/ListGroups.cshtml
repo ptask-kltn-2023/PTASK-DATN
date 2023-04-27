@@ -1,6 +1,8 @@
-﻿@model IEnumerable<PTASK.Models.Team>
+﻿@using Microsoft.Extensions.Caching.Memory;
+@model IEnumerable<PTASK.Models.Team>
 @{
     Layout = "_LayoutProject";
+    var cache = Context.RequestServices.GetRequiredService<IMemoryCache>();
 
     Pager pager = new Pager();
     int pageNo = 0;
@@ -10,63 +12,89 @@
         pager = ViewBag.Pager;
         pageNo = pager.CurrentPage;
     }
+    var userId = cache.Get("UserId");
+    var mainId = cache.Get("MainProject");
 }
 <partial name="~/Views/Shared/Partial/_NavLeft.cshtml" />
 <div class="main-wrapper ">
     <main class="main users chart-page" id="skip-target">
         <div class="container-xxl flex-grow-1" style="margin-top: 6%;">
             <div class="d-flex justify-content-between mb-2">
-                <form class="d-flex" onsubmit="return false">
-                    <input class="form-control me-2" type="search" placeholder="Tìm kiếm nhóm" aria-label="Tìm kiếm" />
-                    <button class="btn btn-outline-primary" type="submit" style="width: 200px"><i class='bx bx-search'></i>Tìm kiếm</button>
-                </form>
-                <button data-bs-toggle="modal" data-bs-target="#modalGroup" class="btn btn-outline-success" type="submit"><i class='bx bx-user-plus'></i>Thêm nhóm</button>
-            </div>
-            <div class="card">
-                <h5 class="tbl-members text-uppercase"><strong>Danh sách các nhóm tham gia dự án</strong></h5>
-                <div class="table-responsive text-nowrap">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Tên nhóm</th>
-                                <th>Trưởng nhóm</th>
-                                <th>Công việc tham gia</th>
-                                <th style="width:100px">Danh sách thành viên</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-border-bottom-0">
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td><strong>@item.teamName</strong></td>
-                                    <td>@item.leaderName</td>
-                                    <td> @string.Join(", ", item.workName)</td>
-                                    <td class="text-center btn-viewListTask">
-                                        <i class='bx bx-list-ul btn-viewListTask'
-                                           data-bs-toggle="tooltip"
-                                           data-bs-target="#DetailMember"
-                                           data-bs-offset="0,4"
-                                           data-bs-placement="bottom"
-                                           data-bs-html="true"
-                                           onclick="showModal()"
-                                           title="<span>Xem chi tiết</span>"></i>
-                                    </td>
-                                    <td>
-                                        <a data-bs-toggle="modal"
-                                           data-bs-target="#largeModal" href="javascript:void(0);"><i class='bx bx-edit-alt me-1 text-warning'></i></a>
-                                        <a href="javascript:void(0);"><i class="bx bx-trash me-1 text-danger"></i></a>
-                                    </td>
-                                </tr>
-                            }
+                <button class="btn btn-outline-primary" type="submit" style="width: 200px"><i class='bx bx-search'></i>Tìm kiếm</button>
 
-                        </tbody>
-                    </table>
-                </div>
+                @if (userId.Equals(mainId))
+                {
+                    <button data-bs-toggle="modal"
+                            data-bs-target="#modalGroup"
+                            class="btn btn-outline-success"
+                            type="submit">
+                        <i class='bx bx-user-plus'></i>
+                        Thêm nhóm
+                    </button>
+                }
             </div>
-            <partial name="~/Views/Shared/Partial/_Pager.cshtml"
+            @if(Model.Count() > 0)
+            {
+                <div class="card">
+                    <h5 class="text-uppercase d-flex m-3 align-items-center justify-content-between">
+                        <strong>Danh sách nhóm</strong>
+                        <form class="d-flex" onsubmit="return false">
+                            <input class="form-control me-2" type="search" placeholder="Tìm kiếm công việc" aria-label="Tìm kiếm" />
+                            <button class="btn btn-outline-primary" type="submit" style="width: 200px"><i class='bx bx-search'></i>Tìm kiếm</button>
+                        </form>
+                    </h5>
+                    <div class="table-responsive text-nowrap">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Tên nhóm</th>
+                                    <th>Trưởng nhóm</th>
+                                    <th>Công việc tham gia</th>
+                                    <th style="width:100px">Danh sách thành viên</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td><strong>@item.teamName</strong></td>
+                                        <td>@item.leaderName</td>
+                                        <td> @string.Join(", ", item.workName)</td>
+                                        <td class="text-center btn-viewListTask">
+                                            <i class='bx bx-list-ul btn-viewListTask'
+                                               data-bs-toggle="tooltip"
+                                               data-bs-target="#DetailMember"
+                                               data-bs-offset="0,4"
+                                               data-bs-placement="bottom"
+                                               data-bs-html="true"
+                                               onclick="showModal()"
+                                               title="<span>Xem chi tiết</span>"></i>
+                                        </td>
+                                        <td>
+                                            <a data-bs-toggle="modal"
+                                               data-bs-target="#largeModal" href="javascript:void(0);"><i class='bx bx-edit-alt me-1 text-warning'></i></a>
+                                            <a asp-controller="Team" asp-action="DeleteTeam">
+                                                <i class="bx bx-trash me-1 text-danger"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <partial name="~/Views/Shared/Partial/_Pager.cshtml"
                      model="@pager"
                      view-data='@new ViewDataDictionary(ViewData) { { "Controller",  "Team"}, {"Action", "ListGroups"} }' />
+            }
+            else
+            {
+                <div class="container text-center mt-4">
+                    <h5>Bạn chưa có nhóm. Hãy thêm nhóm nào!</h5>
+                </div>
+            }
         </div>
     </main>
 </div>

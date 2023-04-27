@@ -48,6 +48,7 @@ namespace PTASK.Controllers
             resultMember = await _team.GetAllMembers(id);
 
             cache.Set("TitleProject", resultProject.name);
+            cache.Set("MainProject", resultProject.mainProject);
             ViewData["TitleProject"] = resultProject.name;
 
             //var idUser = cache.Get<string>("UserId");

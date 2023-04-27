@@ -765,6 +765,11 @@ document.addEventListener('DOMContentLoaded', function () {
         var selectedValue = $('input[name="selectLevel"]:checked').val();
         $("#level").val(selectedValue);
     });
+
+    $(".btnDelete").click(function () {
+        var workId = $(this).data('id');
+        $('#delete-work-form-' + workId ).submit();
+    })
 });
 
 

@@ -1,6 +1,8 @@
-﻿@model IEnumerable<PTASK.Models.Work>
+﻿@using Microsoft.Extensions.Caching.Memory;
+@model IEnumerable<PTASK.Models.Work>
 @{
     Layout = "_LayoutProject";
+    var cache = Context.RequestServices.GetRequiredService<IMemoryCache>();
 
     var isBack = (bool)ViewData["isBack"];
 
@@ -12,6 +14,8 @@
         pager = ViewBag.Pager;
         pageNo = pager.CurrentPage;
     }
+    var userId = cache.Get("UserId");
+    var mainId = cache.Get("MainProject");
 }
 <partial name="~/Views/Shared/Partial/_NavLeft.cshtml" />
 @*<div class="main-wrapper ">
@@ -146,84 +150,96 @@
         <div class="container-xxl flex-grow-1" style="margin-top: 6%;">
             @if (isBack == true)
             {
-                <partial name="~/Views/Shared/Partial/_ButtonGoBack.cshtml" isBack = "@isBack"/>
+                <partial name="~/Views/Shared/Partial/_ButtonGoBack.cshtml" isBack="@isBack" />
             }
-            <div class="d-flex justify-content-between mb-2">
-                <form class="d-flex" onsubmit="return false">
-                    <input class="form-control me-2" type="search" placeholder="Tìm kiếm công việc" aria-label="Tìm kiếm" />
-                    <button class="btn btn-outline-primary" type="submit" style="width: 200px"><i class='bx bx-search'></i>Tìm kiếm</button>
-                </form>
-                <button data-bs-toggle="modal"
-                        data-bs-target="#modalWork"
-                        class="btn btn-outline-success"
-                        type="submit">
-                    <i class='bx bx-layer-plus me-2'></i>Thêm công việc
-                </button>
-            </div>
-            <div class="card">
-                <h5 class="tbl-members text-uppercase"><strong>Danh sách công việc</strong></h5>
-                <div class="table-responsive text-nowrap">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Tên công việc</th>
-                                <th>Ngày bắt đầu</th>
-                                <th>Ngày kết thúc</th>
-                                <th>Nhóm thực hiện</th>
-                                <th>Tiến độ công việc</th>
-                                <th>Trạng thái</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-border-bottom-0">
-                            @foreach (var item in Model)
-                            {
+            <button data-bs-toggle="modal"
+                    data-bs-target="#modalWork"
+                    class="btn btn-outline-success mb-2"
+                    type="submit">
+                <i class='bx bx-layer-plus me-2'></i>Thêm công việc
+            </button>
+            @if (Model.Count() > 0)
+            {
+                <div class="card">
+                    <h5 class="text-uppercase d-flex m-3 align-items-center justify-content-between">
+                        <strong>Danh sách công việc</strong>
+                        <form class="d-flex" onsubmit="return false">
+                            <input class="form-control me-2" type="search" placeholder="Tìm kiếm công việc" aria-label="Tìm kiếm" />
+                            <button class="btn btn-outline-primary" type="submit" style="width: 200px"><i class='bx bx-search'></i>Tìm kiếm</button>
+                        </form>
+                    </h5>
+                    <div class="table-responsive text-nowrap">
+                        <table class="table table-hover">
+                            <thead>
                                 <tr>
-                                    <td style="word-wrap: break-all;">
-                                        <strong style="white-space: normal;">@item.name</strong>
-                                    </td>
-                                    <td>@item.startTime.ToString("dd-MM-yyyy")</td>
-                                    <td>@item.endTime.ToString("dd-MM-yyyy")</td>
-                                    <td>
-                                        @string.Join(",", item.teamName)
-                                    </td>
-                                    <td class="btn-viewListTask">
-                                        <i class='bx bx-list-ul btn-viewListTask'
-                                           data-bs-toggle="tooltip"
-                                           data-bs-offset="0,4"
-                                           data-bs-placement="bottom"
-                                           data-bs-html="true"
-                                           title="<span>Xem chi tiết</span>"></i>
-                                    </td>
-                                    <td>
-                                        @if (item.status)
-                                        {
-                                            <span class="badge bg-label-primary me-1">Hoàn thành</span>
-                                        }
-                                        else
-                                        {
-                                            <span class="badge bg-label-warning me-1">Đang thực hiện</span>
-
-                                        }
-                                    </td>
-                                    <td>
-                                        <a data-bs-toggle="modal"
-                                           data-bs-target="#detailWork" href="javascript:void(0);"><i class='bx bx-edit-alt me-1 text-warning'></i></a> ||
-                                        <a href="javascript:void(0);"><i class="bx bx-trash me-1 text-danger"></i></a>
-                                    </td>
+                                    <th>Tên công việc</th>
+                                    <th>Ngày bắt đầu</th>
+                                    <th>Ngày kết thúc</th>
+                                    <th>Nhóm thực hiện</th>
+                                    <th>Tiến độ công việc</th>
+                                    <th>Trạng thái</th>
+                                    <th></th>
                                 </tr>
-                            }
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td style="word-wrap: break-all;">
+                                            <strong style="white-space: normal;">@item.name</strong>
+                                        </td>
+                                        <td>@item.startTime.ToString("dd-MM-yyyy")</td>
+                                        <td>@item.endTime.ToString("dd-MM-yyyy")</td>
+                                        <td>
+                                            @string.Join(",", item.teamName)
+                                        </td>
+                                        <td class="btn-viewListTask">
+                                            <i class='bx bx-list-ul btn-viewListTask'
+                                               data-bs-toggle="tooltip"
+                                               data-bs-offset="0,4"
+                                               data-bs-placement="bottom"
+                                               data-bs-html="true"
+                                               title="<span>Xem chi tiết</span>"></i>
+                                        </td>
+                                        <td>
+                                            @if (item.status)
+                                            {
+                                                <span class="badge bg-label-primary me-1">Hoàn thành</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-label-warning me-1">Đang thực hiện</span>
 
-                        </tbody>
-                    </table>
+                                            }
+                                        </td>
+                                        <td class="d-flex">
+                                            <a data-bs-toggle="modal"
+                                               data-bs-target="#detailWork" href="javascript:void(0);"><i class='bx bx-edit-alt me-1 text-warning'></i></a> ||
+                                            <form asp-controller="Work" asp-action="DeleteWork" asp-route-workId="@item._id" id="delete-work-form-@item._id" method="post">
+                                                <a class="btnDelete" data-id="@item._id" href="javascript:void(0);"><i class="bx bx-trash me-1 text-danger "></i></a>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <partial name="~/Views/Shared/Partial/_Pager.cshtml"
+                <partial name="~/Views/Shared/Partial/_Pager.cshtml"
                      model="@pager"
                      view-data='@new ViewDataDictionary(ViewData) { { "Controller",  "Work"}, {"Action", "Index"} }' />
+            }
+            else
+            {
+                <div class="container text-center mt-4">
+                    <h5>Hãy bắt đầu với 1 công việc !</h5>
+                </div>
+            }
         </div>
     </main>
 </div>
+
 
 <partial name="~/Views/Work/_AddWork.cshtml" model="new PTASK.Models.WorkCreate()" />
 <partial name="~/Views/Task/AddTask.cshtml" model="new PTASK.Models.PTask()"/>

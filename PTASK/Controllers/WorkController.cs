@@ -145,15 +145,51 @@ namespace PTASK.Controllers
         // POST: WorkController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> DeleteWork(string workId)
         {
-            try
+            bool isBack = (bool)TempData["isBack"];
+
+            string dataJson = TempData["data"] as string;
+            List<Work> works = JsonConvert.DeserializeObject<List<Work>>(dataJson);
+
+            string pagerJson = TempData["pager"] as string;
+            Pager page = JsonConvert.DeserializeObject<Pager>(pagerJson);
+            int pg = (int)TempData["pg"];
+
+            int lastPageElementsCount = page.TotalItems % 9;
+            if (lastPageElementsCount == 0 && page.TotalItems > 0)
             {
-                return RedirectToAction(nameof(Index));
+                lastPageElementsCount = 9;
             }
-            catch
+
+            if (works.Count >= 9)
             {
-                return View();
+                if (page.EndPage == pg)
+                {
+                    pg++;
+                }
+                else
+                {
+                    if (lastPageElementsCount >= 9)
+                    {
+                        pg = ++page.EndPage;
+                    }
+                    else
+                    {
+                        pg = page.EndPage;
+                    }
+                }
+            }
+
+            var result = await _work.DeleteWork(workId);
+
+            if (result)
+            {
+                return RedirectToAction("Index", "Work", new { isBack, pg });
+            }
+            else
+            {
+                return BadRequest();
             }
         }
     }

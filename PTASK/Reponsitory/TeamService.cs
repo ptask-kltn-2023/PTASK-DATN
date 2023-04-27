@@ -113,6 +113,9 @@ namespace PTASK.Reponsitory
             return result;
         }
 
-      
+        public async Task<bool> Delete(string teamId)
+        {
+            return true;
+        }
     }
 }
