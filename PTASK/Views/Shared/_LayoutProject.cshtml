@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.Extensions.Caching.Memory;
+@{
+    var cache = Context.RequestServices.GetRequiredService<IMemoryCache>();
+
+    var avartar = cache.Get("Avatar");
+}
+<!DOCTYPE html>
 <html lang="en"
       class="light-style layout-menu-fixed"
       dir="ltr"
@@ -42,7 +48,7 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="~/assets/js/config.js"></script>
 </head>
-<body onload="startTime()">
+<body>
     <div class="layer"></div>
     <nav class="main-nav--bg navbar navbar-expand-md fixed-top">
         <div class="container main-nav">
@@ -196,12 +202,8 @@
                           profile" type="button">
                         <span class="sr-only">My profile</span>
                         <span class="nav-user-img">
-                            <picture>
-                                <source srcset="~/assets/img/avatars/avatar-illustrated-02.webp"
-                                        type="image/webp"><img src="~/assets/img/avatars/avatar-illustrated-02.png"
-                                                               alt="User
-                                      name">
-                            </picture>
+                            <img src="@avartar"
+                                 alt="Username">
                         </span>
                     </button>
                     <ul class="users-item-dropdown nav-user-dropdown
@@ -210,7 +212,7 @@
                             <a href="##">
                                 <i data-feather="user"
                                    aria-hidden="true"></i>
-                                <span>Profile</span>
+                                <span>Cá nhân</span>
                             </a>
                         </li>
                         <li>
@@ -222,12 +224,12 @@
                         </li>
                         <li>
 
-                            <form method="post" asp-controller="Account" asp-action="Logout">
-                                <button type="submit" class="danger">
+                            <form method="post" asp-controller="Account" asp-action="Logout" id="form-logout">
+                                <a class="danger" id="btnLogout" href="#">
                                     <i data-feather="log-out"
                                        aria-hidden="true"></i>
                                     <span>Đăng xuất</span>
-                                </button>
+                                </a>
                             </form>
                         </li>
                     </ul>

@@ -58,7 +58,7 @@
                         <strong>Danh sách các công việc</strong>
                         </h6>
                     <div class="card p-2 card-effect bg-blur">
-                        <div class="d-flex justify-content-between p-1">
+                        <div class="text-end p-1">
                             <span>
                                 <a asp-area=""
                                    asp-controller="Work"
@@ -116,12 +116,12 @@
                             @foreach(var item in Model.PTasks)
                             {
                                 <li class="list-group-item d-flex bg-white justify-content-between"
-                                data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                title="Hoàn thành">
-                                <strong>@item.name</strong>
-                                <i class='text-success bx bx-check-circle'></i>
+                                    data-bs-toggle="tooltip"
+                                    data-popup="tooltip-custom"
+                                    data-bs-placement="top"
+                                    title="@(item.status ? "Hoàn thành" : "Đang thực hiện")">
+                                    <strong>@item.name</strong>
+                                    <i class='@(item.status ? "text-success bx bx-task" : "text-warning bx bx-task-x")'></i>
                                 </li>
                             }
                         </ul>
@@ -140,7 +140,7 @@
                                 aria-label="Close">
                          </button>
                     </div>
-                    <div class="offcanvas-body flex-grow-0">
+                    <div class="offcanvas-body flex-grow-0 pb-0">
                         <h6 class="card-title">
                             Từ ngày @Model.Project.startTime.ToString("dd-MM-yyyy") đến ngày @Model.Project.endTime.ToString("dd-MM-yyyy")
                         </h6>
@@ -184,6 +184,18 @@
                                 }
                             </ul>
                         </div>
+                        <form asp-controller="DetailProject" 
+                              asp-action="DeleteProject"
+                              asp-route-projectId="@Model.Project._id" 
+                              id="delete-form-@Model.Project._id" 
+                              method="post">
+                            <a class="btnDelete btn btn-danger mt-2" 
+                               data-id="@Model.Project._id" 
+                               href="javascript:void(0);"
+                               style="width: 100%">
+                                Xóa dự án
+                           </a>
+                        </form>
                     </div>
                 </div>
             </div>

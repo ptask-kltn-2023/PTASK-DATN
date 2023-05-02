@@ -76,6 +76,63 @@ function searchTeam() {
     });
 }
 
+function getTaskById(taskId) {
+    $.ajax({
+        url: "api/task/getbyid/" + taskId,
+        method: "GET",
+        success: function (data) {
+            $("#nameTask").text(data.name);
+            $("#descriptTask").text(data.description);
+            if (data.level == 1) {
+                $('#rdoNormal').prop('checked', true);
+            } else if (data.level == 2) {
+                $('#rdoWarning').prop('checked', true);
+            } else {
+                $('#rdoDanger').prop('checked', true);
+            }
+            $('#time-start').val(convertTime(data.startHour));
+            $('#time-end').val(convertTime(data.endHour));
+            $('#date-start').val(convertDate(data.startDay))
+            $('#date-end').val(convertDate(data.endDay))
+            //Đợi api làm tiếp
+            //data.members.forEach(function (member, index) {
+            //    console.log(index + ': ' + member);
+            //});
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(`Error: ${errorThrown}`);
+        }
+
+    });
+}
+
+
+//Function
+function convertTime(time) {
+    var hours = new Date(time);
+    let formattedTime = hours.toLocaleTimeString("vi-VN", {
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+    return formattedTime.split(" ")[0];
+}
+
+function convertDate(date) {
+    var converDate = new Date(date);
+    let dateString = converDate.toLocaleDateString("vi-VN", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+    })
+
+    let dateParts = dateString.split("/");
+    let year = dateParts[2];
+    let month = dateParts[1];
+    let day = dateParts[0];
+
+    return `${year}-${month}-${day}`;
+}
+
 function createRemoveButton(listItem, listRemove, id, index) {
 
     var removeButton = $("<button></button>").addClass("btn btn-sm btn-danger ms-2").html('<i class="bx bx-x"></i>');
@@ -109,6 +166,7 @@ function generateItemUser(data, parentItem,id, listRemove) {
     listItem.append(removeButton);
     parentItem.append(listItem);
 }
+
 
 // Execute
 allWorks();

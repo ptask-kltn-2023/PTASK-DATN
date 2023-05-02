@@ -1,8 +1,10 @@
-﻿@model IEnumerable<PTASK.Models.Member>
+﻿@using Microsoft.Extensions.Caching.Memory;
+@model IEnumerable<PTASK.Models.Member>
 
 @{
     Layout = "_LayoutProject";
     var isBack = (bool)ViewData["isBack"];
+    var cache = Context.RequestServices.GetRequiredService<IMemoryCache>();
 
     Pager pager = new Pager();
     int pageNo = 0;
@@ -12,7 +14,7 @@
         pager = ViewBag.Pager;
         pageNo = pager.CurrentPage;
     }
-
+    var projectId = cache.Get("ProjectID");
 }
 <partial name="~/Views/Shared/Partial/_NavLeft.cshtml"/>
 <div class="main-wrapper ">
@@ -20,7 +22,13 @@
         <div class="container-xxl flex-grow-1" style="margin-top: 6%;">
             @if (isBack == true)
             {
-                <partial name="~/Views/Shared/Partial/_ButtonGoBack.cshtml" isBack="@isBack" />
+                <div>
+                    <a asp-controller="DetailProject"
+                       asp-action="Index"
+                       asp-route-projectId="@projectId" class="text-primary">
+                       <i class='bx bx-arrow-back'></i> Trở lại
+                    </a>
+                </div>
             }
             <button class="btn btn-outline-success mb-2" type="submit"><i class='bx bx-user-plus'></i>Thêm thành viên</button>
 
@@ -30,7 +38,7 @@
                     <h5 class="text-uppercase d-flex m-3 align-items-center justify-content-between">
                         <strong>Danh sách thành viên</strong>
                         <form class="d-flex" onsubmit="return false">
-                            <input class="form-control me-2" type="search" placeholder="Tìm kiếm công việc" aria-label="Tìm kiếm" />
+                            <input class="form-control me-2" type="search" placeholder="Tìm kiếm thành viên" aria-label="Tìm kiếm" />
                             <button class="btn btn-outline-primary" type="submit" style="width: 200px"><i class='bx bx-search'></i>Tìm kiếm</button>
                         </form>
                     </h5>
@@ -58,8 +66,8 @@
                                                 </li>
                                             </ul>
                                         </td>
-                                        <td>
-                                            @string.Join(", ", item.task)
+                                        <td style="word-wrap: break-all;">
+                                            <span style="white-space: normal;">@string.Join(", ", item.task)</span>
                                         </td>
                                         <td style="word-wrap: break-all;">
                                             <strong style="white-space: normal;">
@@ -82,7 +90,7 @@
             else
             {
                 <div class="container text-center mt-4">
-                    <h5>Bạn chưa có thành viên. Hãy thêm thành viên nào!</h5>
+                    <h5>Dự án này chưa có thành viên!</h5>
                 </div>
             }
            

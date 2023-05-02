@@ -20,8 +20,6 @@
     <main class="main users chart-page" id="skip-target">
         <div class="container-xxl flex-grow-1" style="margin-top: 6%;">
             <div class="d-flex justify-content-between mb-2">
-                <button class="btn btn-outline-primary" type="submit" style="width: 200px"><i class='bx bx-search'></i>Tìm kiếm</button>
-
                 @if (userId.Equals(mainId))
                 {
                     <button data-bs-toggle="modal"
@@ -39,7 +37,7 @@
                     <h5 class="text-uppercase d-flex m-3 align-items-center justify-content-between">
                         <strong>Danh sách nhóm</strong>
                         <form class="d-flex" onsubmit="return false">
-                            <input class="form-control me-2" type="search" placeholder="Tìm kiếm công việc" aria-label="Tìm kiếm" />
+                            <input class="form-control me-2" type="search" placeholder="Tìm kiếm nhóm" aria-label="Tìm kiếm" />
                             <button class="btn btn-outline-primary" type="submit" style="width: 200px"><i class='bx bx-search'></i>Tìm kiếm</button>
                         </form>
                     </h5>
@@ -74,6 +72,7 @@
                                         <td>
                                             <a data-bs-toggle="modal"
                                                data-bs-target="#largeModal" href="javascript:void(0);"><i class='bx bx-edit-alt me-1 text-warning'></i></a>
+                                            ||
                                             <a asp-controller="Team" asp-action="DeleteTeam">
                                                 <i class="bx bx-trash me-1 text-danger"></i>
                                             </a>
@@ -92,7 +91,7 @@
             else
             {
                 <div class="container text-center mt-4">
-                    <h5>Bạn chưa có nhóm. Hãy thêm nhóm nào!</h5>
+                    <h5>Dự án này chưa có nhóm!</h5>
                 </div>
             }
         </div>

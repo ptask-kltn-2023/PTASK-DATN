@@ -30,19 +30,27 @@ builder.Services.AddCustomHttpClient("apiCreateTask", apiUrl);
 builder.Services.AddCustomHttpClient("apiGetUserByEmail", apiUrl);
 builder.Services.AddCustomHttpClient("apiGetProjectById", apiUrl);
 builder.Services.AddCustomHttpClient("apiMembersByWorkId", apiUrl);
+builder.Services.AddCustomHttpClient("apiGetTaskById", apiUrl);
+
 
 //API LOGIN
 builder.Services.AddCustomHttpClient("apiLogin", apiUrl);
 builder.Services.AddCustomHttpClient("apiRegister", apiUrl);
 
-//Delete
+//DELETE
 builder.Services.AddCustomHttpClient("removeWork", apiUrl);
+builder.Services.AddCustomHttpClient("removeTask", apiUrl);
+builder.Services.AddCustomHttpClient("removeProject", apiUrl);
+
+//UPDATE
+builder.Services.AddCustomHttpClient("changeStatusTask", apiUrl);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddMvc();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddMemoryCache();
+
 //Add session
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>

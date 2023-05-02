@@ -4,6 +4,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 using PTASK.Interface;
 using PTASK.Models;
+using System.Threading.Tasks;
 
 namespace PTASK.Controllers
 {
@@ -113,9 +114,11 @@ namespace PTASK.Controllers
         }
 
         // GET: TaskController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(string taskId)
         {
-            return View();
+            var result = await _task.GetTaskById(taskId);
+            result.name = "Test";
+            return PartialView("DetailTask", result);
         }
 
         // POST: TaskController/Edit/5
@@ -141,16 +144,100 @@ namespace PTASK.Controllers
 
         // POST: TaskController/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> DeleteTask(string taskId)
         {
-            try
+            bool isBack = (bool)TempData["isBack"];
+
+            string dataJson = TempData["data"] as string;
+            List<Work> works = JsonConvert.DeserializeObject<List<Work>>(dataJson);
+
+            string pagerJson = TempData["pager"] as string;
+            Pager page = JsonConvert.DeserializeObject<Pager>(pagerJson);
+            int pg = (int)TempData["pg"];
+
+            int lastPageElementsCount = page.TotalItems % 9;
+            if (lastPageElementsCount == 0 && page.TotalItems > 0)
             {
-                return RedirectToAction(nameof(Index));
+                lastPageElementsCount = 9;
             }
-            catch
+
+            if (works.Count >= 9)
             {
-                return View();
+                if (page.EndPage == pg)
+                {
+                    pg++;
+                }
+                else
+                {
+                    if (lastPageElementsCount >= 9)
+                    {
+                        pg = ++page.EndPage;
+                    }
+                    else
+                    {
+                        pg = page.EndPage;
+                    }
+                }
+            }
+
+            var result = await _task.DeleteTask(taskId);
+
+            if (result)
+            {
+                return RedirectToAction("Index", "Task", new { isBack, pg });
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateStatus(string taskId)
+        {
+            bool isBack = (bool)TempData["isBack"];
+
+            string dataJson = TempData["data"] as string;
+            List<Work> works = JsonConvert.DeserializeObject<List<Work>>(dataJson);
+
+            string pagerJson = TempData["pager"] as string;
+            Pager page = JsonConvert.DeserializeObject<Pager>(pagerJson);
+            int pg = (int)TempData["pg"];
+
+            int lastPageElementsCount = page.TotalItems % 9;
+            if (lastPageElementsCount == 0 && page.TotalItems > 0)
+            {
+                lastPageElementsCount = 9;
+            }
+
+            if (works.Count >= 9)
+            {
+                if (page.EndPage == pg)
+                {
+                    pg++;
+                }
+                else
+                {
+                    if (lastPageElementsCount >= 9)
+                    {
+                        pg = ++page.EndPage;
+                    }
+                    else
+                    {
+                        pg = page.EndPage;
+                    }
+                }
+            }
+
+            var result = await _task.ChangeStatus(taskId);
+
+            if (result)
+            {
+                return RedirectToAction("Index", "Task", new { isBack, pg });
+            }
+            else
+            {
+                return BadRequest();
             }
         }
     }

@@ -40,9 +40,12 @@ namespace PTASK.Controllers
                 var userJson = payload["user"].ToString();
                 dynamic user = JsonConvert.DeserializeObject<dynamic>(userJson);
                 string idUser = user._id;
+                string avatar = user.avatar;
 
                 var cache = HttpContext.RequestServices.GetRequiredService<IMemoryCache>();
                 cache.Set("UserId", idUser);
+                cache.Set("Avatar", avatar);
+
 
                 return RedirectToAction("Index", "Project"); 
             }

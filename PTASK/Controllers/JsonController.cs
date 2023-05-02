@@ -63,6 +63,13 @@ namespace PTASK.Controllers
         #endregion
 
         #region task
+        [HttpGet("api/task/getbyid/{taskId}")]
+        public async Task<PTask> GetJsonTaskById(string taskId)
+        {
+            var task = await _task.GetTaskById(taskId);
+
+            return task;
+        }
         #endregion
     }
 }

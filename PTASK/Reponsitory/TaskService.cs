@@ -1,4 +1,5 @@
 ﻿using Amazon.Runtime.Internal.Util;
+using Microsoft.Build.Evaluation;
 using Microsoft.CodeAnalysis;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
@@ -17,6 +18,23 @@ namespace PTASK.Reponsitory
         {
             _httpClientFactory = httpClientFactory;
             _cache = cache;
+        }
+
+        public async Task<bool> ChangeStatus(string taskId)
+        {
+            var taskUpdateStatus = new PTask { status = true };
+            var json = System.Text.Json.JsonSerializer.Serialize(taskUpdateStatus);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var api = _httpClientFactory.CreateClient("changeStatusTask");
+            var response = await api.PatchAsync($"/api/tasks/update-status/{taskId}", content);
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public async Task<bool> CreateTask(PTask task)
@@ -66,12 +84,36 @@ namespace PTASK.Reponsitory
             }
         }
 
+        public async Task<bool> DeleteTask(string taskId)
+        {
+            var api = _httpClientFactory.CreateClient("removeTask");
+            var response = await api.DeleteAsync($"/api/tasks/{taskId}");
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public async Task<List<PTask>> GetAllTasks(string projectId)
         {
             var api = _httpClientFactory.CreateClient("apiAllTask");
             var response = await api.GetAsync($"/api/tasks/get-task-in-project/{projectId}");
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<List<PTask>>(content);
+
+            return result;
+        }
+
+        public async Task<PTask> GetTaskById(string taskId)
+        {
+            var api = _httpClientFactory.CreateClient("apiGetTaskById");
+            var response = await api.GetAsync($"/api/tasks/{taskId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<PTask>(content);
 
             return result;
         }

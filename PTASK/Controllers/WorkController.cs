@@ -116,9 +116,10 @@ namespace PTASK.Controllers
         }
 
         // GET: WorkController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string workId)
         {
-            return View();
+
+            return PartialView("DetailWork");
         }
 
         // POST: WorkController/Edit/5

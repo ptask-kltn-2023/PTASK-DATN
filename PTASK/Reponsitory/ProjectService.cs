@@ -56,9 +56,18 @@ namespace PTASK.Reponsitory
             }
         }
 
-        public async Task<Project> Delete(int project)
+        public async Task<bool> DeleteProject(string projectId)
         {
-            throw new NotImplementedException();
+            var api = _httpClientFactory.CreateClient("removeProject");
+            var response = await api.DeleteAsync($"api/projects/{projectId}");
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public async Task<Project> GetProjectById(string projectId)

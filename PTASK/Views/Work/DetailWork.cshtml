@@ -1,8 +1,10 @@
-﻿<div class="modal fade" id="detailWork" tabindex="-1" aria-hidden="true">
+﻿@model Work
+
+<div class="modal fade" id="detailWork-@Model._id" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalCenterTitle">Tên công việc</h5>
+                <h5 class="modal-title" id="modalCenterTitle">@Model.name</h5>
                 <button type="button"
                         class="btn-close"
                         data-bs-dismiss="modal"
@@ -29,21 +31,10 @@
                         </ul>
                     </div>
                     <hr class="mt-4" />
-                    <div class="row g-2 mt-2">
-                        <b>Thời gian thực hiện</b>
-                        <div class="col d-flex align-items-center justify-content-between">
-                            <label for="time-start" class="col-form-label">Thời gian bắt đầu</label>
-                            <input class="form-control" type="time" value="" id="time-start" />
-                        </div>
-                        <div class="col d-flex align-items-center justify-content-between">
-                            <label for="time-end" class="col-form-label">Thời gian thúc</label>
-                            <input class="form-control" type="time" value="" id="time-end" />
-                        </div>
-                    </div>
 
-                    <div class="row g-2">
+                    <div class="g-2">
                         <b>Ngày thực hiện</b>
-                        <div class="col d-flex align-items-center justify-content-between">
+                        <div class="col d-flex align-items-center justify-content-between mb-3">
                             <label for="date-start" class="col-form-label">Ngày bắt đầu</label>
                             <input class="form-control" type="date" value="" id="date-start" />
                         </div>
@@ -52,7 +43,7 @@
                             <input class="form-control" type="date" value="" id="date-end" />
                         </div>
                     </div>
-                    <div class="row g-2">
+                    <div class="g-2">
                         <b>Tiến độ công việc</b>
                         <div class="progress mt-2">
                             <div class="progress-bar bg-success"
