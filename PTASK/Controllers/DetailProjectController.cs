@@ -129,16 +129,17 @@ namespace PTASK.Controllers
 
         // POST: DetailProjectController/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> DeleteProject(string projectId)
         {
-            try
+            var result = await _project.DeleteProject(projectId);
+
+            if (result)
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Project");
             }
-            catch
+            else
             {
-                return View();
+                return BadRequest();
             }
         }
     }

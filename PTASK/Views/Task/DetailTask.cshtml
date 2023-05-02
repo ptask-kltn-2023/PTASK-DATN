@@ -1,8 +1,8 @@
-﻿<div class="modal fade" id="largeModal" tabindex="-1" aria-hidden="true">
+﻿<div class="modal fade" id="taskDetail" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalCenterTitle">Tên nhiệm vụ</h5>
+                <h5 class="modal-title" id="nameTask"></h5>
                 <button type="button"
                         class="btn-close"
                         data-bs-dismiss="modal"
@@ -12,7 +12,7 @@
                 <div class="col-9 pe-2">
                     <div class="row">
                         <div class="col mb-3">
-                            <span>Mô tả chi tiết nhiệm vụ</span>
+                            <span id="descriptTask"></span>
                         </div>
                     </div>
                     <hr />
@@ -51,11 +51,11 @@
                         <b>Thời gian thực hiện</b>
                         <div class="col d-flex align-items-center justify-content-between">
                             <label for="time-start" class="col-form-label">Thời gian bắt đầu</label>
-                            <input class="form-control" type="time" value="" id="time-start" />
+                            <input class="form-control" type="time" id="time-start" />
                         </div>
                         <div class="col d-flex align-items-center justify-content-between">
                             <label for="time-end" class="col-form-label">Thời gian thúc</label>
-                            <input class="form-control" type="time" value="" id="time-end" />
+                            <input class="form-control" type="time" id="time-end" />
                         </div>
                     </div>
 
@@ -68,19 +68,6 @@
                         <div class="col d-flex align-items-center justify-content-between">
                             <label for="date-end" class="col-form-label">Ngày kết thúc</label>
                             <input class="form-control" type="date" value="" id="date-end" />
-                        </div>
-                    </div>
-                    <div class="row g-2">
-                        <b>Tiến độ công việc</b>
-                        <div class="progress mt-2">
-                            <div class="progress-bar bg-success"
-                                 role="progressbar"
-                                 style="width: 40%"
-                                 aria-valuenow="40"
-                                 aria-valuemin="0"
-                                 aria-valuemax="100">
-                                40%
-                            </div>
                         </div>
                     </div>
                     <hr />

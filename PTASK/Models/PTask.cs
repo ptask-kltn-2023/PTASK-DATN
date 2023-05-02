@@ -12,11 +12,10 @@
         public DateTime endDay { get; set; }
         public DateTime startHour { get; set; }
         public DateTime endHour { get; set; }
-        public string status { get; set; }
+        public bool status { get; set; }
         public int level { get; set; }
         public List<dynamic> members { get; set; }
         public List<string> membersId { get; set; }
-
     }
 
 }

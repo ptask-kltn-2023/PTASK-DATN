@@ -582,9 +582,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var frameMember = document.querySelector('.member-accept');
     if (frameMember !== null) {
-        if (frameMember.offsetHeight > 465) {
+        if (frameMember.offsetHeight > 400) {
             frameMember.style.overflowY = "scroll";
-            frameMember.style.height = '466px';
+            frameMember.style.height = '401px';
         } else {
             frameMember.style.overflowY = 'auto';
             frameMember.style.height = 'auto';
@@ -692,11 +692,6 @@ document.addEventListener('DOMContentLoaded', function () {
         $("#teamId").val(listTeam.join(','));
     })
 
-    //button back
-    $("#goBack").click(function () {
-        window.history.back();
-    })
-
     // Lắng nghe sự kiện khi người dùng chọn một option trong datalist
     $("#selectWork").on("input", function () {
         var selectedOption = $("#datalistWorks option[value='" + $(this).val() + "']");
@@ -766,9 +761,38 @@ document.addEventListener('DOMContentLoaded', function () {
         $("#level").val(selectedValue);
     });
 
-    $(".btnDelete").click(function () {
-        var workId = $(this).data('id');
-        $('#delete-work-form-' + workId ).submit();
+    // Click delete
+    $(".btnAction").click(function () {
+        var id = $(this).data('id');
+        $('#action-form-' + id ).submit();
+    })
+
+    //Edit task
+    $(".edit-task").click(function () {
+        var taskId = $(this).data('id');
+        getTaskById(taskId);
+    })
+
+    //convert time to 24h
+    $("#startHour").change(function () {
+        var timeValue = $(this).val();
+        changeTimeTo24h(timeValue);
+    })
+
+    $("#endHour").change(function () {
+        var timeValue = $(this).val();
+        changeTimeTo24h(timeValue);
+    })
+
+    function changeTimeTo24h(time) {
+        const time24 = new Date("2000-01-01T" + time + ":00");
+        const time24String = time24.toTimeString().slice(0, 5);
+        $(this).val(time24String);
+    }
+
+    //Logout
+    $("#btnLogout").click(function () {
+        $('#form-logout').submit();
     })
 });
 

@@ -45,15 +45,3 @@
         </div>
     </main>
 </div>
-
-@*
-@section Scripts{
-    <script>
-        //$('.card-effect').css({ 'background-image': 'url(/assets/img/elements/7.jpg)' })
-        const main = document.querySelector('.card-effect');
-        const styles = window.getComputedStyle(main);
-        const image = styles.backgroundImage;
-        const url = image.slice(5, -2);
-        localStorage.setItem('url', url);
-    </script>
-}*@
