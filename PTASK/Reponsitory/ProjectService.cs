@@ -79,10 +79,18 @@ namespace PTASK.Reponsitory
             return result;
         }
 
-        public async Task<List<Project>> List()
+        public async Task<List<Project>> GetProjectByUserId(string userId)
+        {
+            var api = _httpClientFactory.CreateClient("apiGetProjectsByIdUser");
+            var response = await api.GetAsync($"/api/projects/id-user/{userId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<List<Project>>(content);
+            return result;
+        }
+        public async Task<List<Project>> GetAllProject()
         {
             var api = _httpClientFactory.CreateClient("apiAllProject");
-            var response = await api.GetAsync("/api/projects");
+            var response = await api.GetAsync($"/api/projects");
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<List<Project>>(content);
             return result;

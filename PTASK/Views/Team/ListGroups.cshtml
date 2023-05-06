@@ -58,7 +58,9 @@
                                     <tr>
                                         <td><strong>@item.teamName</strong></td>
                                         <td>@item.leaderName</td>
-                                        <td> @string.Join(", ", item.workName)</td>
+                                        <td style="word-wrap: break-all;">
+                                            <span style="white-space: normal;"> @string.Join(", ", item.workName)</span>
+                                        </td>
                                         <td class="text-center btn-viewListTask">
                                             <i class='bx bx-list-ul btn-viewListTask'
                                                data-bs-toggle="tooltip"
@@ -73,9 +75,11 @@
                                             <a data-bs-toggle="modal"
                                                data-bs-target="#largeModal" href="javascript:void(0);"><i class='bx bx-edit-alt me-1 text-warning'></i></a>
                                             ||
-                                            <a asp-controller="Team" asp-action="DeleteTeam">
-                                                <i class="bx bx-trash me-1 text-danger"></i>
-                                            </a>
+                                            <form asp-controller="Team" asp-action="DeleteTeam" asp-route-teamId="@item._id" id="delete-form-@item._id" method="post">
+                                                <a class="text-danger btnDelete" data-id="@item._id" href="javascript:void(0);">
+                                                    <i class="bx bx-trash me-1 text-danger"></i>
+                                                </a>
+                                            </form>
                                         </td>
                                     </tr>
                                 }

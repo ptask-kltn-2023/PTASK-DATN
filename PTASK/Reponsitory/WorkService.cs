@@ -27,7 +27,7 @@ namespace PTASK.Reponsitory
             {
                 if (work.teamId[0].IsNullOrEmpty())
                 {
-                    outputArray = new string[] {};
+                    outputArray = new string[] { };
                 }
                 else
                 {
@@ -36,10 +36,9 @@ namespace PTASK.Reponsitory
             }
             else
             {
-                outputArray = new string[] {};
+                outputArray = new string[] { };
             }
             work.createId = _cache.Get<string>("UserId");
-            work.leaderId = "6429449e32e69be96008c5a0";
             // Tạo json data
             string jsonData = JsonConvert.SerializeObject(new
             {
@@ -84,6 +83,16 @@ namespace PTASK.Reponsitory
         {
             var api = _httpClientFactory.CreateClient("apiGetAllWork");
             var response = await api.GetAsync($"api/works/all-work-project/{projectId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<List<Work>>(content);
+            return result;
+        }
+
+        public async Task<List<Work>> GetWorksByName(string name)
+        {
+            var projectId = _cache.Get<string>("ProjectID");
+            var api = _httpClientFactory.CreateClient("apiGetWorkByName");
+            var response = await api.GetAsync($"api/works/name/{projectId}?name={name}");
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<List<Work>>(content);
             return result;

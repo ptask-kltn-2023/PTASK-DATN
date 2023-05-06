@@ -31,6 +31,13 @@ namespace PTASK.Controllers
             var user = await _user.GetUserByEmail(email);
             return user;
         }
+
+        [HttpGet("api/users/getUserByTaskId/{taskId}")]
+        public async Task<List<User>> GetJsonUserByTaskId(string taskId)
+        {
+            var user = await _user.GetUserByTaskId(taskId);
+            return user;
+        }
         #endregion
 
         #region work
@@ -41,7 +48,6 @@ namespace PTASK.Controllers
             var teams = await _work.GetAllWorkByIdProject(projectId);
             return teams;
         }
-
         #endregion
 
         #region team
@@ -57,6 +63,14 @@ namespace PTASK.Controllers
         public async Task<List<Team>> GetJsonMembersByWorkId(string workId)
         {
             var members = await _team.GetMembersByWorkId(workId);
+
+            return members;
+        }
+
+        [HttpGet("api/members/getmemberbyidteam/{teamId}")]
+        public async Task<List<User>> GetJsonMembersByTeamId(string teamId)
+        {
+            var members = await _team.GetMembersByTeamId(teamId);
 
             return members;
         }

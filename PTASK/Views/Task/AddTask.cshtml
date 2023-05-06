@@ -1,5 +1,11 @@
-﻿@model PTASK.Models.PTask
+﻿@using Microsoft.Extensions.Caching.Memory;
+@model PTASK.Models.PTask
+@{
+    var cache = Context.RequestServices.GetRequiredService<IMemoryCache>();
+    var mainId = cache.Get("MainProject");
+}
 <div class="modal fade" id="modalMisson" tabindex="-1" aria-hidden="true">
+    <input type="hidden" value="@mainId" id="mainId" />
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

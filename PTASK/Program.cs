@@ -19,19 +19,22 @@ builder.Services.AddCustomHttpClient("apiAllMembers", apiUrl);
 builder.Services.AddCustomHttpClient("apiAllTeams", apiUrl);
 builder.Services.AddCustomHttpClient("apiGetAllWork", apiUrl);
 
-
 // API CREATE
 builder.Services.AddCustomHttpClient("apiCreateProject", apiUrl);
 builder.Services.AddCustomHttpClient("apiCreateTeam", apiUrl);
 builder.Services.AddCustomHttpClient("apiCreateWork", apiUrl);
 builder.Services.AddCustomHttpClient("apiCreateTask", apiUrl);
+builder.Services.AddCustomHttpClient("apiAddMember", apiUrl);
 
 //API GET BY ...
 builder.Services.AddCustomHttpClient("apiGetUserByEmail", apiUrl);
 builder.Services.AddCustomHttpClient("apiGetProjectById", apiUrl);
 builder.Services.AddCustomHttpClient("apiMembersByWorkId", apiUrl);
 builder.Services.AddCustomHttpClient("apiGetTaskById", apiUrl);
-
+builder.Services.AddCustomHttpClient("apiGetMemberByTeamId", apiUrl);
+builder.Services.AddCustomHttpClient("apiGetWorkByName", apiUrl);
+builder.Services.AddCustomHttpClient("apiGetUserByTaskId", apiUrl);
+builder.Services.AddCustomHttpClient("apiGetProjectsByIdUser", apiUrl);
 
 //API LOGIN
 builder.Services.AddCustomHttpClient("apiLogin", apiUrl);
@@ -41,6 +44,7 @@ builder.Services.AddCustomHttpClient("apiRegister", apiUrl);
 builder.Services.AddCustomHttpClient("removeWork", apiUrl);
 builder.Services.AddCustomHttpClient("removeTask", apiUrl);
 builder.Services.AddCustomHttpClient("removeProject", apiUrl);
+builder.Services.AddCustomHttpClient("removeTeamInProject", apiUrl);
 
 //UPDATE
 builder.Services.AddCustomHttpClient("changeStatusTask", apiUrl);

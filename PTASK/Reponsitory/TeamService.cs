@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using PTASK.Interface;
 using PTASK.Models;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace PTASK.Reponsitory
 {
@@ -113,9 +114,52 @@ namespace PTASK.Reponsitory
             return result;
         }
 
-        public async Task<bool> Delete(string teamId)
+        public async Task<bool> DeleteTeamInProject(string teamId)
         {
-            return true;
+            var api = _httpClientFactory.CreateClient("removeTeamInProject");
+            var response = await api.DeleteAsync($"/api/teams/{teamId}");
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> AddMember(Member member, string teamId)
+        {
+            var api = _httpClientFactory.CreateClient("apiAddMember");
+            string idUser = _cache.Get<string>("UserId");
+            //Tạo json data
+            string jsonData = JsonConvert.SerializeObject(new
+            {
+                createId = idUser,
+                member.memberIds
+            });
+            // Format json
+            var jsonContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            // Truyền json vào api
+            var response = await api.PatchAsync($"api/teams/add-member/{teamId}", jsonContent);
+            //Kiểm tra dữ liệu trả về
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public async Task<List<User>> GetMembersByTeamId(string teamId)
+        {
+            var api = _httpClientFactory.CreateClient("apiGetMemberByTeamId");
+            var response = await api.GetAsync($"/api/teams/members-team/{teamId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<List<User>>(content);
+            return result;
         }
     }
 }

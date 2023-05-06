@@ -59,26 +59,30 @@ function searchTeam() {
         method: "GET",
         success: function (data) {
             var dataList = document.getElementById("dataListTeam");
+            var defaultOption = document.createElement("option");
+            defaultOption.value = 0;
+            defaultOption.text = "-----------";
+
             if (dataList != null) {
-                dataList.innerHTML = "";
+                dataList.insertBefore(defaultOption, dataList.firstChild);
                 data.forEach(function (value) {
                     var option = document.createElement("option");
                     option.value = value._id;
                     option.text = value.teamName;
                     dataList.appendChild(option);
+                    $("#leaderId").val(value.leaderId);
                 });
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(`Error: ${errorThrown}`);
         }
-
     });
 }
 
 function getTaskById(taskId) {
     $.ajax({
-        url: "api/task/getbyid/" + taskId,
+        url: "/api/task/getbyid/" + taskId,
         method: "GET",
         success: function (data) {
             $("#nameTask").text(data.name);
@@ -90,14 +94,16 @@ function getTaskById(taskId) {
             } else {
                 $('#rdoDanger').prop('checked', true);
             }
+            if (data.status) {
+                $('#rdoSuccess').prop('checked', true);
+            } else {
+                $('#rdoDoing').prop('checked', true);
+            }
             $('#time-start').val(convertTime(data.startHour));
             $('#time-end').val(convertTime(data.endHour));
-            $('#date-start').val(convertDate(data.startDay))
-            $('#date-end').val(convertDate(data.endDay))
-            //Đợi api làm tiếp
-            //data.members.forEach(function (member, index) {
-            //    console.log(index + ': ' + member);
-            //});
+            $('#date-start').val(convertDate(data.startDay));
+            $('#date-end').val(convertDate(data.endDay));
+            getUserByTaskId(taskId);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(`Error: ${errorThrown}`);
@@ -106,6 +112,41 @@ function getTaskById(taskId) {
     });
 }
 
+function getUserByTaskId(taskId) {
+    $.ajax({
+        url: "api/users/getUserByTaskId/" + taskId,
+        method: "GET",
+        success: function (data) {
+            var memberList = [];
+            var ul = $(".membersInDetailTask");
+            ul.empty();
+            data.forEach(function (item, index) {
+                memberList.push(item._id)
+                generateItemUser(item, ul, $("#listMemberDetail"), memberList);
+            });
+            $("#listMemberDetail").val(memberList.join(','));
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(`Error: ${errorThrown}`);
+        }
+
+    });
+}
+
+function getMemberByTeamId(teamId) {
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            url: "/api/members/getmemberbyidteam/" + teamId,
+            method: "GET",
+            success: function (data) {
+                resolve(data);
+            },
+            error: function (error) {
+                reject(error);
+            }
+        });
+    });
+}
 
 //Function
 function convertTime(time) {
@@ -166,7 +207,6 @@ function generateItemUser(data, parentItem,id, listRemove) {
     listItem.append(removeButton);
     parentItem.append(listItem);
 }
-
 
 // Execute
 allWorks();

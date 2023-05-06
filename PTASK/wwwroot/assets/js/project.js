@@ -635,15 +635,25 @@ document.addEventListener('DOMContentLoaded', function () {
         searchUser(email).then(function (data) {
             if (data._id != null) {
                 if (isMember) {
-                    if (!memberList.includes(data._id)) {
-                        if ($("#leaderId").val() == data._id) {
-                            alert("Không thể thêm thành viên là nhóm trưởng")
-                        } else {
-                            memberList.push(data._id);
-                            generateItemUser(data, $("#memberList"), $("#listIdMember"),  memberList);
-                        }
+                    var isExist = false;
+                    if ($("#dataListTeam").length > 0) {
+                        getMemberByTeamId($("#dataListTeam").val())
+                            .then(function (members) {
+                                members.forEach(function (item, index) {
+                                    if (item._id == data._id) {
+                                        alert("Thành viên này đã tham gia nhóm");
+                                        isExist = true;
+                                        return;
+                                    }
+                                });
+                                addMemberInList(data, isExist);
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                    } else {
+                        addMemberInList(data, isExist);
                     }
-                    $("#listIdMember").val(memberList.join(','));
                 } else {
                     $("#leaderList").empty();
                     generateItemUser(data, $("#leaderList"), $("#leaderId"), memberList);
@@ -657,12 +667,26 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    function addMemberInList(data, isExist) {
+        if (!memberList.includes(data._id) && !isExist) {
+            if ($("#leaderId").val() == data._id) {
+                alert("Không thể thêm thành viên là nhóm trưởng");
+            } else if ($("#mainId").val() == data._id) {
+                alert("Không thể thêm thành viên là chủ dự án");
+            } else {
+                memberList.push(data._id);
+                generateItemUser(data, $("#memberList"), $("#listIdMember"), memberList);
+            }
+        }
+        $("#listIdMember").val(memberList.join(','));
+    }
+
     var idTeam = null;
     var teamName = null;
     var listTeam = [];
 
     function getSelectedOption() {
-        // Lấy giá trị và nội dung của option được chọn
+        // Lấy giá trị và nội dung của option được chọndataListTeam
         idTeam = $("#dataListTeam").val();
         teamName = $("#dataListTeam").find("option:selected").text();
     }
@@ -684,6 +708,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     $("#dataListTeam").change(function () {
         getSelectedOption();
+        updateTeamId();
     });
 
     $("#btnAddTeam").click(function () {
@@ -721,7 +746,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         searchUser(email).then(function (data) {
             if (data._id != null) {
-                if (!memberList.includes(data._id)) {
+                if ($("#mainId").val() == data._id) {
+                    alert("Không thể phân công thành viên là chủ dự án");
+                } else if (!memberList.includes(data._id)) {
                     genarateAssignment(data.fullName, data._id);
                     $(this).val('');
                 }
@@ -731,6 +758,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }).catch(function (error) {
             console.log(error);
         });
+        $("#assignment").val("");
     });
     //Check có phải email k
     function isEmail(input) {
@@ -761,10 +789,16 @@ document.addEventListener('DOMContentLoaded', function () {
         $("#level").val(selectedValue);
     });
 
-    // Click delete
-    $(".btnAction").click(function () {
+    // Click change status
+    $(".btnStatus").click(function () {
         var id = $(this).data('id');
-        $('#action-form-' + id ).submit();
+        $('#status-form-' + id ).submit();
+    })
+
+    // Click delete
+    $(".btnDelete").click(function () {
+        var id = $(this).data('id');
+        $('#delete-form-' + id).submit();
     })
 
     //Edit task
@@ -794,6 +828,14 @@ document.addEventListener('DOMContentLoaded', function () {
     $("#btnLogout").click(function () {
         $('#form-logout').submit();
     })
+
+    //Add Member
+    function updateTeamId() {
+        var selectedTeamId = $('#dataListTeam').val();
+        if (selectedTeamId != 0) {
+            $('#formAddMember').attr('action', '/Team/CreateMember?teamId=' + selectedTeamId);
+        }
+    }
 });
 
 

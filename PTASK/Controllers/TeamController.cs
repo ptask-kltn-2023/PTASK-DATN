@@ -39,6 +39,14 @@ namespace PTASK.Controllers
             var data = result.Skip(resSkip).Take(pager.PageSize).ToList();
 
             ViewBag.Pager = pager;
+            string dataJson = JsonConvert.SerializeObject(data);
+            string pagerJson = JsonConvert.SerializeObject(pager);
+            TempData["data"] = dataJson;
+            TempData["pager"] = pagerJson;
+
+            TempData["pg"] = pg;
+            ViewData["TitleProject"] = _cache.Get<string>("TitleProject");
+            ViewData["ProjectID"] = _cache.Get<string>("ProjectID");
 
             return View(data);
         }
@@ -48,8 +56,6 @@ namespace PTASK.Controllers
         {
             string projectId = _cache.Get<string>("ProjectID");
             var result = await _team.GetAllTeams(projectId);
-            ViewData["isBack"] = false;
-
 
             const int pageSize = 9;
             if (pg < 1)
@@ -73,19 +79,6 @@ namespace PTASK.Controllers
             ViewData["ProjectID"] = _cache.Get<string>("ProjectID");
          
             return View(data);
-        }
-
-       
-        // GET: MemberController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: MemberController/Create
-        public ActionResult CreateTeam()
-        {
-            return View();
         }
 
         // POST: MemberController/Create
@@ -125,7 +118,6 @@ namespace PTASK.Controllers
                         pg = page.EndPage;
                     }
                 }
-
             }
             ViewData["isBack"] = false;
             var result = await _team.CreateTeam(team, projectId);
@@ -133,7 +125,58 @@ namespace PTASK.Controllers
             if (result)
             {
                
-                return RedirectToAction("ListGroups", "Team", new { projectId , pg});
+                return RedirectToAction("ListGroups", "Team",pg);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateMember(Member member, string teamId)
+        {
+            bool isBack = (bool)TempData["isBack"];
+
+            string dataJson = TempData["data"] as string;
+            List<Member> members = JsonConvert.DeserializeObject<List<Member>>(dataJson);
+
+            string pagerJson = TempData["pager"] as string;
+            Pager page = JsonConvert.DeserializeObject<Pager>(pagerJson);
+            int pg = (int)TempData["pg"];
+
+            int lastPageElementsCount = page.TotalItems % 9;
+            if (lastPageElementsCount == 0 && page.TotalItems > 0)
+            {
+                lastPageElementsCount = 9;
+            }
+
+            if (members.Count >= 9)
+            {
+                if (page.EndPage == pg)
+                {
+                    pg++;
+                }
+                else
+                {
+                    if (lastPageElementsCount >= 9)
+                    {
+                        pg = ++page.EndPage;
+                    }
+                    else
+                    {
+                        pg = page.EndPage;
+                    }
+                }
+
+            }
+
+            var result = await _team.AddMember(member, teamId);
+
+            if (result)
+            {
+                return RedirectToAction("ListMembers", "Team", new { isBack, pg });
             }
             else
             {
@@ -162,10 +205,53 @@ namespace PTASK.Controllers
             }
         }
 
-        // GET: MemberController/Delete/5
-        public ActionResult Delete(int id)
+        // POST: TeamController/DeleteTeam/5
+        [HttpPost]
+        public async Task<IActionResult> DeleteTeam(string teamId)
         {
-            return View();
+
+            string dataJson = TempData["data"] as string;
+            List<Team> teams = JsonConvert.DeserializeObject<List<Team>>(dataJson);
+
+            string pagerJson = TempData["pager"] as string;
+            Pager page = JsonConvert.DeserializeObject<Pager>(pagerJson);
+            int pg = (int)TempData["pg"];
+
+            int lastPageElementsCount = page.TotalItems % 9;
+            if (lastPageElementsCount == 0 && page.TotalItems > 0)
+            {
+                lastPageElementsCount = 9;
+            }
+
+            if (teams.Count >= 9)
+            {
+                if (page.EndPage == pg)
+                {
+                    pg++;
+                }
+                else
+                {
+                    if (lastPageElementsCount >= 9)
+                    {
+                        pg = ++page.EndPage;
+                    }
+                    else
+                    {
+                        pg = page.EndPage;
+                    }
+                }
+            }
+
+            var result = await _team.DeleteTeamInProject(teamId);
+
+            if (result)
+            {
+                return RedirectToAction("ListGroups", "Team", pg);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
     }
 }

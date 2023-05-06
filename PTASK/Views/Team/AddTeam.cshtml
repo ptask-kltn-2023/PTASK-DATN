@@ -1,6 +1,11 @@
-﻿@model PTASK.Models.TeamCreate
-
+﻿@using Microsoft.Extensions.Caching.Memory;
+@model PTASK.Models.TeamCreate
+@{
+    var cache = Context.RequestServices.GetRequiredService<IMemoryCache>();
+    var mainId = cache.Get("MainProject");
+}
 <div class="modal fade" id="modalGroup" tabindex="-1" aria-hidden="true">
+    <input type="hidden" value="@mainId" id="mainId"/>
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -19,7 +24,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col mb-3">
+                        <div class="col mb-3 ">
                             <label for="emailLeader" class="form-label">Trưởng nhóm</label>
                             <div class="d-flex mb-2">
                                 <input type="email"

@@ -23,7 +23,8 @@ namespace PTASK.Controllers
         [HttpGet]
         public async Task<ActionResult> Index()
         {
-            var result = await _project.List();
+            string userId = _cache.Get<string>("UserId");
+            var result = await _project.GetProjectByUserId(userId);
             return View( result);
         }
 
