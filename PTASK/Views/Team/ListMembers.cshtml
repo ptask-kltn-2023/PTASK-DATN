@@ -30,7 +30,11 @@
                     </a>
                 </div>
             }
-            <button class="btn btn-outline-success mb-2" type="submit"><i class='bx bx-user-plus'></i>Thêm thành viên</button>
+            <button class="btn btn-outline-success mb-2" 
+                    data-bs-toggle="modal"
+                    data-bs-target="#AddMember" type="submit">
+                <i class='bx bx-user-plus'></i>Thêm thành viên
+            </button>
 
             @if(Model.Count() > 0)
             {
@@ -93,8 +97,17 @@
                     <h5>Dự án này chưa có thành viên!</h5>
                 </div>
             }
-           
         </div>
     </main>
 </div>
+<partial name="~/Views/Team/AddMember.cshtml" model="new Member()"/>
 
+@section Scripts{
+    <script>
+        $(window).on('load', function () {
+            var selectedTeamId = $("#dataListTeam").val();
+            console.log($("#dataListTeam").find("option:selected").val());
+            $('#formAddMember').attr('action', '/Team/CreateMember?teamId=' + selectedTeamId);
+        });
+    </script>
+}

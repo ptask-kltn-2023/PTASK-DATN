@@ -26,5 +26,13 @@ namespace PTASK.Reponsitory
             throw new NotImplementedException();
         }
 
+        public async Task<List<User>> GetUserByTaskId(string taskId)
+        {
+            var api = _httpClientFactory.CreateClient("apiGetUserByTaskId");
+            var response = await api.GetAsync($"/api/users/tasks/{taskId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<List<User>>(content);
+            return result;
+        }
     }
 }

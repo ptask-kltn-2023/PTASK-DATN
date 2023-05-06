@@ -27,7 +27,7 @@ namespace PTASK.Controllers
 
        
         // GET: UserController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Profile()
         {
             return View();
         }

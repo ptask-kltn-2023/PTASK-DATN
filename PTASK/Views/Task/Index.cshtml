@@ -105,8 +105,8 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <form asp-controller="Task" asp-action="UpdateStatus" asp-route-taskId="@item._id" id="action-form-@item._id" method="post">
-                                                        <a class="dropdown-item text-success btnAction" data-id="@item._id" href="javascript:void(0);">
+                                                    <form asp-controller="Task" asp-action="UpdateStatus" asp-route-taskId="@item._id" id="status-form-@item._id" method="post">
+                                                        <a class="dropdown-item text-success btnStatus" data-id="@item._id" href="javascript:void(0);">
                                                             <i class='bx bx-check me-2'></i>Hoàn thành nhiệm vụ
                                                         </a>
                                                     </form>
@@ -115,8 +115,8 @@
                                                     <hr class="dropdown-divider" />
                                                 </li>
                                                 <li>
-                                                    <form asp-controller="Task" asp-action="DeleteTask" asp-route-taskId="@item._id" id="action-form-@item._id" method="post">
-                                                        <a class="dropdown-item text-danger btnAction" data-id="@item._id" href="javascript:void(0);">
+                                                    <form asp-controller="Task" asp-action="DeleteTask" asp-route-taskId="@item._id" id="delete-form-@item._id" method="post">
+                                                        <a class="dropdown-item text-danger btnDelete" data-id="@item._id" href="javascript:void(0);">
                                                             <i class='bx bxs-trash-alt me-2'></i>Xóa nhiệm vụ
                                                         </a>
                                                     </form>

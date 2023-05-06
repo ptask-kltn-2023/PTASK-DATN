@@ -62,7 +62,7 @@ namespace PTASK.Reponsitory
                 task.name,
                 startDay = task.startDay.ToString("MM-dd-yyyy"),
                 task.description,
-                endDay = task.startDay.ToString("MM-dd-yyyy"),
+                endDay = task.endDay.ToString("MM-dd-yyyy"),
                 startHour = task.startHour.ToString("HH:mm"),
                 endHour = task.endHour.ToString("HH:mm"),
                 task.workId,

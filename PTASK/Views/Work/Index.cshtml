@@ -1,5 +1,6 @@
 ﻿@using Microsoft.Extensions.Caching.Memory;
 @model IEnumerable<PTASK.Models.Work>
+
 @{
     Layout = "_LayoutProject";
     var cache = Context.RequestServices.GetRequiredService<IMemoryCache>();
@@ -159,19 +160,22 @@
                     </a>
                 </div>
             }
-            <button data-bs-toggle="modal"
-                    data-bs-target="#modalWork"
-                    class="btn btn-outline-success mb-2"
-                    type="submit">
-                <i class='bx bx-layer-plus me-2'></i>Thêm công việc
-            </button>
-            @if (Model.Count() > 0)
+            @if (userId.Equals(mainId))
+            {
+                <button data-bs-toggle="modal"
+                        data-bs-target="#modalWork"
+                        class="btn btn-outline-success mb-2"
+                        type="submit">
+                    <i class='bx bx-layer-plus me-2'></i>Thêm công việc
+                </button>
+            }
+                @if (Model.Count() > 0)
             {
                 <div class="card">
                     <h5 class="text-uppercase d-flex m-3 align-items-center justify-content-between">
                         <strong>Danh sách công việc</strong>
-                        <form class="d-flex" onsubmit="return false">
-                            <input class="form-control me-2" type="search" placeholder="Tìm kiếm công việc" aria-label="Tìm kiếm" />
+                        <form class="d-flex" asp-controller="Work" asp-action="Index" asp-route-isBack="@isBack" method="get">
+                            <input name="name" class="form-control me-2" type="search" placeholder="Tìm kiếm công việc" aria-label="Tìm kiếm" />
                             <button class="btn btn-outline-primary" type="submit" style="width: 200px"><i class='bx bx-search'></i>Tìm kiếm</button>
                         </form>
                     </h5>

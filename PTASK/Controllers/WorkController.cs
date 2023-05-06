@@ -17,10 +17,18 @@ namespace PTASK.Controllers
             _cache = cache;
         }
         // GET: WorkController
-        public async Task<IActionResult> Index(bool? isBack, int pg = 1)
+        public async Task<IActionResult> Index(string name, bool? isBack, int pg = 1)
         {
+            List<Work> result;
             string projectId = _cache.Get<string>("ProjectID");
-            var result = await _work.GetAllWorkByIdProject(projectId);
+            if(name == null)
+            {
+                result = await _work.GetAllWorkByIdProject(projectId);
+            }
+            else
+            {
+                result = await _work.GetWorksByName(name);
+            }
             ViewData["TitleProject"] = _cache.Get<string>("TitleProject");
             ViewData["isBack"] = isBack;
             TempData["isBack"] = ViewData["isBack"];
@@ -47,19 +55,6 @@ namespace PTASK.Controllers
             return View(data);
         }
 
-
-        // GET: WorkController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: WorkController/Create
-        [HttpGet]
-        public ActionResult Create()
-        {
-            return View();
-        }
 
         // POST: WorkController/Create
         [HttpPost]

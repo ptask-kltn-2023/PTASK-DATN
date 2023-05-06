@@ -1,6 +1,11 @@
-﻿@{
+﻿@using Microsoft.Extensions.Caching.Memory;
+@{
+    var cache = Context.RequestServices.GetRequiredService<IMemoryCache>();
     var active = ViewData["active"];
+
+
     var title = ViewData["TitleProject"];
+    var userId = cache.Get("UserId");
 }
 <aside class="sidebar">
     <div class="sidebar-start">
@@ -72,12 +77,12 @@
             <div class="sidebar-body">
                 <ul class="sidebar-body-menu">
                     <li>
-                        <a class="btn-event" asp-controller="DetailProject" asp-action="Index">
+                        <a class="btn-event active" asp-controller="DetailProject" asp-action="Index">
                             <span class="icon dashboard"></span>Tổng quan dự án
                         </a>
                     </li>
                     <li>
-                        <a class="btn-event @active"
+                        <a class="btn-event"
                             asp-area="" 
                             asp-controller="Work" 
                             asp-action="Index" 
@@ -111,4 +116,3 @@
         }
     </div>
 </aside>
-

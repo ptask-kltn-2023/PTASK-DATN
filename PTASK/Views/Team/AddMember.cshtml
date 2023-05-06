@@ -1,0 +1,57 @@
+﻿@using Microsoft.Extensions.Caching.Memory;
+@model Member
+@{
+    var cache = Context.RequestServices.GetRequiredService<IMemoryCache>();
+    var mainId = cache.Get("MainProject");
+}
+<input type="hidden" value="@mainId" id="mainId" />
+<div class="modal fade" id="AddMember" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalCenterTitle">Thêm thành viên</h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col mb-3 d-flex align-items-center">
+                        <label style="width: 140px">Chọn nhóm</label>
+                        <select id="dataListTeam" class="select2 form-select">
+                        </select>
+                    </div>
+                </div>
+                
+                <form asp-controller="Team" asp-action="CreateMember" id="formAddMember">
+                    <div class="row">
+                        <div class="col mb-3 d-flex align-items-center">
+                            <label for="emailMember" class="me-2" style="width: 180px">Email</label>
+                            <input type="email"
+                                   id="emailMember"
+                                   class="form-control me-2"
+                                   placeholder="Nhập địa chỉ email" />
+                            <button type="button"
+                                    class="btn btn-outline-info"
+                                    style="width: 150px"
+                                    id="addNewMember">
+                                <i class='bx bx-plus'></i>Thêm
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-3">
+                            <ul class="list-group" id="memberList"> </ul>
+                        </div>
+                        <input type="hidden" asp-for="memberIds" id="listIdMember" />
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="btnAddWork" data-bs-dismiss="modal"
+                            aria-label="Close">
+                        Lưu
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
