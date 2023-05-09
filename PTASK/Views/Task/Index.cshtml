@@ -144,4 +144,22 @@
 </div>
 
 <partial name="~/Views/Task/AddTask.cshtml" model="new PTASK.Models.PTask()" />
-<partial name="~/Views/Task/DetailTask.cshtml" />
+<partial name="~/Views/Task/DetailTask.cshtml" model="new PTASK.Models.PTask()"/>
+
+@section Scripts{
+    <script>
+
+    getWorksByIdProject('@Html.Raw(projectId)')
+        .then(function (data) {
+            // Tiếp tục xử lý dữ liệu tại đây
+            var datalist = $("#datalistWorks");
+            datalist.empty(); // Xóa các option cũ trong datalist
+            $.each(data, function (index, item) {
+                datalist.append(`<option value="${item.name}" id="${item._id}"></option>`);
+            });
+        })
+        .catch(function (error) {
+            console.error(error); // Xử lý lỗi (nếu có)
+        });
+    </script>
+}

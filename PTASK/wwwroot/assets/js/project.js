@@ -655,9 +655,13 @@ document.addEventListener('DOMContentLoaded', function () {
                         addMemberInList(data, isExist);
                     }
                 } else {
-                    $("#leaderList").empty();
-                    generateItemUser(data, $("#leaderList"), $("#leaderId"), memberList);
-                    $("#leaderId").val(data._id)
+                    if ($("#mainId").val() == data._id) {
+                        alert("Không thể thêm trưởng nhóm là chủ dự án");
+                    } else {
+                        $("#leaderList").empty();
+                        generateItemUser(data, $("#leaderList"), $("#leaderId"), memberList);
+                        $("#leaderId").val(data._id)
+                    }
                 }
             } else {
                 alert("Email này chưa có tài khoản")
@@ -698,7 +702,12 @@ document.addEventListener('DOMContentLoaded', function () {
             var li = $("<li></li>").addClass("list-group-item d-flex justify-content-between align-items-center").css("height", "100%");
             var span = $("<span></span>")
             var index = listTeam.indexOf(idTeam);
-            var removeButton = createRemoveButton(li, listTeam, $("#teamId"), index)
+            var removeButton = $("<button></button>").addClass("btn btn-sm btn-danger ms-2").html('<i class="bx bx-x"></i>');
+            removeButton.on("click", function () {
+                listTeam.splice(index, 1);
+                listItem.remove();
+                $("#teamId").val(listRemove.join(','));
+            });
             span.text(teamName);
             li.append(span);
             li.append(removeButton);
@@ -724,32 +733,87 @@ document.addEventListener('DOMContentLoaded', function () {
             $("#workId").val(selectedOption.attr("id"));
         }
         if ($("#workId").val() != '') {
-            getMembersByIdWork($("#workId").val());
+            getMembersByIdWork($("#workId").val())
+                .then(function (data) {
+                    // Tiếp tục xử lý dữ liệu tại đây
+                    var datalist = $("#datalistMembers");
+                    datalist.empty(); // Xóa các option cũ trong datalist
+                    $.each(data, function (index, item) {
+                        $.each(item.listMembers, function (index, member) {
+                            datalist.append(`<option value="${member.fullName}" id="${member.id}"></option>`);
+                        });
+                    });
+                })
+                .catch(function (error) {
+                    console.error(error); // Xử lý lỗi (nếu có)
+                });
         }
     });
-    
-    var listMemberByWorkId = [];
-   
+
+    //Biến sử dụng cho phần phân công thành viên vào task
+    var listNewMemberByWorkId = [];
+    var listIdOfOldMember = [];
+    var listIndex= [];
+
     $('#assignment').change(function () { 
         var selectedValue = $(this).val();
 
         if (!isEmail(selectedValue)) {
             var selectedOption = $("#datalistMembers option[value='" + $(this).val() + "']");
-            genarateAssignment(selectedValue, selectedOption.attr("id"));
-            $(this).val('');
+            getUserById(selectedOption.attr("id"))
+                .then(function (data) {
+                    genarateAssignment(data, false);
+                    $("#memberId").val(listNewMemberByWorkId.join(','));
+                    listNewMemberByWorkId = [];
+                    $(this).val('');
+                })
+                .catch(function (error) {
+                    console.error(error); // Xử lý lỗi (nếu có)
+                });
         }
     });
 
-    // Click vào buttom thêm thành viên
+    $('#emailMemberDetail').change(function () {
+        var selectedValue = $(this).val();
+        var elements = $("#listMemberDetail").val().split(",");
+
+        if (elements.length > 0) {
+            elements.forEach(function (item) {
+                if (item != "") {
+                    listIdOfOldMember.push(item.trim());
+                }
+            });
+        }
+        if (!isEmail(selectedValue)) {
+            var selectedOption = $("#datalistDetail option[value='" + $(this).val() + "']");
+            getUserById(selectedOption.attr("id"))
+                .then(function (data) {
+                    genarateAssignment(data, true);
+                    // Gộp hai mảng lại thành một mảng mới
+                    var mergedList = listNewMemberByWorkId.concat(listIdOfOldMember);
+
+                    // Lọc các phần tử không trùng lặp bằng cách sử dụng Set
+                    var uniqueList = Array.from(new Set(mergedList));
+
+                    $("#listMemberDetail").val(uniqueList.join(','));
+                    $(this).val('');
+                })
+                .catch(function (error) {
+                    console.error(error); // Xử lý lỗi (nếu có)
+                });
+        }
+    });
+
     $('#btnAssignment').click(function () {
         var email = $("#assignment").val();
-
         searchUser(email).then(function (data) {
             if (data._id != null) {
                 if ($("#mainId").val() == data._id) {
                     alert("Không thể phân công thành viên là chủ dự án");
                 } else if (!memberList.includes(data._id)) {
-                    genarateAssignment(data.fullName, data._id);
+                    genarateAssignment(data, false);
+                    $("#memberId").val(listNewMemberByWorkId.join(','));
+                    listNewMemberByWorkId = [];
                     $(this).val('');
                 }
             } else {
@@ -760,7 +824,46 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         $("#assignment").val("");
     });
-    //Check có phải email k
+
+    $('#btnAssignmentDetail').click(function () {
+        var email = $("#emailMemberDetail").val();
+
+        var elements = $("#listMemberDetail").val().split(",");
+
+        if (elements.length > 0) {
+            elements.forEach(function (item) {
+                if (item != "") {
+                    listIdOfOldMember.push(item.trim());
+                }
+            });
+        }
+
+        searchUser(email).then(function (data) {
+            if (data._id != null) {
+                if ($("#mainId").val() == data._id) {
+                    alert("Không thể phân công thành viên là chủ dự án");
+                } else if (!listIdOfOldMember.includes(data._id)) {
+                    genarateAssignment(data, true);
+                    // Gộp hai mảng lại thành một mảng mới
+                    var mergedList = listNewMemberByWorkId.concat(listIdOfOldMember);
+
+                    // Lọc các phần tử không trùng lặp bằng cách sử dụng Set
+                    var uniqueList = Array.from(new Set(mergedList));
+
+                    $("#listMemberDetail").val(uniqueList.join(','));
+
+                    $(this).val('');
+                }
+            } else {
+                alert("Email này chưa có tài khoản")
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
+        $("#emailMemberDetail").val("");
+    });
+
+    //Check có phải email không
     function isEmail(input) {
         // Biểu thức chính quy để kiểm tra định dạng email
         const emailRegex = /^\S+@\S+\.\S+$/;
@@ -768,25 +871,69 @@ document.addEventListener('DOMContentLoaded', function () {
         return emailRegex.test(input);
     }
     // Hàm tạo danh sách thành viên phân công
-    function genarateAssignment(text, id) {
-        var listItem = $("<li></li>").addClass("list-group-item d-flex justify-content-between align-items-center");
-        var index = listTeam.indexOf(idTeam);
-        var removeButton = createRemoveButton(listItem, listMemberByWorkId, $("#memberId"), index)
-        if (!listMemberByWorkId.includes(id)) {
-            listItem.text(text);
+    function genarateAssignment(data, isDetail) {
+        if (!listNewMemberByWorkId.includes(data._id)) {
+
+            listNewMemberByWorkId.push(data._id);
+            var listItem = $("<li></li>").addClass("list-group-item d-flex justify-content-between align-items-center");
+            var removeButton = $("<button></button>").addClass("btn btn-sm btn-danger ms-2").html('<i class="bx bx-x"></i>');
+            var index = listNewMemberByWorkId.indexOf(data._id);
+
+            if (isDetail) {
+                removeButton.on("click", function () {
+                    if (listIndex.length > 0) {
+                        index = listIndex.indexOf(data._id);
+                    }
+                    listNewMemberByWorkId.splice(index, 1);
+                    listIndex = listNewMemberByWorkId;
+                    listItem.remove();
+                    $("#listMemberDetail").val(listNewMemberByWorkId.join(','));
+                });
+            } else {
+                removeButton.on("click", function () {
+                    listNewMemberByWorkId.splice(index, 1);
+                    listItem.remove();
+                    $("#memberId").val(listNewMemberByWorkId.join(','));
+                });
+            }
+
+            var divWrapper = $("<div></div>").addClass("d-flex align-items-center");
+            if (data.avatar != null) {
+                var avatar = $("<img>").attr({
+                    src: data.avatar,
+                    alt: "Avatar",
+                    class: "rounded-circle",
+                    width: "30"
+                });
+                divWrapper.append(avatar);
+            }
+
+            var username = $("<span></span>").addClass("ms-2").text(data.fullName);
+            divWrapper.append(username);
+            listItem.append(divWrapper);
             listItem.append(removeButton);
-
-            $('.list_assign').append(listItem);
-
-            listMemberByWorkId.push(id);
+            if (isDetail) {
+                $('#dataListMemberDetail').append(listItem);
+            } else {
+                $('.list_assign').append(listItem);
+            }
         }
-        $("#memberId").val(listMemberByWorkId.join(','));
     }
     
     // gán giá trị level lúc tạo task
     $('input[name="selectLevel"]').change(function () {
         var selectedValue = $('input[name="selectLevel"]:checked').val();
         $("#level").val(selectedValue);
+    });
+
+    $('input[name="statusRadio"]').change(function () {
+        var selectedValue = $('input[name="statusRadio"]:checked').val();
+        $("#level").val(selectedValue);
+    });
+
+    $('input[name="levelRadio"]').change(function () {
+        var selectedValue = $('input[name="levelRadio"]:checked').val();
+        $("#status").val(selectedValue);
     });
 
     // Click change status
@@ -804,7 +951,63 @@ document.addEventListener('DOMContentLoaded', function () {
     //Edit task
     $(".edit-task").click(function () {
         var taskId = $(this).data('id');
-        getTaskById(taskId);
+        getTaskById(taskId)
+            .then(function (data) {
+                $("#_idUpdate").val(data._id);
+
+                $("#nameTask").text(data.name);
+                $("#hNameTask").val(data.name);
+
+                $("#descriptTask").text(data.description);
+                $("#hdescriptTask").val(data.description);
+
+                $("#levelUpdate").val(data.level);
+                if (data.level == 1) {
+                    $('#rdoNormal').prop('checked', true);
+                } else if (data.level == 2) {
+                    $('#rdoWarning').prop('checked', true);
+                } else {
+                    $('#rdoDanger').prop('checked', true);
+                }
+
+                $("#statusUpdate").val(data.status);
+                if (data.status) {
+                    $('#rdoSuccess').prop('checked', true);
+                } else {
+                    $('#rdoDoing').prop('checked', true);
+                }
+                $('#time-start').val(convertTime(data.startHour));
+                $('#time-end').val(convertTime(data.endHour));
+                $('#date-start').val(convertDate(data.startDay));
+                $('#date-end').val(convertDate(data.endDay));
+                getUserByTaskId(taskId)
+                    .then(function (userInTask) {
+                        $.each(userInTask, function (index, item) {
+                            genarateAssignment(item, true);
+                        })
+                        
+                    })
+                    .catch(function (error) {
+                        console.error(error); // Xử lý lỗi (nếu có)
+                    });
+                getMembersByIdWork(data.workId)
+                    .then(function (userInWork) {
+                        // Tiếp tục xử lý dữ liệu tại đây
+                        var datalist = $("#datalistDetail");
+                        datalist.empty(); // Xóa các option cũ trong datalist
+                        $.each(userInWork, function (index, item) {
+                            $.each(item.listMembers, function (index, member) {
+                                datalist.append(`<option value="${member.fullName}" id="${member.id}"></option>`);
+                            });
+                        });
+                    })
+                    .catch(function (error) {
+                        console.error(error); // Xử lý lỗi (nếu có)
+                    });
+            })
+            .catch(function (error) {
+                console.error(error); // Xử lý lỗi (nếu có)
+            });
     })
 
     //convert time to 24h

@@ -209,6 +209,7 @@ namespace PTASK.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteTeam(string teamId)
         {
+            string projectId = _cache.Get<string>("ProjectID");
 
             string dataJson = TempData["data"] as string;
             List<Team> teams = JsonConvert.DeserializeObject<List<Team>>(dataJson);
@@ -242,7 +243,7 @@ namespace PTASK.Controllers
                 }
             }
 
-            var result = await _team.DeleteTeamInProject(teamId);
+            var result = await _team.DeleteTeamInProject(teamId, projectId);
 
             if (result)
             {

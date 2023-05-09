@@ -14,21 +14,43 @@ namespace PTASK.Controllers
         private readonly ITaskService _task;
         private readonly IUserService _user;
         private readonly ITeamService _team;
-
-        public JsonController(IMemoryCache cache, IWorkService work, ITaskService task, IUserService user, ITeamService team)
+        private readonly IProjectService _project;
+        public JsonController(IMemoryCache cache, 
+                              IWorkService work, 
+                              ITaskService task, 
+                              IUserService user, 
+                              ITeamService team,
+                              IProjectService project)
         {
             _cache = cache;
             _work = work;
             _task = task;
             _user = user;
             _team = team;
+            _project = project;
         }
 
-        #region user
+        #region PROJECT 
+        [HttpGet("api/project/getProjectByUserId/{userId}")]
+        public async Task<List<Project>> GetJsonProject(string userId)
+        {
+            var projects = await _project.GetProjectByUserId(userId);
+            return projects;
+        }
+        #endregion
+
+        #region USER
         [HttpGet("api/users/email/{email}")]
         public async Task<User> GetJsonUserByEmail(string email)
         {
             var user = await _user.GetUserByEmail(email);
+            return user;
+        }
+
+        [HttpGet("api/users/getUserById/{id}")]
+        public async Task<User> GetJsonUserById(string id)
+        {
+            var user = await _user.GetUserById(id);
             return user;
         }
 
@@ -41,12 +63,16 @@ namespace PTASK.Controllers
         #endregion
 
         #region work
-        [HttpGet("api/works")]
-        public async Task<List<Work>> GetJsonAllWorks()
+        [HttpGet("api/works/{projectId}")]
+        public async Task<List<Work>> GetJsonAllWorks(string projectId)
         {
-            string projectId = _cache.Get<string>("ProjectID");
-            var teams = await _work.GetAllWorkByIdProject(projectId);
-            return teams;
+            if (projectId != null)
+            {
+                var works = await _work.GetAllWorkByIdProject(projectId);
+                HttpContext.Response.Headers.Add("Cache-Control", "no-cache");
+                return works;
+            }
+            return null;
         }
         #endregion
 
@@ -55,8 +81,12 @@ namespace PTASK.Controllers
         public async Task<List<Team>> GetJsonAllTeam()
         {
             string projectId = _cache.Get<string>("ProjectID");
-            var teams = await _team.GetAllTeams(projectId);
-            return teams;
+            if(projectId != null)
+            {
+                var teams = await _team.GetAllTeams(projectId);
+                return teams;
+            }
+            return null;
         }
 
         [HttpGet("api/members/getbyworkid/{workId}")]

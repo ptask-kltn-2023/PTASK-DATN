@@ -1,40 +1,36 @@
-﻿function allWorks() {
-    $.ajax({
-        url: "/api/works",
-        method: "GET",
-        success: function (data) {
-            // Tạo datalist từ dữ liệu nhận về
-            var datalist = $("#datalistWorks");
-            datalist.empty(); // Xóa các option cũ trong datalist
-            $.each(data, function (index, item) {
-                datalist.append(`<option value="${item.name}" id="${item._id}"></option>`);
+﻿function getWorksByIdProject(projectId) {
+    return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            $.ajax({
+                url: "/api/works/" + projectId,
+                method: "GET",
+                success: function (data) {
+                    // Tạo datalist từ dữ liệu nhận về
+                    resolve(data);
+                },
+                error: function (error) {
+                    reject(error);
+                }
             });
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(`Error: ${errorThrown}`);
-        }
+        }, 1000); // Đặt độ trễ là 1000ms (có thể điều chỉnh theo nhu cầu)
     });
 }
 
 function getMembersByIdWork(workId) {
-    $.ajax({
-        url: '/api/members/getbyworkid/' + workId,
-        type: 'GET',
-        dataType: 'json',
-        success: function (data) {
-            var datalist = $("#datalistMembers");
-            $.each(data, function (index, team) {
-                // Duyệt qua từng member trong danh sách listMembers
-                datalist.empty();
-                $.each(team.listMembers, function (i, member) {
-                    // Tạo ra một option mới trong datalist
-                    datalist.append(`<option value="${member.fullName}" id="${member.id}"></option>`);
-                });
+    return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            $.ajax({
+                url: '/api/members/getbyworkid/' + workId,
+                method: "GET",
+                success: function (data) {
+                    // Tạo datalist từ dữ liệu nhận về
+                    resolve(data);
+                },
+                error: function (error) {
+                    reject(error);
+                }
             });
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            
-        }
+        }, 500); // Đặt độ trễ là 1000ms (có thể điều chỉnh theo nhu cầu)
     });
 }
 
@@ -80,56 +76,57 @@ function searchTeam() {
     });
 }
 
-function getTaskById(taskId) {
-    $.ajax({
-        url: "/api/task/getbyid/" + taskId,
-        method: "GET",
-        success: function (data) {
-            $("#nameTask").text(data.name);
-            $("#descriptTask").text(data.description);
-            if (data.level == 1) {
-                $('#rdoNormal').prop('checked', true);
-            } else if (data.level == 2) {
-                $('#rdoWarning').prop('checked', true);
-            } else {
-                $('#rdoDanger').prop('checked', true);
-            }
-            if (data.status) {
-                $('#rdoSuccess').prop('checked', true);
-            } else {
-                $('#rdoDoing').prop('checked', true);
-            }
-            $('#time-start').val(convertTime(data.startHour));
-            $('#time-end').val(convertTime(data.endHour));
-            $('#date-start').val(convertDate(data.startDay));
-            $('#date-end').val(convertDate(data.endDay));
-            getUserByTaskId(taskId);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(`Error: ${errorThrown}`);
-        }
+function getUserById(id) {
+    return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            $.ajax({
+                url: '/api/users/getUserById/' + id,
+                method: "GET",
+                success: function (data) {
+                    // Tạo datalist từ dữ liệu nhận về
+                    resolve(data);
+                },
+                error: function (error) {
+                    reject(error);
+                }
+            });
+        }, 500); // Đặt độ trễ là 1000ms (có thể điều chỉnh theo nhu cầu)
+    });
+}
 
+function getTaskById(taskId) {
+    return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            $.ajax({
+                url: "/api/task/getbyid/" + taskId,
+                method: "GET",
+                success: function (data) {
+                    // Tạo datalist từ dữ liệu nhận về
+                    resolve(data);
+                },
+                error: function (error) {
+                    reject(error);
+                }
+            });
+        }, 500); // Đặt độ trễ là 1000ms (có thể điều chỉnh theo nhu cầu)
     });
 }
 
 function getUserByTaskId(taskId) {
-    $.ajax({
-        url: "api/users/getUserByTaskId/" + taskId,
-        method: "GET",
-        success: function (data) {
-            var memberList = [];
-            var ul = $(".membersInDetailTask");
-            ul.empty();
-            data.forEach(function (item, index) {
-                memberList.push(item._id)
-                generateItemUser(item, ul, $("#listMemberDetail"), memberList);
+    return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            $.ajax({
+                url: "api/users/getUserByTaskId/" + taskId,
+                method: "GET",
+                success: function (data) {
+                    // Tạo datalist từ dữ liệu nhận về
+                    resolve(data);
+                },
+                error: function (error) {
+                    reject(error);
+                }
             });
-            $("#listMemberDetail").val(memberList.join(','));
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(`Error: ${errorThrown}`);
-        }
-
+        }, 500); // Đặt độ trễ là 1000ms (có thể điều chỉnh theo nhu cầu)
     });
 }
 
@@ -198,7 +195,7 @@ function generateItemUser(data, parentItem,id, listRemove) {
         divWrapper.append(avatar);
     }
 
-    var username = $("<strong></strong>").addClass("ms-2").text(data.fullName);
+    var username = $("<span></span>").addClass("ms-2").text(data.fullName);
     divWrapper.append(username);
 
     listItem.append(divWrapper);
@@ -209,5 +206,4 @@ function generateItemUser(data, parentItem,id, listRemove) {
 }
 
 // Execute
-allWorks();
 searchTeam();

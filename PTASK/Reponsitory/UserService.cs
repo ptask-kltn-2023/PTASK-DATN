@@ -21,9 +21,13 @@ namespace PTASK.Reponsitory
             return result;
         }
 
-        public Task<User> GetUserById(Guid id)
+        public async Task<User> GetUserById(string id)
         {
-            throw new NotImplementedException();
+            var api = _httpClientFactory.CreateClient("apiGetUserById");
+            var response = await api.GetAsync($"/api/users/{id}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<User>(content);
+            return result;
         }
 
         public async Task<List<User>> GetUserByTaskId(string taskId)
