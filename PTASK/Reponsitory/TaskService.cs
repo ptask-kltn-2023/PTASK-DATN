@@ -122,5 +122,54 @@ namespace PTASK.Reponsitory
         {
             throw new NotImplementedException();
         }
+
+        public async Task<bool> UpdateTask(PTask task)
+        {
+            var api = _httpClientFactory.CreateClient("apiUpdateTask");
+            var userId = _cache.Get<string>("UserId");
+            string[] outputArray;
+            if (task.membersId.Count > 0)
+            {
+                if (string.IsNullOrEmpty(task.membersId[0]))
+                {
+                    outputArray = new string[] { };
+                }
+                else
+                {
+                    outputArray = task.membersId[0].Split(',');
+                }
+            }
+            else
+            {
+                outputArray = new string[] { };
+            }
+            // Tạo json data
+            string jsonData = JsonConvert.SerializeObject(new
+            {
+                task.name,
+                startDay = task.startDay.ToString("MM-dd-yyyy"),
+                task.description,
+                userId,
+                endDay = task.endDay.ToString("MM-dd-yyyy"),
+                startHour = task.startHour.ToString("HH:mm"),
+                endHour = task.endHour.ToString("HH:mm"),
+                members = outputArray,
+                task.status,
+                task.level
+            });
+            // Format json
+            var jsonContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            // Truyền json vào api
+            var response = await api.PatchAsync($"/api/tasks/update/{task._id}", jsonContent);
+            //Kiểm tra dữ liệu trả về
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

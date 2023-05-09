@@ -92,7 +92,7 @@ namespace PTASK.Reponsitory
         {
             var projectId = _cache.Get<string>("ProjectID");
             var api = _httpClientFactory.CreateClient("apiGetWorkByName");
-            var response = await api.GetAsync($"api/works/name/{projectId}?name={name}");
+            var response = await api.GetAsync($"api/works/name/{projectId}/{name}");
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<List<Work>>(content);
             return result;

@@ -114,10 +114,10 @@ namespace PTASK.Reponsitory
             return result;
         }
 
-        public async Task<bool> DeleteTeamInProject(string teamId)
+        public async Task<bool> DeleteTeamInProject(string teamId, string projectId)
         {
             var api = _httpClientFactory.CreateClient("removeTeamInProject");
-            var response = await api.DeleteAsync($"/api/teams/{teamId}");
+            var response = await api.DeleteAsync($"/api/teams/{teamId}/{projectId}");
             if (response.IsSuccessStatusCode)
             {
                 return true;

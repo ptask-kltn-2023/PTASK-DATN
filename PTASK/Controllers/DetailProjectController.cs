@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Amazon.Runtime.Internal.Util;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.IdentityModel.Tokens;
@@ -13,12 +14,15 @@ namespace PTASK.Controllers
         private readonly IWorkService _work;
         private readonly ITaskService _task;
         private readonly ITeamService _team;
-        public DetailProjectController(IProjectService project, IWorkService work, ITaskService task, ITeamService team)
+        private IMemoryCache _cache;
+
+        public DetailProjectController(IProjectService project, IWorkService work, ITaskService task, ITeamService team, IMemoryCache cache)
         {
             _project = project;
             _work = work;
             _task = task;
             _team = team;
+            _cache = cache;
         }
         // GET: DetailProjectController
         [HttpGet]
@@ -71,6 +75,8 @@ namespace PTASK.Controllers
 
         public ActionResult Report()
         {
+            ViewData["TitleProject"] = _cache.Get<string>("TitleProject");
+
             return View();
         }
         // GET: DetailProjectController/Details/5
