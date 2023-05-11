@@ -40,6 +40,7 @@ function searchUser(email) {
             url: "/api/users/email/" + email,
             method: "GET",
             success: function (data) {
+                
                 resolve(data);
             },
             error: function (error) {
@@ -78,19 +79,17 @@ function searchTeam() {
 
 function getUserById(id) {
     return new Promise(function (resolve, reject) {
-        setTimeout(function () {
-            $.ajax({
-                url: '/api/users/getUserById/' + id,
-                method: "GET",
-                success: function (data) {
-                    // Tạo datalist từ dữ liệu nhận về
-                    resolve(data);
-                },
-                error: function (error) {
-                    reject(error);
-                }
-            });
-        }, 500); // Đặt độ trễ là 1000ms (có thể điều chỉnh theo nhu cầu)
+        $.ajax({
+            url: '/api/users/getUserById/' + id,
+            method: "GET",
+            success: function (data) {
+                // Tạo datalist từ dữ liệu nhận về
+                resolve(data);
+            },
+            error: function (error) {
+                reject(error);
+            }
+        });
     });
 }
 

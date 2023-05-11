@@ -21,16 +21,30 @@ namespace PTASK.Controllers
         {
             List<Work> result;
             string projectId = _cache.Get<string>("ProjectID");
-            if(name == null)
+            if(name == null || name == "")
             {
                 result = await _work.GetAllWorkByIdProject(projectId);
             }
             else
             {
                 result = await _work.GetWorksByName(name);
+                _cache.Set("isSearch", true);
             }
             ViewData["TitleProject"] = _cache.Get<string>("TitleProject");
-            ViewData["isBack"] = isBack;
+            bool isBackGetName;
+            bool isBackExists = _cache.TryGetValue("isBack", out isBackGetName);
+
+            if (isBackExists)
+            {
+                // Lần đầu chạy hoặc không tồn tại trong cache
+                ViewData["isBack"] = _cache.Get<bool>("isBack");
+            }
+            else
+            {
+                ViewData["isBack"] = isBack;
+                _cache.Set("isBack", isBack);
+            }
+
             TempData["isBack"] = ViewData["isBack"];
 
             const int pageSize = 9;

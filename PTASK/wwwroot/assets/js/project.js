@@ -579,6 +579,22 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     })();
 
+    (function () {
+        var input = document.querySelectorAll('.descriptTask');
+        input.forEach(function (item) {
+            item.addEventListener('focus', function () {
+                this.style.cursor = 'auto';
+                this.style.backgroundColor = '#fff';
+                this.style.border = '2px solid rgb(5, 126, 214)';
+                this.classList.add("form-control");
+            });
+            item.addEventListener('focusout', function () {
+                this.style.backgroundColor = 'rgba(252, 250, 248, 0)';
+                this.style.cursor = 'pointer';
+                this.style.border = null;
+            });
+        })
+    })();
 
     var frameMember = document.querySelector('.member-accept');
     if (frameMember !== null) {
@@ -762,9 +778,11 @@ document.addEventListener('DOMContentLoaded', function () {
             var selectedOption = $("#datalistMembers option[value='" + $(this).val() + "']");
             getUserById(selectedOption.attr("id"))
                 .then(function (data) {
-                    genarateAssignment(data, false);
-                    $("#memberId").val(listNewMemberByWorkId.join(','));
-                    listNewMemberByWorkId = [];
+                    if (data.fullName == selectedValue) {
+                        genarateAssignment(data, false);
+                        $("#memberId").val(listNewMemberByWorkId.join(','));
+                        listNewMemberByWorkId = [];
+                    }
                     $(this).val('');
                 })
                 .catch(function (error) {
@@ -788,14 +806,11 @@ document.addEventListener('DOMContentLoaded', function () {
             var selectedOption = $("#datalistDetail option[value='" + $(this).val() + "']");
             getUserById(selectedOption.attr("id"))
                 .then(function (data) {
-                    genarateAssignment(data, true);
-                    // Gộp hai mảng lại thành một mảng mới
-                    var mergedList = listNewMemberByWorkId.concat(listIdOfOldMember);
+                    if (data.fullName == selectedValue) {
+                        genarateAssignment(data, true);
 
-                    // Lọc các phần tử không trùng lặp bằng cách sử dụng Set
-                    var uniqueList = Array.from(new Set(mergedList));
-
-                    $("#listMemberDetail").val(uniqueList.join(','));
+                        $("#listMemberDetail").val(listNewMemberByWorkId.join(','));
+                    } 
                     $(this).val('');
                 })
                 .catch(function (error) {
@@ -827,39 +842,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
     $('#btnAssignmentDetail').click(function () {
         var email = $("#emailMemberDetail").val();
+        if (isEmail(email)) {
+            var elements = $("#listMemberDetail").val().split(",");
 
-        var elements = $("#listMemberDetail").val().split(",");
-
-        if (elements.length > 0) {
-            elements.forEach(function (item) {
-                if (item != "") {
-                    listIdOfOldMember.push(item.trim());
-                }
-            });
-        }
-
-        searchUser(email).then(function (data) {
-            if (data._id != null) {
-                if ($("#mainId").val() == data._id) {
-                    alert("Không thể phân công thành viên là chủ dự án");
-                } else if (!listIdOfOldMember.includes(data._id)) {
-                    genarateAssignment(data, true);
-                    // Gộp hai mảng lại thành một mảng mới
-                    var mergedList = listNewMemberByWorkId.concat(listIdOfOldMember);
-
-                    // Lọc các phần tử không trùng lặp bằng cách sử dụng Set
-                    var uniqueList = Array.from(new Set(mergedList));
-
-                    $("#listMemberDetail").val(uniqueList.join(','));
-
-                    $(this).val('');
-                }
-            } else {
-                alert("Email này chưa có tài khoản")
+            if (elements.length > 0) {
+                elements.forEach(function (item) {
+                    if (item != "") {
+                        listIdOfOldMember.push(item.trim());
+                    }
+                });
             }
-        }).catch(function (error) {
-            console.log(error);
-        });
+
+            searchUser(email).then(function (data) {
+                if (data._id != null) {
+                    if ($("#mainId").val() == data._id) {
+                        alert("Không thể phân công thành viên là chủ dự án");
+                    } else if (!listNewMemberByWorkId.includes(data._id)) {
+                        genarateAssignment(data, true);
+                        // Gộp hai mảng lại thành một mảng mới
+                        var mergedList = listNewMemberByWorkId.concat(listIdOfOldMember);
+
+                        // Lọc các phần tử không trùng lặp bằng cách sử dụng Set
+                        var uniqueList = Array.from(new Set(mergedList));
+
+                        $("#listMemberDetail").val(uniqueList.join(','));
+
+                        $(this).val('');
+                    }
+                } else {
+                    alert("Email này chưa có tài khoản")
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        } else {
+            alert("Vui lòng nhập đúng định dạng email");
+        }
+       
         $("#emailMemberDetail").val("");
     });
 
@@ -955,11 +974,9 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(function (data) {
                 $("#_idUpdate").val(data._id);
 
-                $("#nameTask").text(data.name);
-                $("#hNameTask").val(data.name);
+                $("#nameTask").val(data.name);
 
-                $("#descriptTask").text(data.description);
-                $("#hdescriptTask").val(data.description);
+                $(".descriptTask").text(data.description);
 
                 $("#levelUpdate").val(data.level);
                 if (data.level == 1) {
@@ -984,6 +1001,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     .then(function (userInTask) {
                         $.each(userInTask, function (index, item) {
                             genarateAssignment(item, true);
+                            $("#listMemberDetail").val(listNewMemberByWorkId.join(','));
                         })
                         
                     })

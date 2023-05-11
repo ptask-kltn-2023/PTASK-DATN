@@ -14,8 +14,8 @@
 
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="nameTask"></h5>
-                    <input type="hidden" asp-for="name" id="hNameTask"/>
+                    <input class="mt-2 ms-2 ip-list" asp-for="name" id="nameTask">
+
                     <button type="button"
                             class="btn-close"
                             data-bs-dismiss="modal"
@@ -24,9 +24,8 @@
                 <div class="modal-body d-flex justify-content-between p-3">
                     <div class="col-9 pe-2">
                         <div class="row">
-                            <div class="col mb-3">
-                                <span id="descriptTask"></span>
-                                <input type="hidden" asp-for="description" id="hdescriptTask" />
+                            <div class="col">
+                                <textarea class="descriptTask" asp-for="description"></textarea>
                             </div>
                         </div>
                         <hr />
