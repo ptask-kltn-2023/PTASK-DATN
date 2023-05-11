@@ -202,5 +202,54 @@ namespace PTASK.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateStatus(string createId, string workId)
+        {
+            bool isBack = (bool)TempData["isBack"];
+
+            string dataJson = TempData["data"] as string;
+                List<Work> works = JsonConvert.DeserializeObject<List<Work>>(dataJson);
+
+            string pagerJson = TempData["pager"] as string;
+            Pager page = JsonConvert.DeserializeObject<Pager>(pagerJson);
+            int pg = (int)TempData["pg"];
+
+            int lastPageElementsCount = page.TotalItems % 9;
+            if (lastPageElementsCount == 0 && page.TotalItems > 0)
+            {
+                lastPageElementsCount = 9;
+            }
+
+            if (works.Count >= 9)
+            {
+                if (page.EndPage == pg)
+                {
+                    pg++;
+                }
+                else
+                {
+                    if (lastPageElementsCount >= 9)
+                    {
+                        pg = ++page.EndPage;
+                    }
+                    else
+                    {
+                        pg = page.EndPage;
+                    }
+                }
+            }
+
+            var result = await _work.ChangeStatus(createId, workId);
+
+            if (result)
+            {
+                return RedirectToAction("Index", "Work", new { isBack, pg });
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
     }
 }

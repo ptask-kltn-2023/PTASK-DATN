@@ -111,6 +111,42 @@ function getTaskById(taskId) {
     });
 }
 
+function getTaskByWorkId(workId) {
+    return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            $.ajax({
+                url: "api/task/getByWorkId/" + workId,
+                method: "GET",
+                success: function (data) {
+                    // Tạo datalist từ dữ liệu nhận về
+                    resolve(data);
+                },
+                error: function (error) {
+                    reject(error);
+                }
+            });
+        }, 500); // Đặt độ trễ là 1000ms (có thể điều chỉnh theo nhu cầu)
+    });
+}
+
+function getWorkById(workId) {
+    return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            $.ajax({
+                url: "/api/work/getWorkById/" + workId,
+                method: "GET",
+                success: function (data) {
+                    // Tạo datalist từ dữ liệu nhận về
+                    resolve(data);
+                },
+                error: function (error) {
+                    reject(error);
+                }
+            });
+        }, 500); // Đặt độ trễ là 1000ms (có thể điều chỉnh theo nhu cầu)
+    });
+}
+
 function getUserByTaskId(taskId) {
     return new Promise(function (resolve, reject) {
         setTimeout(function () {

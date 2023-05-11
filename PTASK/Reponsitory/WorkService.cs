@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using PTASK.Interface;
 using PTASK.Models;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace PTASK.Reponsitory
 {
@@ -17,6 +18,26 @@ namespace PTASK.Reponsitory
         {
             _httpClientFactory = httpClientFactory;
             _cache = cache;
+        }
+
+        public async Task<bool> ChangeStatus(string createId, string workId)
+        {
+            var workUpdateStatus = new Work { 
+                status = true,
+                createId = createId,
+            };
+            var json = System.Text.Json.JsonSerializer.Serialize(workUpdateStatus);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var api = _httpClientFactory.CreateClient("changeStatusWork");
+            var response = await api.PatchAsync($"/api/works/change-status/{workId}", content);
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public async Task<bool> CreateWork(WorkCreate work, string projectId)
@@ -85,6 +106,16 @@ namespace PTASK.Reponsitory
             var response = await api.GetAsync($"api/works/all-work-project/{projectId}");
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<List<Work>>(content);
+            return result;
+        }
+
+        public async Task<Work> GetWorkById(string workId)
+        {
+            var api = _httpClientFactory.CreateClient("apiGetWorkById");
+            var response = await api.GetAsync($"/api/works/{workId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Work>(content);
+
             return result;
         }
 

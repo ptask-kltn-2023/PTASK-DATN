@@ -206,7 +206,7 @@ namespace PTASK.Controllers
             bool isBack = (bool)TempData["isBack"];
 
             string dataJson = TempData["data"] as string;
-            List<Work> works = JsonConvert.DeserializeObject<List<Work>>(dataJson);
+            List<Task> tasks = JsonConvert.DeserializeObject<List<Task>>(dataJson);
 
             string pagerJson = TempData["pager"] as string;
             Pager page = JsonConvert.DeserializeObject<Pager>(pagerJson);
@@ -218,7 +218,7 @@ namespace PTASK.Controllers
                 lastPageElementsCount = 9;
             }
 
-            if (works.Count >= 9)
+            if (tasks.Count >= 9)
             {
                 if (page.EndPage == pg)
                 {
