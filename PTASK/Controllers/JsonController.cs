@@ -62,7 +62,7 @@ namespace PTASK.Controllers
         }
         #endregion
 
-        #region work
+        #region WORK
         [HttpGet("api/works/{projectId}")]
         public async Task<List<Work>> GetJsonAllWorks(string projectId)
         {
@@ -74,9 +74,17 @@ namespace PTASK.Controllers
             }
             return null;
         }
+
+        [HttpGet("api/work/getWorkById/{workId}")]
+       public async Task<Work> GetJsonWorkById(string workId)
+        {
+            var work = await _work.GetWorkById(workId);
+
+            return work;
+        }
         #endregion
 
-        #region team
+        #region TEAM
         [HttpGet("api/teams")]
         public async Task<List<Team>> GetJsonAllTeam()
         {
@@ -106,13 +114,21 @@ namespace PTASK.Controllers
         }
         #endregion
 
-        #region task
+        #region TASK
         [HttpGet("api/task/getbyid/{taskId}")]
         public async Task<PTask> GetJsonTaskById(string taskId)
         {
             var task = await _task.GetTaskById(taskId);
 
             return task;
+        }
+
+        [HttpGet("api/task/getByWorkId/{workId}")]
+        public async Task<List<PTask>> GetJsonTaskByWorkId(string workId)
+        {
+            var tasks = await _task.GetTasksByWorkId(workId);
+
+            return tasks;
         }
         #endregion
     }

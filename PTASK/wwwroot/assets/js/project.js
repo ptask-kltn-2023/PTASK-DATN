@@ -1003,7 +1003,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             genarateAssignment(item, true);
                             $("#listMemberDetail").val(listNewMemberByWorkId.join(','));
                         })
-                        
+
                     })
                     .catch(function (error) {
                         console.error(error); // Xử lý lỗi (nếu có)
@@ -1026,7 +1026,48 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(function (error) {
                 console.error(error); // Xử lý lỗi (nếu có)
             });
-    })
+    });
+
+    //EDIT WORK
+    $(".edit-work").click(function () {
+        var workId = $(this).data('id');
+        //getTaskByWorkId(workId)
+        //    .then(function (data) {
+        //        console.log(data);
+        //    })
+        //    .catch(function (error) {
+        //        console.error(error); // Xử lý lỗi (nếu có)
+        //    });
+        //getWorkById(workId)
+        //    .then(function (data) {
+        //        $("#idUpdate").val(data._id);
+
+        //        $("#nameWork").val(data.name);
+
+        //        //$("#levelUpdate").val(data.level);
+        //        //if (data.level == 1) {
+        //        //    $('#rdoNormal').prop('checked', true);
+        //        //} else if (data.level == 2) {
+        //        //    $('#rdoWarning').prop('checked', true);
+        //        //} else {
+        //        //    $('#rdoDanger').prop('checked', true);
+        //        //}
+
+        //        //$("#statusUpdate").val(data.status);
+        //        //if (data.status) {
+        //        //    $('#rdoSuccess').prop('checked', true);
+        //        //} else {
+        //        //    $('#rdoDoing').prop('checked', true);
+        //        //}
+        //        //$('#time-start').val(convertTime(data.startHour));
+        //        //$('#time-end').val(convertTime(data.endHour));
+        //        //$('#date-start').val(convertDate(data.startDay));
+        //        //$('#date-end').val(convertDate(data.endDay));
+        //    })
+        //    .catch(function (error) {
+        //        console.error(error); // Xử lý lỗi (nếu có)
+        //    });
+    });
 
     //convert time to 24h
     $("#startHour").change(function () {

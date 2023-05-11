@@ -1,138 +1,199 @@
-﻿@model Work
+﻿@using Microsoft.Extensions.Caching.Memory;
+@model Work
 
-<div class="modal fade" id="detailWork-@Model._id" tabindex="-1" aria-hidden="true">
+@{
+    var cache = Context.RequestServices.GetRequiredService<IMemoryCache>();
+    var mainId = cache.Get("MainProject");
+}
+<div class="modal fade" id="workDetail" tabindex="-1" aria-hidden="true">
+    <input type="hidden" value="@mainId" id="mainId" />
+
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalCenterTitle">@Model.name</h5>
-                <button type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-            </div>
-            <div class="modal-body d-flex justify-content-between p-3">
-                <div class="col-9 pe-2">
-                    <div class="d-flex justify-content-between">
-                        <b>Danh sách nhiệm vụ</b>
-                        <span>
-                            <a asp-area="" asp-controller="Task" asp-action="Index" asp-route-isBack="true" class="text-primary view-detail">Xem chi tiết >></a>
-                        </span>
-                    </div>
-                    <div class="demo-inline-spacing">
-                        <ul class="list-group listToDo">
-                            <li class="list-group-item d-flex justify-content-between">
-                                Soufflé pastry pie ice
-                                <i class='text-success bx bx-check-circle'></i>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between">
-                                Bear claw cake biscuit
-                                <i class='text-success bx bx-check-circle'></i>
-                            </li>
-                        </ul>
-                    </div>
-                    <hr class="mt-4" />
+         <form asp-controller="Work" asp-action="Create" style="width: 100%">
+            <input type="hidden" name="isUpdate" value="true" />
+            <input type="hidden" asp-for="_id" id="_idUpdate" />
+            <div class="modal-content">
+                <div class="modal-header">
+                    <input class="mt-2 ms-2 ip-list" asp-for="name" id="nameWork">
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex justify-content-between p-3">
+                    <div class="col-9 pe-2">
+                        <div class="d-flex justify-content-between">
+                            <b>Danh sách nhiệm vụ</b>
+                            <span>
+                                <a asp-area="" asp-controller="Task" asp-action="Index" asp-route-isBack="true" class="text-primary view-detail">Xem chi tiết >></a>
+                            </span>
+                        </div>
+                        <div class="demo-inline-spacing">
+                            <ul class="list-group listToDo">
+                                <li class="list-group-item d-flex justify-content-between">
+                                    Soufflé pastry pie ice
+                                    <i class='text-success bx bx-check-circle'></i>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    Bear claw cake biscuit
+                                    <i class='text-success bx bx-check-circle'></i>
+                                </li>
+                            </ul>
+                        </div>
+                        <hr class="mt-4" />
 
-                    <div class="g-2">
-                        <b>Ngày thực hiện</b>
-                        <div class="col d-flex align-items-center justify-content-between mb-3">
-                            <label for="date-start" class="col-form-label">Ngày bắt đầu</label>
-                            <input class="form-control" type="date" value="" id="date-start" />
+                        <div class="g-2">
+                            <b>Ngày thực hiện</b>
+                            <div class="col d-flex align-items-center justify-content-between mb-3">
+                                <label for="date-start" class="col-form-label">Ngày bắt đầu</label>
+                                <input class="form-control" type="date" value="" id="date-start" />
+                            </div>
+                            <div class="col d-flex align-items-center justify-content-between">
+                                <label for="date-end" class="col-form-label">Ngày kết thúc</label>
+                                <input class="form-control" type="date" value="" id="date-end" />
+                            </div>
                         </div>
-                        <div class="col d-flex align-items-center justify-content-between">
-                            <label for="date-end" class="col-form-label">Ngày kết thúc</label>
-                            <input class="form-control" type="date" value="" id="date-end" />
+                        <div class="g-2">
+                            <b>Tiến độ công việc</b>
+                            <div class="progress mt-2">
+                                <div class="progress-bar bg-success"
+                                     role="progressbar"
+                                     style="width: 40%"
+                                     aria-valuenow="40"
+                                     aria-valuemin="0"
+                                     aria-valuemax="100">
+                                    40%
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="g-2">
-                        <b>Tiến độ công việc</b>
-                        <div class="progress mt-2">
-                            <div class="progress-bar bg-success"
-                                 role="progressbar"
-                                 style="width: 40%"
-                                 aria-valuenow="40"
-                                 aria-valuemin="0"
-                                 aria-valuemax="100">
-                                40%
+                        <hr />
+
+                        <div class="row mt-2">
+                            <div class="col mb-3 ">
+                                <label for="nameWithTitle" class="form-label">
+                                    <i class="bx bx-comment"></i> Bình luận
+                                </label>
+                                <div class="input-group  avatar-group">
+                                    <span data-bs-toggle="tooltip"
+                                          data-popup="tooltip-custom"
+                                          data-bs-placement="top"
+                                          class="avatar avatar-xs pull-up"
+                                          title="Lilian Fuller">
+                                        <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
+                                    </span>
+                                    <textarea id="basic-icon-default-message"
+                                              class="ms-1 form-control"
+                                              placeholder="Viết bình luận của bạn"></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <hr />
-
-                    <div class="row mt-2">
-                        <div class="col mb-3 ">
-                            <label for="nameWithTitle" class="form-label">
-                                <i class="bx bx-comment"></i> Bình luận
-                            </label>
-                            <div class="input-group  avatar-group">
-                                <span data-bs-toggle="tooltip"
-                                      data-popup="tooltip-custom"
-                                      data-bs-placement="top"
-                                      class="avatar avatar-xs pull-up"
-                                      title="Lilian Fuller">
-                                    <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-                                </span>
-                                <textarea id="basic-icon-default-message"
-                                          class="ms-1 form-control"
-                                          placeholder="Viết bình luận của bạn"></textarea>
+                    <div style="width: 33%" class="ms-2">
+                        <div class="row">
+                            <div class="col ms-2">
+                                <b>Thao tác</b>
                             </div>
                         </div>
+                        <div class="demo-inline-spacing mt-2">
+                            <div class="list-group list-group-flush">
+                                <a href="javascript:void(0);"
+                                   class="list-group-item list-group-item-actio"
+                                   data-bs-toggle="dropdown"
+                                   data-bs-auto-close="outside"
+                                   aria-expanded="false">
+                                    <i class='bx bx-user-plus me-2'></i>Phân công
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="dropend">
+                                            <button class="dropdown-item"
+                                                    data-bs-toggle="dropdown"
+                                                    aria-haspopup="true"
+                                                    aria-expanded="false"
+                                                    id="selectLeader">
+                                                Quản lý công việc
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-end w-px-300 p-2">
+                                                <div class="mb-3">
+                                                    <input type="email"
+                                                           id="emailLeader"
+                                                           list="datalistOptions"
+                                                           class="form-control me-2"
+                                                           placeholder="Tìm kiếm email" />
+                                                </div>
+                                                <button type="button" class="btn btn-primary" id="addLeader">Thêm</button>
+                                                <button type="button" class="btn btn-outline-secondary">Hủy</button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropend">
+                                            <button class="dropdown-item selectTeam" data-bs-toggle="dropdown">
+                                                1 nhóm
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-end w-px-300 p-2">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Danh sách nhóm</label>
+                                                    <select id="dataListTeam" class="select2 form-select">
+                                                    </select>
+                                                </div>
+                                                <button type="button" class="btn btn-outline-secondary">Hủy</button>
+                                                <button type="button" class="btn btn-primary" id="btnAddTeam">Thêm</button>
+                                                <a class="text-primary btn float-end" asp-area="" asp-controller="Member" asp-action="ListGroups">
+                                                    <u>Tạo nhóm</u>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <ul class="list-group" id="leaderList">
+                                </ul>
+                                <input type="hidden" id="leaderId" />
+                                <a href="javascript:void(0);" t class="list-group-item list-group-item-action">
+                                    <i class='bx bx-receipt me-2'></i>Xuất báo cáo
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col m-2">
+                                <b>Người thực hiện</b>
+                            </div>
+                            <ul class="">
+                                <li class="m-1"
+                                    data-bs-toggle="tooltip"
+                                    data-popup="tooltip-custom"
+                                    data-bs-placement="top"
+                                    title="Lilian Fuller">
+                                    <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
+                                    <strong class="ms-2">Lilian Fuller</strong>
+                                </li>
+                                <li class="m-1"
+                                    data-bs-toggle="tooltip"
+                                    data-popup="tooltip-custom"
+                                    data-bs-placement="top"
+                                    title="Lilian Fuller">
+                                    <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
+                                    <strong class="ms-2">Lilian Fuller</strong>
+                                </li>
+                                <li class="m-1"
+                                    data-bs-toggle="tooltip"
+                                    data-popup="tooltip-custom"
+                                    data-bs-placement="top"
+                                    title="Lilian Fuller">
+                                    <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
+                                    <strong class="ms-2">Lilian Fuller</strong>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div style="width: 33%" class="ms-2">
-                    <div class="row">
-                        <div class="col ms-2">
-                            <b>Thao tác</b>
-                        </div>
-                    </div>
-                    <div class="demo-inline-spacing mt-2">
-                        <div class="list-group list-group-flush">
-                            <a href="javascript:void(0);" class="list-group-item list-group-item-action">
-                                <i class='bx bx-user-plus me-2'></i>Phân công
-                            </a>
-                            <a href="javascript:void(0);" t class="list-group-item list-group-item-action">
-                                <i class='bx bx-receipt me-2'></i>Xuất báo cáo
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col m-2">
-                            <b>Người thực hiện</b>
-                        </div>
-                        <ul class="">
-                            <li class="m-1"
-                                data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                title="Lilian Fuller">
-                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
-                                <strong class="ms-2">Lilian Fuller</strong>
-                            </li>
-                            <li class="m-1"
-                                data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                title="Lilian Fuller">
-                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
-                                <strong class="ms-2">Lilian Fuller</strong>
-                            </li>
-                            <li class="m-1"
-                                data-bs-toggle="tooltip"
-                                data-popup="tooltip-custom"
-                                data-bs-placement="top"
-                                title="Lilian Fuller">
-                                <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
-                                <strong class="ms-2">Lilian Fuller</strong>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Đóng
+                    </button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
                 </div>
             </div>
-             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                    Đóng
-                </button>
-                <button type="button" class="btn btn-primary">Lưu</button>
-            </div>
-        </div>
+         </form>
     </div>
 </div>

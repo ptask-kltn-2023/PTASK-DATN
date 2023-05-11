@@ -118,9 +118,14 @@ namespace PTASK.Reponsitory
             return result;
         }
 
-        public Task<List<PTask>> GetTasksByWorkId(string workId)
+        public async Task<List<PTask>> GetTasksByWorkId(string workId)
         {
-            throw new NotImplementedException();
+            var api = _httpClientFactory.CreateClient("apiTasksByWorkId");
+            var response = await api.GetAsync($"/api/tasks/get-task-in-list/{workId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<List<PTask>>(content);
+
+            return result;
         }
 
         public async Task<bool> UpdateTask(PTask task)
