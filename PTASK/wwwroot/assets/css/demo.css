@@ -141,12 +141,19 @@
 
 .ip-list {
     background-color: rgba(252, 250, 248,0);
-    width: 85%;
+    width: 100%;
 }
 
 .ip-list:hover{
     cursor: pointer;
 }
+
+.descriptTask {
+    border: none;
+    background-color: rgba(252, 250, 248,0);
+    width: 100%;
+}
+
 
 .add-new-list {
     height: 35px;

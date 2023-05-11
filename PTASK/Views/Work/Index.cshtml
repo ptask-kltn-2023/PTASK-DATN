@@ -18,6 +18,18 @@
     var userId = cache.Get("UserId");
     var mainId = cache.Get("MainProject");
     var projectId = cache.Get("ProjectID");
+    bool isSearch;
+    if (cache.TryGetValue("isSearch", out object isSearchValue) && isSearchValue is bool)
+    {
+        isSearch = (bool)isSearchValue;
+    }
+    else
+    {
+        // Giá trị mặc định nếu không tìm thấy trong cache
+        isSearch = false;
+    }
+
+
 }
 <partial name="~/Views/Shared/Partial/_NavLeft.cshtml" />
 
@@ -31,7 +43,7 @@
         <div class="container-xxl flex-grow-1" style="margin-top: 6%;">
             @if (isBack == true)
             {
-                <div>
+                <div class="mb-3">
                     <a asp-controller="DetailProject"
                        asp-action="Index"
                        asp-route-projectId="@projectId" class="text-primary">
@@ -39,7 +51,6 @@
                     </a>
                 </div>
             }
-
             @if (userId.Equals(mainId))
             {
                 <button data-bs-toggle="modal"
@@ -49,13 +60,15 @@
                     <i class='bx bx-layer-plus me-2'></i>Thêm công việc
                 </button>
             }
-                @if (Model.Count() > 0)
+            
+            @if (Model.Count() > 0)
             {
+             
                 <div class="card">
-
-                    <h5 class="text-uppercase d-flex m-3 align-items-center justify-content-between">
+                    <h5 class="text-uppercase d-flex m-3 d-flex justify-content-between align-items-center">
                         <strong>Danh sách công việc</strong>
-                        <form class="d-flex" asp-controller="Work" asp-action="Index" asp-route-isBack="@isBack" method="get">
+
+                        <form class="d-flex" asp-controller="Work" asp-action="Index" asp-route-isBack="@isBack" method="get" style="width: 50%">
                             <input name="name" class="form-control me-2" type="search" placeholder="Tìm kiếm công việc" aria-label="Tìm kiếm" />
                             <button class="btn btn-outline-primary" type="submit" style="width: 200px"><i class='bx bx-search'></i>Tìm kiếm</button>
                         </form>
@@ -130,9 +143,29 @@
             }
             else
             {
-                <div class="container text-center mt-4">
-                    <h5>Hãy bắt đầu với 1 công việc !</h5>
-                </div>
+                @if (isSearch)
+                {
+
+                    <div class="card">
+                        <h5 class="text-uppercase d-flex m-3 d-flex justify-content-between align-items-center">
+                            <strong>Danh sách công việc</strong>
+
+                            <form class="d-flex" asp-controller="Work" asp-action="Index" asp-route-isBack="@isBack" method="get" style="width: 50%">
+                                <input name="name" class="form-control me-2" type="search" placeholder="Tìm kiếm công việc" aria-label="Tìm kiếm" />
+                                <button class="btn btn-outline-primary" type="submit" style="width: 200px"><i class='bx bx-search'></i>Tìm kiếm</button>
+                            </form>
+                        </h5>
+                    </div>
+                    <div class="container text-center mt-4">
+                        <h5>Tên công việc không tồn tại !</h5>
+                    </div>
+                }
+                else
+                {
+                    <div class="container text-center mt-4">
+                        <h5>Hãy bắt đầu với 1 công việc !</h5>
+                    </div>
+                }
                 @*<div class="main-wrapper ">
                     <main class="main users chart-page" id="skip-target">
                         <div class="container-xxl flex-grow-1 container-p-y" style="margin-top: 5%;">
