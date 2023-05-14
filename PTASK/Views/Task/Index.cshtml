@@ -15,7 +15,10 @@
         pageNo = pager.CurrentPage;
     }
 
+    var userId = cache.Get("UserId");
+    var mainId = cache.Get("MainProject");
     var projectId = cache.Get("ProjectID");
+    var isLeader = cache.Get("isLeader");
 }
 <partial name="~/Views/Shared/Partial/_NavLeft.cshtml" />
 <div class="main-wrapper ">
@@ -31,12 +34,16 @@
                     </a>
                 </div>
             }
-            <button data-bs-toggle="modal" 
-                    data-bs-target="#modalMisson" 
-                    class="btn btn-outline-success mt-2 mb-2">
-                        <i class='bx bx-bookmark-plus me-2'></i>
-                        Thêm nhiệm vụ
-            </button>
+            @if (userId.Equals(mainId) || (bool)isLeader)
+            {
+                <button data-bs-toggle="modal"
+                        data-bs-target="#modalMisson"
+                        class="btn btn-outline-success mt-2 mb-2">
+                    <i class='bx bx-bookmark-plus me-2'></i>
+                    Thêm nhiệm vụ
+                </button>
+            }
+            
             @if (Model.Count() > 0)
             {
                 <div class="card">
@@ -90,38 +97,50 @@
                                             </span>
                                         </td>
                                         <td>
-                                            <div data-bs-toggle="dropdown"
-                                                 aria-haspopup="true"
-                                                 aria-expanded="false">
-                                                <i class='bx bx-dots-horizontal-rounded'></i>
-                                            </div>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a class="dropdown-item edit-task"
-                                                       data-bs-toggle="modal" 
+                                            @if (userId.Equals(mainId) || (bool)isLeader)
+                                            {
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <a class="edit-task"
+                                                       data-bs-toggle="modal"
                                                        data-bs-target="#taskDetail"
                                                        data-id="@item._id">
-                                                        <i class='bx bx-edit-alt me-1 text-warning'></i>Chỉnh sửa
+                                                        <i class='bx bx-edit-alt text-warning'></i>
                                                     </a>
-                                                </li>
-                                                <li>
+                                                    <span>|</span>
                                                     <form asp-controller="Task" asp-action="UpdateStatus" asp-route-taskId="@item._id" id="status-form-@item._id" method="post">
-                                                        <a class="dropdown-item text-success btnStatus" data-id="@item._id" href="javascript:void(0);">
-                                                            <i class='bx bx-check me-2'></i>Hoàn thành nhiệm vụ
+                                                        <a class="text-success btnStatus" data-id="@item._id" href="javascript:void(0);">
+                                                            <i class='bx bx-check'></i>
                                                         </a>
                                                     </form>
-                                                </li>
-                                                <li>
-                                                    <hr class="dropdown-divider" />
-                                                </li>
-                                                <li>
+                                                    <span>|</span>
                                                     <form asp-controller="Task" asp-action="DeleteTask" asp-route-taskId="@item._id" id="delete-form-@item._id" method="post">
-                                                        <a class="dropdown-item text-danger btnDelete" data-id="@item._id" href="javascript:void(0);">
-                                                            <i class='bx bxs-trash-alt me-2'></i>Xóa nhiệm vụ
+                                                        <a class="text-danger btnDelete" data-id="@item._id" href="javascript:void(0);">
+                                                            <i class='bx bxs-trash-alt'></i>
                                                         </a>
                                                     </form>
-                                                </li>
-                                            </ul>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <a class="text-primary edit-task"
+                                                   data-bs-toggle="modal"
+                                                   data-bs-target="#taskDetail"
+                                                   data-id="@item._id">
+                                                    <i class='bx bx-info-circle'></i>
+                                                </a>
+                                                foreach (var member in item.members)
+                                                {
+                                                    if (userId.Equals(member._id))
+                                                    {
+                                                        <span>|</span>
+                                                        <form asp-controller="Task" asp-action="UpdateStatus" asp-route-taskId="@item._id" id="status-form-@item._id" method="post">
+                                                            <a class="text-success btnStatus" data-id="@item._id" href="javascript:void(0);">
+                                                                <i class='bx bx-check'></i>
+                                                            </a>
+                                                        </form>
+                                                    }
+                                                }
+                                            }
                                         </td>
                                     </tr>
                                 }
@@ -138,7 +157,6 @@
                     <h5>Hãy chia nhỏ công việc của bạn thành những nhiệm vụ nhé!</h5>
                 </div>
             }
-            
         </div>
     </main>
 </div>

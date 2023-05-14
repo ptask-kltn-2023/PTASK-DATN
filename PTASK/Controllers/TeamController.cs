@@ -52,10 +52,19 @@ namespace PTASK.Controllers
         }
 
         // GET: MemberController
-        public async Task<ActionResult> ListGroups(int pg=1)
+        public async Task<ActionResult> ListGroups(string searchName, int pg=1)
         {
             string projectId = _cache.Get<string>("ProjectID");
-            var result = await _team.GetAllTeams(projectId);
+            List<Team> result;
+            if (searchName == null || searchName == "")
+            {
+                result = await _team.GetAllTeams(projectId);
+            }
+            else
+            {
+                result = await _team.GetTeamsByName(searchName);
+                _cache.Set("isSearch", true);
+            }
 
             const int pageSize = 9;
             if (pg < 1)

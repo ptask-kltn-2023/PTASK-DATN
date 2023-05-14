@@ -121,7 +121,7 @@ namespace PTASK.Reponsitory
         public async Task<List<PTask>> GetTasksByWorkId(string workId)
         {
             var api = _httpClientFactory.CreateClient("apiTasksByWorkId");
-            var response = await api.GetAsync($"/api/tasks/get-task-in-list/{workId}");
+            var response = await api.GetAsync($"/api/tasks/get-task-in-work/{workId}");
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<List<PTask>>(content);
 

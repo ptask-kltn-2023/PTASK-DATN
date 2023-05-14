@@ -4,30 +4,34 @@ using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 using PTASK.Interface;
 using PTASK.Models;
+using System.Threading.Tasks;
 
 namespace PTASK.Controllers
 {
     public class WorkController : Controller
     {
         private readonly IWorkService _work;
+        private readonly ITeamService _team;
+
         private readonly IMemoryCache _cache;
-        public WorkController(IWorkService work, IMemoryCache cache)
+        public WorkController(IWorkService work, ITeamService team, IMemoryCache cache)
         {
             _work = work;
+            _team = team;
             _cache = cache;
         }
         // GET: WorkController
-        public async Task<IActionResult> Index(string name, bool? isBack, int pg = 1)
+        public async Task<IActionResult> Index(string searchName, bool? isBack, int pg = 1)
         {
             List<Work> result;
             string projectId = _cache.Get<string>("ProjectID");
-            if(name == null || name == "")
+            if(searchName == null || searchName == "")
             {
                 result = await _work.GetAllWorkByIdProject(projectId);
             }
             else
             {
-                result = await _work.GetWorksByName(name);
+                result = await _work.GetWorksByName(searchName);
                 _cache.Set("isSearch", true);
             }
             ViewData["TitleProject"] = _cache.Get<string>("TitleProject");
@@ -73,7 +77,7 @@ namespace PTASK.Controllers
         // POST: WorkController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(WorkCreate work)
+        public async Task<IActionResult> Create(WorkCreate work, string _idUpdate)
         {
             string projectId = _cache.Get<string>("ProjectID");
 
@@ -111,8 +115,15 @@ namespace PTASK.Controllers
                 }
                 
             }
-
-            var result = await _work.CreateWork(work, projectId);
+            bool result;
+            if (_idUpdate != null)
+            {
+                result = await _work.UpdateWork(work, _idUpdate);
+            }
+            else
+            {
+                result = await _work.CreateWork(work, projectId);
+            }
 
             if (result)
             {

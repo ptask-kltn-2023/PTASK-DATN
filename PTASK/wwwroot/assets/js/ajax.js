@@ -55,19 +55,22 @@ function searchTeam() {
         url: "/api/teams",
         method: "GET",
         success: function (data) {
-            var dataList = document.getElementById("dataListTeam");
+            var dataList = document.querySelectorAll('.selectedTeam');
             var defaultOption = document.createElement("option");
             defaultOption.value = 0;
             defaultOption.text = "-----------";
 
             if (dataList != null) {
-                dataList.insertBefore(defaultOption, dataList.firstChild);
-                data.forEach(function (value) {
-                    var option = document.createElement("option");
-                    option.value = value._id;
-                    option.text = value.teamName;
-                    dataList.appendChild(option);
-                    $("#leaderId").val(value.leaderId);
+                dataList.forEach(function (item) {
+                    item.insertBefore(defaultOption.cloneNode(true), item.firstChild);
+                    data.forEach(function (value) {
+                        var option = document.createElement("option");
+                        option.value = value._id;
+                        option.text = value.teamName;
+                        item.appendChild(option);
+                        $("#leaderId").val(value.leaderId);
+                        $("#leaderIdDetailWork").val(value.leaderId);
+                    });
                 });
             }
         },
@@ -81,6 +84,22 @@ function getUserById(id) {
     return new Promise(function (resolve, reject) {
         $.ajax({
             url: '/api/users/getUserById/' + id,
+            method: "GET",
+            success: function (data) {
+                // Tạo datalist từ dữ liệu nhận về
+                resolve(data);
+            },
+            error: function (error) {
+                reject(error);
+            }
+        });
+    });
+}
+
+function getTeamByWorkId(workId) {
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            url: '/api/teams/getTeamByWorkId/' + workId,
             method: "GET",
             success: function (data) {
                 // Tạo datalist từ dữ liệu nhận về
@@ -113,19 +132,21 @@ function getTaskById(taskId) {
 
 function getTaskByWorkId(workId) {
     return new Promise(function (resolve, reject) {
-        setTimeout(function () {
-            $.ajax({
-                url: "api/task/getByWorkId/" + workId,
-                method: "GET",
-                success: function (data) {
-                    // Tạo datalist từ dữ liệu nhận về
-                    resolve(data);
-                },
-                error: function (error) {
-                    reject(error);
-                }
-            });
-        }, 500); // Đặt độ trễ là 1000ms (có thể điều chỉnh theo nhu cầu)
+        $.ajax({
+            url: "api/task/getByWorkId/" + workId,
+            headers: {
+                "Cache-Control": "no-cache",
+                "Pragma": "no-cache"
+            },
+            method: "GET",
+            success: function (data) {
+                // Tạo datalist từ dữ liệu nhận về
+                resolve(data);
+            },
+            error: function (error) {
+                reject(error);
+            }
+        });
     });
 }
 
@@ -188,22 +209,6 @@ function convertTime(time) {
         minute: "2-digit"
     });
     return formattedTime.split(" ")[0];
-}
-
-function convertDate(date) {
-    var converDate = new Date(date);
-    let dateString = converDate.toLocaleDateString("vi-VN", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-    })
-
-    let dateParts = dateString.split("/");
-    let year = dateParts[2];
-    let month = dateParts[1];
-    let day = dateParts[0];
-
-    return `${year}-${month}-${day}`;
 }
 
 function createRemoveButton(listItem, listRemove, id, index) {

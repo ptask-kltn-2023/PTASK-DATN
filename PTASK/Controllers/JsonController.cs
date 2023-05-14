@@ -75,7 +75,7 @@ namespace PTASK.Controllers
             return null;
         }
 
-        [HttpGet("api/work/getWorkById/{workId}")]
+       [HttpGet("api/work/getWorkById/{workId}")]
        public async Task<Work> GetJsonWorkById(string workId)
         {
             var work = await _work.GetWorkById(workId);
@@ -95,6 +95,14 @@ namespace PTASK.Controllers
                 return teams;
             }
             return null;
+        }
+
+        [HttpGet("api/teams/getTeamByWorkId/{workId}")]
+        public async Task<List<Team>> GetJsonTeamsByWorkId(string workId)
+        {
+            var teams = await _team.GetTeamByWorkId(workId);
+
+            return teams;
         }
 
         [HttpGet("api/members/getbyworkid/{workId}")]

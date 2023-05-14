@@ -9,6 +9,7 @@ namespace PTASK.Interface
         Task<List<Work>> GetWorksByName(string name);
         Task<bool> ChangeStatus(string createId, string workId);
         Task<bool> CreateWork(WorkCreate work, string projectId);
+        Task<bool> UpdateWork(WorkCreate work, string workId);
         Task<bool> DeleteWork(string workId);
     }
 }

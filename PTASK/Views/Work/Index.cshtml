@@ -18,6 +18,7 @@
     var userId = cache.Get("UserId");
     var mainId = cache.Get("MainProject");
     var projectId = cache.Get("ProjectID");
+
     bool isSearch;
     if (cache.TryGetValue("isSearch", out object isSearchValue) && isSearchValue is bool)
     {
@@ -61,8 +62,8 @@
                     <h5 class="text-uppercase d-flex m-3 d-flex justify-content-between align-items-center">
                         <strong>Danh sách công việc</strong>
 
-                        <form class="d-flex" asp-controller="Work" asp-action="Index" asp-route-isBack="@isBack" method="get" style="width: 50%">
-                            <input name="name" class="form-control me-2" type="search" placeholder="Tìm kiếm công việc" aria-label="Tìm kiếm" />
+                        <form class="d-flex" asp-controller="Work" asp-action="Index" asp-route-isBack="@isBack" id="frmSearch" method="get" style="width: 50%">
+                            <input id="searchName" name="searchName" class="form-control me-2" type="search" placeholder="Tìm kiếm công việc" aria-label="Tìm kiếm" />
                             <button class="btn btn-outline-primary" type="submit" style="width: 200px"><i class='bx bx-search'></i>Tìm kiếm</button>
                         </form>
                     </h5>
@@ -74,7 +75,6 @@
                                     <th>Ngày bắt đầu</th>
                                     <th>Ngày kết thúc</th>
                                     <th>Nhóm thực hiện</th>
-                                    <th>Tiến độ công việc</th>
                                     <th>Trạng thái</th>
                                     <th></th>
                                 </tr>
@@ -91,14 +91,6 @@
                                         <td>
                                             @string.Join(",", item.teamName)
                                         </td>
-                                        <td class="btn-viewListTask">
-                                            <i class='bx bx-list-ul btn-viewListTask'
-                                               data-bs-toggle="tooltip"
-                                               data-bs-offset="0,4"
-                                               data-bs-placement="bottom"
-                                               data-bs-html="true"
-                                               title="<span>Xem chi tiết</span>"></i>
-                                        </td>
                                         <td>
                                             @if (item.status)
                                             {
@@ -111,14 +103,14 @@
                                         </td>
                                         <td>
                                             <div class="d-flex justify-content-between align-items-center">
-                                                @if (item.createId.Equals(userId))
+                                                @if (item.leaderId != null && item.leaderId.Equals(userId) || userId.Equals(mainId))
                                                 {
                                                     <a class="edit-work"
                                                        data-bs-toggle="modal"
                                                        data-bs-target="#workDetail"
                                                        data-id="@item._id">
                                                         <i class='bx bx-edit-alt text-warning'></i>
-                                                    </a> 
+                                                    </a>
                                                     <span>|</span>
                                                     <form asp-controller="Work" asp-action="UpdateStatus" asp-route-workId="@item._id" asp-route-createId="@item.createId" id="status-form-@item._id" method="post">
                                                         <a class="text-success btnStatus" data-id="@item._id" href="javascript:void(0);">
@@ -157,7 +149,6 @@
             {
                 @if (isSearch)
                 {
-
                     <div class="card">
                         <h5 class="text-uppercase d-flex m-3 d-flex justify-content-between align-items-center">
                             <strong>Danh sách công việc</strong>
@@ -170,7 +161,7 @@
                         
                     </div>
                     <div class="container text-center mt-4">
-                        <h5>Tên công việc không tồn tại !</h5>
+                        <h5>Công việc này chưa được tạo !</h5>
                     </div>
                 }
                 else
@@ -179,135 +170,13 @@
                         <h5>Hãy bắt đầu với 1 công việc !</h5>
                     </div>
                 }
-                @*<div class="main-wrapper ">
-                    <main class="main users chart-page" id="skip-target">
-                        <div class="container-xxl flex-grow-1 container-p-y" style="margin-top: 5%;">
-                            <h5 class="mb-4">Danh sách công việc</h5>
-                            <div class="alert alert-success" role="alert">This is a success alert — check it out!</div>
-                            <div class="detailProject">
-                                <div class="pb-5">
-                                    <div class="card card-effect bg-blur item-work">
-                                        <div class="card-header d-flex align-items-center dropend">
-                                            <input class="mt-2 ms-2 ip-list" value="Cần làm">
-                                            <div class="mt-2 ms-1 rounded-2 btn-operate"
-                                                 data-bs-toggle="dropdown"
-                                                 aria-haspopup="true"
-                                                 aria-expanded="false">
-                                                <i class='bx bx-dots-horizontal-rounded'></i>
-                                            </div>
-                                        </div>
-                                        <div class="ms-2 box " data-bs-toggle="modal"
-                                             data-bs-target="#largeModal">
-                                            <div class="target rounded-3" draggable="true">
-                                                <h5 class="card-title">Primary card title</h5>
-                                                <p class="card-text">Some quick example text to build on the card title and make up.</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="card-header d-flex justify-content-start align-items-center m-2 rounded-3 addNewMisson"
-                                             data-bs-toggle="modal" data-bs-target="#modalMisson">
-                                            <i class='bx bx-plus ps-2'></i>
-                                            <div class="ms-2">Thêm nhiệm vụ mới</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="pb-5">
-                                    <div class="card card-effect bg-blur item-work">
-                                        <div class="card-header d-flex align-items-center dropend">
-                                            <input class="mt-2 ms-2 ip-list" value="Đang làm">
-                                            <div class="mt-2 ms-1 rounded-2 btn-operate"
-                                                 data-bs-toggle="dropdown"
-                                                 aria-haspopup="true"
-                                                 aria-expanded="false">
-                                                <i class='bx bx-dots-horizontal-rounded'></i>
-                                            </div>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
-                                                <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
-                                                <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
-                                                <li>
-                                                    <hr class="dropdown-divider" />
-                                                </li>
-                                                <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="ms-2 box">
-                                            <div class="target rounded-3" draggable="true" data-bs-toggle="modal"
-                                                 data-bs-target="#modalCenter">
-                                                <h5 class="card-title">Primary card title</h5>
-                                                <p class="card-text">Some quick example text to build on the card title and make up.</p>
-                                            </div>
-                                        </div>
-                                        <div class="card-header d-flex justify-content-start align-items-center m-2 rounded-3 addNewMisson">
-                                            <i class='bx bx-plus ps-2'></i>
-                                            <div class="ms-2">Thêm nhiệm vụ mới</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="pb-5">
-                                    <div class="card card-effect bg-blur item-work">
-                                        <div class="card-header d-flex align-items-center dropend">
-                                            <input class="mt-2 ms-2 ip-list" value="Đã làm">
-                                            <div class="mt-2 ms-1 rounded-2 btn-operate"
-                                                 data-bs-toggle="dropdown"
-                                                 aria-haspopup="true"
-                                                 aria-expanded="false">
-                                                <i class='bx bx-dots-horizontal-rounded'></i>
-                                            </div>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
-                                                <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
-                                                <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
-                                                <li>
-                                                    <hr class="dropdown-divider" />
-                                                </li>
-                                                <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="ms-2 box ">
-                                            <div class="target rounded-3" draggable="true">
-                                                <h5 class="card-title">Primary card title 1</h5>
-                                                <p class="card-text">Some quick example text to build on the card title and make up.</p>
-                                            </div>
-                                            <div class="target rounded-3" draggable="true">
-                                                <h5 class="card-title">Primary card title2</h5>
-                                                <p class="card-text">Some quick example text to build on the card title and make up.</p>
-                                            </div><div class="target rounded-3" draggable="true">
-                                                <h5 class="card-title">Primary card title3</h5>
-                                                <p class="card-text">Some quick example text to build on the card title and make up.</p>
-                                            </div><div class="target rounded-3" draggable="true">
-                                                <h5 class="card-title">Primary card title4</h5>
-                                                <p class="card-text">Some quick example text to build on the card title and make up.</p>
-                                            </div><div class="target rounded-3" draggable="true">
-                                                <h5 class="card-title">Primary card title</h5>
-                                                <p class="card-text">Some quick example text to build on the card title and make up.</p>
-                                            </div>
-                                        </div>
-                                        <div class="card-header d-flex justify-content-start align-items-center m-2 rounded-3 addNewMisson">
-                                            <i class='bx bx-plus ps-2'></i>
-                                            <div class="ms-2">Thêm nhiệm vụ mới</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card add-new-list" data-bs-toggle="modal" data-bs-target="#modalWork">
-                                    <div class="card-header d-flex align-items-center" style="height: 100%">
-                                        <i class='ps-3 bx bx-plus'></i>
-                                        <div class="ms-2">Thêm công việc mới</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </main>
-                </div>*@
             }
         </div>
     </main>
 </div>
 
-
 <partial name="~/Views/Work/_AddWork.cshtml" model="new PTASK.Models.WorkCreate()" />
 <partial name="~/Views/Task/AddTask.cshtml" model="new PTASK.Models.PTask()"/>
-<partial name="~/Views/Work/DetailWork.cshtml" model="new PTASK.Models.Work()" />
+<partial name="~/Views/Work/DetailWork.cshtml" model="new PTASK.Models.WorkCreate()" />
 
 

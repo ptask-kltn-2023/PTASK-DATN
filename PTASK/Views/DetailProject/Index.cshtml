@@ -177,7 +177,7 @@
                                         data-bs-toggle="tooltip"
                                         data-popup="tooltip-custom"
                                         data-bs-placement="top"
-                                        title="@((member.position == "Leader") ? $"Nhóm trưởng {member.teamName}" : $"Thành viên {member.teamName}")">
+                                        title="@((member.position == "Leader") ? $"Nhóm trưởng { string.Join(",",member.teamName)}" : $"Thành viên { string.Join(",",member.teamName)}")">
                                         <img src="@member.avatar" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
                                         <strong class="ms-2">@member.name</strong>
                                     </li>
