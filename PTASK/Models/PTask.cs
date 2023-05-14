@@ -7,7 +7,6 @@
         public string description { get; set; }
         public string workName { get; set; }
         public string workId { get; set; }
-        public string imageLink { get; set; }
         public DateTime startDay { get; set; }
         public DateTime endDay { get; set; }
         public DateTime startHour { get; set; }
@@ -20,8 +19,8 @@
 
     public class infoMemberInTask
     {
+        public string _id { get; set; }
         public string name { get; set; }
         public string avatar { get; set; }
-
     }
 }

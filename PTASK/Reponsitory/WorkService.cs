@@ -128,5 +128,48 @@ namespace PTASK.Reponsitory
             var result = JsonConvert.DeserializeObject<List<Work>>(content);
             return result;
         }
+
+        public async Task<bool> UpdateWork(WorkCreate work, string workId)
+        {
+            var api = _httpClientFactory.CreateClient("apiUpdateWork");
+            string[] outputArray;
+            if (work.teamId.Count > 0)
+            {
+                if (string.IsNullOrEmpty(work.teamId[0]))
+                {
+                    outputArray = new string[] { };
+                }
+                else
+                {
+                    outputArray = work.teamId[0].Split(',');
+                }
+            }
+            else
+            {
+                outputArray = new string[] { };
+            }
+            // Tạo json data
+            string jsonData = JsonConvert.SerializeObject(new
+            {
+                work.name,
+                startTime = work.startTime.ToString("MM-dd-yyyy"),
+                endTime = work.endTime.ToString("MM-dd-yyyy"),
+                teamId = outputArray,
+                work.leaderId
+            });
+            // Format json
+            var jsonContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            // Truyền json vào api
+            var response = await api.PatchAsync($"/api/works/{workId}", jsonContent);
+            //Kiểm tra dữ liệu trả về
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

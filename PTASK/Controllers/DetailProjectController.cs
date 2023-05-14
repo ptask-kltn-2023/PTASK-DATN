@@ -32,11 +32,11 @@ namespace PTASK.Controllers
             Project resultProject;
             List<Work> resultWork;
             List<Member> resultMember;
-            List<PTask> resultTask; 
+            List<PTask> resultTask;
 
             //Gán dữ liệu vào bộ nhớ tạm
             var cache = HttpContext.RequestServices.GetRequiredService<IMemoryCache>();
-
+            
             if (!projectId.IsNullOrEmpty())
             {
                 cache.Set("ProjectID", projectId);
@@ -54,7 +54,20 @@ namespace PTASK.Controllers
             cache.Set("TitleProject", resultProject.name);
             cache.Set("MainProject", resultProject.mainProject);
             ViewData["TitleProject"] = resultProject.name;
-
+            List<string> listIdLeader = await _team.GetAllIdLeader();
+            var userId = cache.Get<string>("UserId");
+            foreach (var item in listIdLeader)
+            {
+                if (userId.Equals(item))
+                {
+                    cache.Set("isLeader", true);
+                    break;
+                }
+                else
+                {
+                    cache.Set("isLeader", false);
+                }
+            }
             //var idUser = cache.Get<string>("UserId");
 
             var detailProject = new DetailProject

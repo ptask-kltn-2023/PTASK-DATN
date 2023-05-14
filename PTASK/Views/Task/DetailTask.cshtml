@@ -3,6 +3,10 @@
 @{
     var cache = Context.RequestServices.GetRequiredService<IMemoryCache>();
     var mainId = cache.Get("MainProject");
+    var userId = cache.Get("UserId");
+    var avatarUser = cache.Get("Avatar");
+    var isLeader = cache.Get("isLeader");
+
 }
 
 <div class="modal fade" id="taskDetail" tabindex="-1" aria-hidden="true">
@@ -110,16 +114,21 @@
                         <hr />
                         <div class="row mt-2">
                             <div class="col mb-3 ">
+                                
                                 <label for="nameWithTitle" class="form-label">
                                     <i class="bx bx-comment"></i> Bình luận
                                 </label>
-                                <div class="input-group  avatar-group">
-                                    <span data-bs-toggle="tooltip"
-                                          data-popup="tooltip-custom"
-                                          data-bs-placement="top"
-                                          class="avatar avatar-xs pull-up"
-                                          title="Lilian Fuller">
-                                        <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
+                                <div class="input-group avatar-group align-items-center">
+                                    <span class="avatar avatar-xs pull-up">
+                                        <img src="@avatarUser" alt="Avatar" class="rounded-circle" />
+                                    </span>
+                                    <label class="ms-2">
+                                        Bình luận ádasdasdasd
+                                    </label>
+                                </div>
+                                <div class="input-group avatar-group">
+                                    <span class="avatar avatar-xs pull-up">
+                                        <img src="@avatarUser" alt="Avatar" class="rounded-circle" />
                                     </span>
                                     <textarea id="basic-icon-default-message"
                                               class="ms-1 form-control"
@@ -136,7 +145,7 @@
                         </div>
                         <div class="demo-inline-spacing mt-2">
                             <div class="list-group list-group-flush">
-                                <a href="javascript:void(0);" 
+                                <a href="javascript:void(0);"
                                    class="list-group-item list-group-item-action dropdown-item"
                                    data-bs-toggle="dropdown"
                                    aria-haspopup="true"
@@ -166,12 +175,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                        Đóng
-                    </button>
-                    <button type="submit" class="btn btn-primary">Lưu</button>
-                </div>
+                @if (userId.Equals(mainId) || (bool)isLeader)
+                {
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            Đóng
+                        </button>
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                    </div>
+                }
             </div>
         </form>
     </div>

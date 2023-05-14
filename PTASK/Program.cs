@@ -38,6 +38,8 @@ builder.Services.AddCustomHttpClient("apiGetProjectsByIdUser", apiUrl);
 builder.Services.AddCustomHttpClient("apiGetUserById", apiUrl);
 builder.Services.AddCustomHttpClient("apiGetWorkById", apiUrl);
 builder.Services.AddCustomHttpClient("apiTasksByWorkId", apiUrl);
+builder.Services.AddCustomHttpClient("apiGetTeamByWorkId", apiUrl);
+builder.Services.AddCustomHttpClient("apiGetAllIdLeader", apiUrl);
 
 //API LOGIN
 builder.Services.AddCustomHttpClient("apiLogin", apiUrl);
@@ -53,6 +55,8 @@ builder.Services.AddCustomHttpClient("removeTeamInProject", apiUrl);
 builder.Services.AddCustomHttpClient("changeStatusTask", apiUrl);
 builder.Services.AddCustomHttpClient("changeStatusWork", apiUrl);
 builder.Services.AddCustomHttpClient("apiUpdateTask", apiUrl);
+builder.Services.AddCustomHttpClient("apiUpdateWork", apiUrl);
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

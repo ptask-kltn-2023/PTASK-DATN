@@ -14,6 +14,17 @@
     }
     var userId = cache.Get("UserId");
     var mainId = cache.Get("MainProject");
+
+    bool isSearch;
+    if (cache.TryGetValue("isSearch", out object isSearchValue) && isSearchValue is bool)
+    {
+        isSearch = (bool)isSearchValue;
+    }
+    else
+    {
+        // Giá trị mặc định nếu không tìm thấy trong cache
+        isSearch = false;
+    }
 }
 <partial name="~/Views/Shared/Partial/_NavLeft.cshtml" />
 <div class="main-wrapper ">
@@ -36,8 +47,8 @@
                 <div class="card">
                     <h5 class="text-uppercase d-flex m-3 align-items-center justify-content-between">
                         <strong>Danh sách nhóm</strong>
-                        <form class="d-flex" onsubmit="return false">
-                            <input class="form-control me-2" type="search" placeholder="Tìm kiếm nhóm" aria-label="Tìm kiếm" />
+                        <form class="d-flex" asp-controller="Team" asp-action="ListGroups" id="frmSearch" method="get" style="width: 50%">
+                            <input id="searchName" name="searchName" class="form-control me-2" type="search" placeholder="Tìm kiếm nhóm" aria-label="Tìm kiếm" />
                             <button class="btn btn-outline-primary" type="submit" style="width: 200px"><i class='bx bx-search'></i>Tìm kiếm</button>
                         </form>
                     </h5>
@@ -48,7 +59,6 @@
                                     <th>Tên nhóm</th>
                                     <th>Trưởng nhóm</th>
                                     <th>Công việc tham gia</th>
-                                    <th style="width:100px">Danh sách thành viên</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -61,25 +71,18 @@
                                         <td style="word-wrap: break-all;">
                                             <span style="white-space: normal;"> @string.Join(", ", item.workName)</span>
                                         </td>
-                                        <td class="text-center btn-viewListTask">
-                                            <i class='bx bx-list-ul btn-viewListTask'
-                                               data-bs-toggle="tooltip"
-                                               data-bs-target="#DetailMember"
-                                               data-bs-offset="0,4"
-                                               data-bs-placement="bottom"
-                                               data-bs-html="true"
-                                               onclick="showModal()"
-                                               title="<span>Xem chi tiết</span>"></i>
-                                        </td>
                                         <td>
-                                            <a data-bs-toggle="modal"
-                                               data-bs-target="#largeModal" href="javascript:void(0);"><i class='bx bx-edit-alt me-1 text-warning'></i></a>
-                                            ||
-                                            <form asp-controller="Team" asp-action="DeleteTeam" asp-route-teamId="@item._id" id="delete-form-@item._id" method="post">
-                                                <a class="text-danger btnDelete" data-id="@item._id" href="javascript:void(0);">
-                                                    <i class="bx bx-trash me-1 text-danger"></i>
-                                                </a>
-                                            </form>
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <a data-bs-toggle="modal"
+                                                   data-bs-target="#largeModal" href="javascript:void(0);"><i class='bx bx-edit-alt me-1 text-warning'></i></a>
+                                                <span>||</span>
+                                                <form asp-controller="Team" asp-action="DeleteTeam" asp-route-teamId="@item._id" id="delete-form-@item._id" method="post">
+                                                    <a class="text-danger btnDelete" data-id="@item._id" href="javascript:void(0);">
+                                                        <i class="bx bx-trash me-1 text-danger"></i>
+                                                    </a>
+                                                </form>
+                                            </div>
+                                           
                                         </td>
                                     </tr>
                                 }
@@ -94,9 +97,30 @@
             }
             else
             {
-                <div class="container text-center mt-4">
-                    <h5>Dự án này chưa có nhóm!</h5>
-                </div>
+                @if (isSearch)
+                {
+
+                    <div class="card">
+                        <h5 class="text-uppercase d-flex m-3 d-flex justify-content-between align-items-center">
+                            <strong>Danh sách nhóm</strong>
+
+                            <form class="d-flex" asp-controller="Team" asp-action="ListGroups" id="frmSearch" method="get" style="width: 50%">
+                                <input id="searchName" name="searchName" class="form-control me-2" type="search" placeholder="Tìm kiếm nhóm" aria-label="Tìm kiếm" />
+                                <button class="btn btn-outline-primary" type="submit" style="width: 200px"><i class='bx bx-search'></i>Tìm kiếm</button>
+                            </form>
+                        </h5>
+
+                    </div>
+                    <div class="container text-center mt-4">
+                        <h5>Nhóm này chưa được tạo!</h5>
+                    </div>
+                }
+                else
+                {
+                    <div class="container text-center mt-4">
+                        <h5>Dự án này chưa có nhóm!</h5>
+                    </div>
+                }
             }
         </div>
     </main>

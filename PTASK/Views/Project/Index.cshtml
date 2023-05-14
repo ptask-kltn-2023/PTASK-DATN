@@ -3,13 +3,12 @@
 @{
     Layout = "_LayoutProject";
 }
-<partial name="~/Views/Shared/Partial/_NavLeft.cshtml" view-data='@new ViewDataDictionary(ViewData) { { "TitleProject",  "PTASK"} }' />
 <div class="main-wrapper ">
     <main class="main users chart-page" id="skip-target">
-        <div class="container-xxl flex-grow-1 container-p-y" style="margin-top: 6%;">
+        <div class="container-xxl flex-grow-1 container-p-y" style="margin-top: 4%;">
             @if(Model.Count() > 0)
             {
-                <h5 class="pb-1 mb-4">Dự án đang tham gia</h5>
+                <h5 class="mb-2">Dự án bạn tham gia</h5>
                 <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
                     @foreach (var item in Model)
                     {
@@ -21,14 +20,6 @@
                                style="background-image: url('@item.background'); height: 110px">
                                 <div class="overlay">
                                     <h5 class="card-title text-white">@item.name</h5>
-                                    <p class="card-text mt-4">Tiến độ dự án</p>
-                                    <div class="progress mt-2">
-                                        <div id="projectProgress_@item._id" class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                                             role="progressbar"
-                                             aria-valuemin="0"
-                                             aria-valuemax="100">
-                                        </div>
-                                    </div>
                                 </div>
                             </a>
                         </div>
@@ -44,38 +35,3 @@
         </div>
     </main>
 </div>
-
-@section Scripts{
-    <script>
-        var progressBar = $("div[id^=projectProgress]");
-
-        for (let i = 0; i < progressBar.length; i++) {
-            (function () {
-                let id = progressBar.eq(i).attr("id").split("_")[1];
-                console.log("N", id);
-
-                getWorksByIdProject(id)
-                    .then(function (data) {
-                        console.log(id);
-                        let countSuccessWork = 0;
-                        let percentWork = 0;
-                        if (data.length > 0) {
-                            data.forEach(function (item) {
-                                if (item.status) {
-                                    countSuccessWork++;
-                                }
-                            });
-                            percentWork = (countSuccessWork * 100) / data.length;
-                        }
-                        let progressElement = $("#projectProgress_" + id);
-                        progressElement.css("width", percentWork + "%");
-                        progressElement.attr("aria-valuenow", percentWork);
-                        progressElement.text(percentWork + "%");
-                    })
-                    .catch(function (error) {
-                        console.error(error); // Xử lý lỗi (nếu có)
-                    });
-            })();
-        }
-    </script>
-}

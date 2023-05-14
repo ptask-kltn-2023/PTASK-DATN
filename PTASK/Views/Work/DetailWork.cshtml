@@ -1,17 +1,19 @@
 ﻿@using Microsoft.Extensions.Caching.Memory;
-@model Work
+@model WorkCreate
 
 @{
     var cache = Context.RequestServices.GetRequiredService<IMemoryCache>();
     var mainId = cache.Get("MainProject");
+    var userId = cache.Get("UserId");
+    var avatarUser = cache.Get("Avatar");
+    var isLeader = cache.Get("isLeader");
 }
 <div class="modal fade" id="workDetail" tabindex="-1" aria-hidden="true">
     <input type="hidden" value="@mainId" id="mainId" />
 
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
          <form asp-controller="Work" asp-action="Create" style="width: 100%">
-            <input type="hidden" name="isUpdate" value="true" />
-            <input type="hidden" asp-for="_id" id="_idUpdate" />
+            <input type="hidden" id="_idUpdate" name="_idUpdate" value="" />
             <div class="modal-content">
                 <div class="modal-header">
                     <input class="mt-2 ms-2 ip-list" asp-for="name" id="nameWork">
@@ -25,19 +27,13 @@
                         <div class="d-flex justify-content-between">
                             <b>Danh sách nhiệm vụ</b>
                             <span>
-                                <a asp-area="" asp-controller="Task" asp-action="Index" asp-route-isBack="true" class="text-primary view-detail">Xem chi tiết >></a>
+                                <a asp-area="" 
+                                   asp-controller="Task" 
+                                   asp-action="Index" asp-route-isBack="true" class="text-primary view-detail">Xem chi tiết >></a>
                             </span>
                         </div>
                         <div class="demo-inline-spacing">
                             <ul class="list-group listToDo">
-                                <li class="list-group-item d-flex justify-content-between">
-                                    Soufflé pastry pie ice
-                                    <i class='text-success bx bx-check-circle'></i>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between">
-                                    Bear claw cake biscuit
-                                    <i class='text-success bx bx-check-circle'></i>
-                                </li>
                             </ul>
                         </div>
                         <hr class="mt-4" />
@@ -45,24 +41,21 @@
                         <div class="g-2">
                             <b>Ngày thực hiện</b>
                             <div class="col d-flex align-items-center justify-content-between mb-3">
-                                <label for="date-start" class="col-form-label">Ngày bắt đầu</label>
-                                <input class="form-control" type="date" value="" id="date-start" />
+                                <label asp-for="startTime" class="col-form-label">Ngày bắt đầu</label>
+                                <input class="form-control" type="date" value="" id="date-start" asp-for="startTime"/>
                             </div>
                             <div class="col d-flex align-items-center justify-content-between">
-                                <label for="date-end" class="col-form-label">Ngày kết thúc</label>
-                                <input class="form-control" type="date" value="" id="date-end" />
+                                <label asp-for="endTime" class="col-form-label">Ngày kết thúc</label>
+                                <input class="form-control" type="date" value="" id="date-end" asp-for="endTime" />
                             </div>
                         </div>
                         <div class="g-2">
                             <b>Tiến độ công việc</b>
                             <div class="progress mt-2">
-                                <div class="progress-bar bg-success"
+                                <div id="percentWork" class="progress-bar bg-success"
                                      role="progressbar"
-                                     style="width: 40%"
-                                     aria-valuenow="40"
                                      aria-valuemin="0"
                                      aria-valuemax="100">
-                                    40%
                                 </div>
                             </div>
                         </div>
@@ -70,21 +63,18 @@
 
                         <div class="row mt-2">
                             <div class="col mb-3 ">
-                                <label for="nameWithTitle" class="form-label">
+                                <label for="" class="form-label">
                                     <i class="bx bx-comment"></i> Bình luận
                                 </label>
-                                <div class="input-group  avatar-group">
-                                    <span data-bs-toggle="tooltip"
-                                          data-popup="tooltip-custom"
-                                          data-bs-placement="top"
-                                          class="avatar avatar-xs pull-up"
-                                          title="Lilian Fuller">
-                                        <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
+                                <div class="input-group avatar-group">
+                                    <span class="avatar avatar-xs pull-up">
+                                        <img src="@avatarUser" alt="Avatar" class="rounded-circle" />
                                     </span>
-                                    <textarea id="basic-icon-default-message"
+                                    <textarea id="basic-icon-default-message commentText"
                                               class="ms-1 form-control"
                                               placeholder="Viết bình luận của bạn"></textarea>
                                 </div>
+                                <button type="button" id="submitButton" class="btn btn-sm btn-primary mt-2 position-absolute end-0">Nhập</button>
                             </div>
                         </div>
                     </div>
@@ -134,11 +124,11 @@
                                             <div class="dropdown-menu dropdown-menu-end w-px-300 p-2">
                                                 <div class="mb-3">
                                                     <label class="form-label">Danh sách nhóm</label>
-                                                    <select id="dataListTeam" class="select2 form-select">
+                                                    <select id="listTeamDetailWork" class="select2 form-select selectedTeam">
                                                     </select>
                                                 </div>
                                                 <button type="button" class="btn btn-outline-secondary">Hủy</button>
-                                                <button type="button" class="btn btn-primary" id="btnAddTeam">Thêm</button>
+                                                <button type="button" class="btn btn-primary" id="btnListTeamDetail">Thêm</button>
                                                 <a class="text-primary btn float-end" asp-area="" asp-controller="Member" asp-action="ListGroups">
                                                     <u>Tạo nhóm</u>
                                                 </a>
@@ -146,53 +136,31 @@
                                         </div>
                                     </li>
                                 </ul>
-                                <ul class="list-group" id="leaderList">
+                                <ul class="list-group" id="leaderList" >
                                 </ul>
-                                <input type="hidden" id="leaderId" />
-                                <a href="javascript:void(0);" t class="list-group-item list-group-item-action">
-                                    <i class='bx bx-receipt me-2'></i>Xuất báo cáo
-                                </a>
+                                <input type="hidden" id="leaderIdDetailWork" asp-for="leaderId"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col m-2">
-                                <b>Người thực hiện</b>
+                                <b>Nhóm thực hiện</b>
                             </div>
-                            <ul class="">
-                                <li class="m-1"
-                                    data-bs-toggle="tooltip"
-                                    data-popup="tooltip-custom"
-                                    data-bs-placement="top"
-                                    title="Lilian Fuller">
-                                    <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
-                                    <strong class="ms-2">Lilian Fuller</strong>
-                                </li>
-                                <li class="m-1"
-                                    data-bs-toggle="tooltip"
-                                    data-popup="tooltip-custom"
-                                    data-bs-placement="top"
-                                    title="Lilian Fuller">
-                                    <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
-                                    <strong class="ms-2">Lilian Fuller</strong>
-                                </li>
-                                <li class="m-1"
-                                    data-bs-toggle="tooltip"
-                                    data-popup="tooltip-custom"
-                                    data-bs-placement="top"
-                                    title="Lilian Fuller">
-                                    <img src="/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle pull-up" width="35" height="35" />
-                                    <strong class="ms-2">Lilian Fuller</strong>
-                                </li>
+                            <ul class="listTeamInDetailWork">
                             </ul>
+                            <input type="hidden" asp-for="teamId" id="idTeamInDetailProject"/>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                        Đóng
-                    </button>
-                    <button type="submit" class="btn btn-primary">Lưu</button>
-                </div>
+                @if (userId.Equals(mainId) || (bool)isLeader)
+                {
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            Đóng
+                        </button>
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                    </div>
+                }
+              
             </div>
          </form>
     </div>

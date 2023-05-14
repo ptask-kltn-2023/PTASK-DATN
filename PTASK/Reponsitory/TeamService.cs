@@ -161,5 +161,34 @@ namespace PTASK.Reponsitory
             var result = JsonConvert.DeserializeObject<List<User>>(content);
             return result;
         }
+
+        public async Task<List<Team>> GetTeamByWorkId(string workId)
+        {
+            var api = _httpClientFactory.CreateClient("apiGetTeamByWorkId");
+            var response = await api.GetAsync($"/api/teams/teams-work/{workId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<List<Team>>(content);
+            return result;
+        }
+
+        public async Task<List<Team>> GetTeamsByName(string teamName)
+        {
+            var projectId = _cache.Get<string>("ProjectID");
+            var api = _httpClientFactory.CreateClient("apiGetWorkByName");
+            var response = await api.GetAsync($"api/teams/name/{projectId}/{teamName}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<List<Team>>(content);
+            return result;
+        }
+
+        public async Task<List<string>> GetAllIdLeader()
+        {
+            var projectId = _cache.Get<string>("ProjectID");
+            var api = _httpClientFactory.CreateClient("apiGetAllIdLeader");
+            var response = await api.GetAsync($"/api/teams/leader-member/{projectId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<List<string>>(content);
+            return result;
+        }
     }
 }

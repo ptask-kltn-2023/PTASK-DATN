@@ -75,7 +75,7 @@
                                         </td>
                                         <td style="word-wrap: break-all;">
                                             <strong style="white-space: normal;">
-                                                @((item.position == "Leader") ? $"Nhóm trưởng {item.teamName}" : $"Thành viên {item.teamName}")
+                                                @((item.position == "Leader") ? $"Nhóm trưởng {string.Join(",", item.teamName)}" : $"Thành viên {string.Join(",", item.teamName)}")
                                             </strong>
                                         </td>
                                         <td>

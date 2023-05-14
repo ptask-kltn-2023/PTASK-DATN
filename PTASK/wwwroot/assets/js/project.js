@@ -576,7 +576,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.style.cursor = 'pointer';
                 this.style.border = null;
             })
-        })
+        });
     })();
 
     (function () {
@@ -639,6 +639,16 @@ document.addEventListener('DOMContentLoaded', function () {
         addUser(email, true);
         document.getElementById("emailMember").value = '';
     });
+
+    $("#btnNewMember").click(function () {
+        var email = document.getElementById("emailMember").value;
+        if (email != "") {
+            $("#formAddMember").submit();
+        } else {
+            alert("Vui lòng nhập email")
+        }
+    });
+
 
     $("#addLeader").click(function () {
         var email = document.getElementById("emailLeader").value;
@@ -731,6 +741,38 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    var listTeamInDeatailWork = [];
+
+    function addTeamDetail() {
+        if (!listTeamInDeatailWork.includes(idTeam)) {
+            listTeamInDeatailWork.push(idTeam);
+            listIndex = [];
+
+            var formTeam = $(".listTeamInDetailWork");
+            var li = $("<li></li>").addClass("list-group-item d-flex justify-content-between align-items-center");
+            var strong = $("<strong></strong>");
+
+            strong.text(teamName);
+            li.append(strong);
+
+            var removeButton = $("<button></button>").addClass("btn btn-sm btn-danger ms-2").html('<i class="bx bx-x"></i>').attr("type","button");
+            var index = listTeamInDeatailWork.indexOf(idTeam);
+
+            removeButton.on("click", function () {
+                if (listIndex.length > 0) {
+                    index = listIndex.indexOf(idTeam);
+                }
+                listTeamInDeatailWork.splice(index, 1);
+                listIndex = listTeamInDeatailWork;
+                li.remove();
+                $("#idTeamInDetailProject").val(listTeamInDeatailWork.join(','));
+            });
+            li.append(removeButton)
+            formTeam.append(li);
+            $("#idTeamInDetailProject").val(listTeamInDeatailWork.join(','));
+        }
+    }
+
     $("#dataListTeam").change(function () {
         getSelectedOption();
         updateTeamId();
@@ -740,6 +782,18 @@ document.addEventListener('DOMContentLoaded', function () {
         getSelectedOption();
         addTeam();
         $("#teamId").val(listTeam.join(','));
+    });
+
+
+    $("#btnListTeamDetail").click(function () {
+        idTeam = $("#listTeamDetailWork").val();
+
+        if (idTeam != 0) {
+            teamName = $("#listTeamDetailWork").find("option:selected").text();
+            addTeamDetail();
+        } else {
+            alert("Vui lòng chọn nhóm");
+        }
     })
 
     // Lắng nghe sự kiện khi người dùng chọn một option trong datalist
@@ -769,9 +823,9 @@ document.addEventListener('DOMContentLoaded', function () {
     //Biến sử dụng cho phần phân công thành viên vào task
     var listNewMemberByWorkId = [];
     var listIdOfOldMember = [];
-    var listIndex= [];
+    var listIndex = [];
 
-    $('#assignment').change(function () { 
+    $('#assignment').change(function () {
         var selectedValue = $(this).val();
 
         if (!isEmail(selectedValue)) {
@@ -781,14 +835,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (data.fullName == selectedValue) {
                         genarateAssignment(data, false);
                         $("#memberId").val(listNewMemberByWorkId.join(','));
-                        listNewMemberByWorkId = [];
                     }
-                    $(this).val('');
                 })
                 .catch(function (error) {
                     console.error(error); // Xử lý lỗi (nếu có)
                 });
         }
+        $(this).val('');
     });
 
     $('#emailMemberDetail').change(function () {
@@ -810,7 +863,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         genarateAssignment(data, true);
 
                         $("#listMemberDetail").val(listNewMemberByWorkId.join(','));
-                    } 
+                    }
                     $(this).val('');
                 })
                 .catch(function (error) {
@@ -878,7 +931,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             alert("Vui lòng nhập đúng định dạng email");
         }
-       
+
         $("#emailMemberDetail").val("");
     });
 
@@ -892,7 +945,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Hàm tạo danh sách thành viên phân công
     function genarateAssignment(data, isDetail) {
         if (!listNewMemberByWorkId.includes(data._id)) {
-
+            console.log(data);
             listNewMemberByWorkId.push(data._id);
             var listItem = $("<li></li>").addClass("list-group-item d-flex justify-content-between align-items-center");
             var removeButton = $("<button></button>").addClass("btn btn-sm btn-danger ms-2").html('<i class="bx bx-x"></i>');
@@ -938,7 +991,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     }
-    
+
     // gán giá trị level lúc tạo task
     $('input[name="selectLevel"]').change(function () {
         var selectedValue = $('input[name="selectLevel"]:checked').val();
@@ -958,7 +1011,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Click change status
     $(".btnStatus").click(function () {
         var id = $(this).data('id');
-        $('#status-form-' + id ).submit();
+        $('#status-form-' + id).submit();
     })
 
     // Click delete
@@ -972,7 +1025,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var taskId = $(this).data('id');
         getTaskById(taskId)
             .then(function (data) {
-                $("#_idUpdate").val(data._id);
+                $("#workId").val(data._id);
 
                 $("#nameTask").val(data.name);
 
@@ -993,6 +1046,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else {
                     $('#rdoDoing').prop('checked', true);
                 }
+
                 $('#time-start').val(convertTime(data.startHour));
                 $('#time-end').val(convertTime(data.endHour));
                 $('#date-start').val(convertDate(data.startDay));
@@ -1003,7 +1057,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             genarateAssignment(item, true);
                             $("#listMemberDetail").val(listNewMemberByWorkId.join(','));
                         })
-
                     })
                     .catch(function (error) {
                         console.error(error); // Xử lý lỗi (nếu có)
@@ -1031,43 +1084,114 @@ document.addEventListener('DOMContentLoaded', function () {
     //EDIT WORK
     $(".edit-work").click(function () {
         var workId = $(this).data('id');
-        //getTaskByWorkId(workId)
-        //    .then(function (data) {
-        //        console.log(data);
-        //    })
-        //    .catch(function (error) {
-        //        console.error(error); // Xử lý lỗi (nếu có)
-        //    });
-        //getWorkById(workId)
-        //    .then(function (data) {
-        //        $("#idUpdate").val(data._id);
+        $("#_idUpdate").val(workId);
 
-        //        $("#nameWork").val(data.name);
+        getWorkById(workId)
+            .then(function (data) {
 
-        //        //$("#levelUpdate").val(data.level);
-        //        //if (data.level == 1) {
-        //        //    $('#rdoNormal').prop('checked', true);
-        //        //} else if (data.level == 2) {
-        //        //    $('#rdoWarning').prop('checked', true);
-        //        //} else {
-        //        //    $('#rdoDanger').prop('checked', true);
-        //        //}
+                $("#nameWork").val(data.name);
+                $("#percentWork").addClass("percent_work_" + data._id);
 
-        //        //$("#statusUpdate").val(data.status);
-        //        //if (data.status) {
-        //        //    $('#rdoSuccess').prop('checked', true);
-        //        //} else {
-        //        //    $('#rdoDoing').prop('checked', true);
-        //        //}
-        //        //$('#time-start').val(convertTime(data.startHour));
-        //        //$('#time-end').val(convertTime(data.endHour));
-        //        //$('#date-start').val(convertDate(data.startDay));
-        //        //$('#date-end').val(convertDate(data.endDay));
-        //    })
-        //    .catch(function (error) {
-        //        console.error(error); // Xử lý lỗi (nếu có)
-        //    });
+                getTaskByWorkId(workId)
+                    .then(function (tasks) {
+                        var percentWork = 0;
+                        var countStatus = 0;
+                        $(".listToDo").empty();
+                        console.log(tasks);
+
+                        if (tasks.length > 0) {
+                            tasks.forEach(function (item, index) {
+                                var li = $("<li></li>").addClass("list-group-item d-flex justify-content-between");
+                                var i = $("<i></i>");
+                                if (item.status) {
+                                    countStatus++;
+                                    i.addClass("text-success bx bx-task");
+                                } else {
+                                    i.addClass("text-warning bx bx-task-x");
+                                }
+                                li.text(item.name);
+                                li.append(i);
+                                $(".listToDo").append(li);
+                            });
+                        } else {
+                            $(".listToDo").append("<span class='text-danger'>Công việc này chưa có nhiệm vụ</span>")
+                        }
+                        
+                        if (tasks.length > 0) {
+                            percentWork = (countStatus * 100) / tasks.length;
+                        }
+                        var roundedPercentWork = percentWork.toFixed(2);
+                        let progressElement = $(".percent_work_" + data._id);
+                        progressElement.css("width", roundedPercentWork + "%");
+                        progressElement.attr("aria-valuenow", roundedPercentWork);
+                        progressElement.text(roundedPercentWork + "%");
+                    })
+                    .catch(function (error) {
+                        console.error(error); // Xử lý lỗi (nếu có)
+                    });
+                $('#date-start').val(convertDate(data.startTime));
+                $('#date-end').val(convertDate(data.endTime));
+                genarateTeamInDetailWork(workId);
+            })
+            .catch(function (error) {
+                console.error(error); // Xử lý lỗi (nếu có)
+            });
     });
+
+    
+    function genarateTeamInDetailWork(workId) {
+        getTeamByWorkId(workId)
+            .then(function (task) {
+                $(".listTeamInDetailWork").empty();
+                task.forEach(function (item, index) {
+                    if (!listTeamInDeatailWork.includes(item)) {
+                        listTeamInDeatailWork.push(item._id);
+                        listIndex = [];
+                        var li = $("<li></li>").addClass("list-group-item d-flex justify-content-between align-items-center");
+                        var strong = $("<strong></strong>");
+                       
+                        strong.text(item.teamName);
+                        li.append(strong);
+
+                        var removeButton = $("<button></button>").addClass("btn btn-sm btn-danger ms-2").html('<i class="bx bx-x"></i>');
+                        var index = listTeamInDeatailWork.indexOf(item._id);
+
+                        removeButton.on("click", function () {
+                            if (listIndex.length > 0) {
+                                index = listIndex.indexOf(item._id);
+                            }
+                            listTeamInDeatailWork.splice(index, 1);
+                            listIndex = listTeamInDeatailWork;
+                            li.remove();
+                            $("#idTeamInDetailProject").val(listTeamInDeatailWork.join(','));
+                        });
+                        li.append(removeButton)
+                        $(".listTeamInDetailWork").append(li);
+
+                    }
+                });
+                $("#idTeamInDetailProject").val(listTeamInDeatailWork.join(','))
+            })
+            .catch(function (error) {
+                console.error(error); // Xử lý lỗi (nếu có)
+            });
+    };
+
+    function convertDate(date) {
+        var converDate = new Date(date);
+        let dateString = converDate.toLocaleDateString("vi-VN", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+        })
+
+        let dateParts = dateString.split("/");
+        let year = dateParts[2];
+        let month = dateParts[1];
+        let day = dateParts[0];
+
+        return `${year}-${month}-${day}`;
+    }
 
     //convert time to 24h
     $("#startHour").change(function () {
@@ -1089,7 +1213,7 @@ document.addEventListener('DOMContentLoaded', function () {
     //Logout
     $("#btnLogout").click(function () {
         $('#form-logout').submit();
-    })
+    });
 
     //Add Member
     function updateTeamId() {
@@ -1098,7 +1222,11 @@ document.addEventListener('DOMContentLoaded', function () {
             $('#formAddMember').attr('action', '/Team/CreateMember?teamId=' + selectedTeamId);
         }
     }
+
+    $("#searchName").on('change', function () {
+        if ($(this).val() == "") {
+            $("#frmSearch").submit();
+        }
+    });
+   
 });
-
-
-

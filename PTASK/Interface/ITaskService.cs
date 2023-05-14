@@ -13,6 +13,5 @@ namespace PTASK.Interface
 
         Task<bool> DeleteTask(string taskId);
         Task<bool> ChangeStatus(string taskId);
-
     }
 }
