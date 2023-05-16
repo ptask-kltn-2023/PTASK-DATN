@@ -63,7 +63,6 @@ namespace PTASK.Controllers
             {
                 return BadRequest();
             }
-            
         }
 
         // GET: ProjectController/Edit/5

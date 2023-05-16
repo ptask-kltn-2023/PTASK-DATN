@@ -233,6 +233,7 @@
         @RenderBody()
     </div>
     @await Html.PartialAsync("~/Views/Project/AddProject.cshtml", new Project())
+   
     <!-- Modal -->
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
@@ -256,6 +257,9 @@
     <script src="~/assets/js/ui-popover.js"></script>
     <script src="~/assets/js/ajax.js"></script>
     <script src="~/assets/js/project.js"></script>
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
     <!-- Place this tag in your head or just before your close body tag. -->
     @await RenderSectionAsync("Scripts", required: false)
 </body>

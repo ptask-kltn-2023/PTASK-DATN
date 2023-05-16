@@ -4,7 +4,6 @@ using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 using PTASK.Interface;
 using PTASK.Models;
-using System.Threading.Tasks;
 
 namespace PTASK.Controllers
 {

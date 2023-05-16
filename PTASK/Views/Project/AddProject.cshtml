@@ -35,14 +35,24 @@
                     </div>
                     <div class="mb-2">
                         <label class="form-label" asp-for="name">Tên dự án</label>
+                        <span class="text-danger">*</span>
+                        <span asp-validation-for="name" class="text-danger"></span>
+
                         <input type="text" asp-for="name" class="form-control" placeholder="Nhập tên dự án" />
                     </div>
                     <div class="mb-2">
                         <label class="form-label" asp-for="startTime">Ngày bắt đầu</label>
+                        <span class="text-danger">*</span>
+                        <span asp-validation-for="startTime" class="text-danger"></span>
+
                         <input class="form-control" type="date" value="" asp-for="startTime" />
+
                     </div>
                     <div class="mb-3">
                         <label class="form-label" asp-for="endTime">Ngày kết thúc</label>
+                        <span class="text-danger">*</span>
+                        <span asp-validation-for="endTime" class="text-danger"></span>
+
                         <input class="form-control" type="date" value="" asp-for="endTime" />
                     </div>
                     <button type="submit" class="btn btn-primary">Tạo dự án</button>
@@ -51,4 +61,3 @@
         </div>
     </div>
 </div>
-

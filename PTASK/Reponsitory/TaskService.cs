@@ -154,7 +154,6 @@ namespace PTASK.Reponsitory
                 task.name,
                 startDay = task.startDay.ToString("MM-dd-yyyy"),
                 task.description,
-                userId,
                 endDay = task.endDay.ToString("MM-dd-yyyy"),
                 startHour = task.startHour.ToString("HH:mm"),
                 endHour = task.endHour.ToString("HH:mm"),

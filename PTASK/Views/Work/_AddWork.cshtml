@@ -14,16 +14,23 @@
                     <div class="row">
                         <div class="col mb-3">
                             <label class="form-label text-none" asp-for="name">Tên công việc</label>
+                            <span class="text-danger">*</span>
+                            <span asp-validation-for="name" class="text-danger"></span>
+
                             <input type="text" asp-for="name" class="form-control" placeholder="Nhập tên công việc" />
                         </div>
                     </div>
 
                     <div class="mb-2">
                         <label class="form-label text-none" asp-for="startTime">Ngày bắt đầu</label>
+                        <span class="text-danger">*</span>
+                        <span asp-validation-for="startTime" class="text-danger"></span>
                         <input class="form-control" type="date" value="" asp-for="startTime" />
                     </div>
                     <div class="mb-2">
                         <label class="form-label text-none" asp-for="endTime">Ngày kết thúc</label>
+                        <span class="text-danger">*</span>
+                        <span asp-validation-for="endTime" class="text-danger"></span>
                         <input class="form-control" type="date" value="" asp-for="endTime" />
                     </div>
                     <div class="btn-group" style="width: 100%;">
@@ -36,7 +43,7 @@
                             Phân công <i class='bx bx-chevrons-right'></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li>
+                           @* <li>
                                 <div class="dropend">
                                     <button class="dropdown-item"
                                        data-bs-toggle="dropdown"
@@ -55,7 +62,7 @@
                                         <button type="button" class="btn btn-outline-secondary">Hủy</button>
                                     </div>
                                 </div>
-                            </li>
+                            </li>*@
                             <li>
                                 <div class="dropend">
                                     <button class="dropdown-item selectTeam" data-bs-toggle="dropdown">
