@@ -1,4 +1,6 @@
-﻿namespace PTASK.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PTASK.Models
 {
     public class Work
     {

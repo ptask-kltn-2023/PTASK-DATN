@@ -70,7 +70,10 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>@item.name</strong></td>
+                                        <td style="word-wrap: break-all;">
+                                            <i class="fab fa-angular fa-lg text-danger me-3"></i>
+                                            <strong style="white-space: normal;">@item.name</strong>
+                                        </td>
                                         <td>
                                             <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
                                                 @foreach (var member in item.members)
