@@ -41,10 +41,12 @@ namespace PTASK.Controllers
                 dynamic user = JsonConvert.DeserializeObject<dynamic>(userJson);
                 string idUser = user._id;
                 string avatar = user.avatar;
+                string userName = user.fullName;
 
                 var cache = HttpContext.RequestServices.GetRequiredService<IMemoryCache>();
                 cache.Set("UserId", idUser);
                 cache.Set("Avatar", avatar);
+                cache.Set("UserName", userName);
 
 
                 return RedirectToAction("Index", "Project"); 
