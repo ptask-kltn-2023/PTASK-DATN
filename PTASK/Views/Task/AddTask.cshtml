@@ -41,7 +41,7 @@
                     </div>
                     <div class="row mb-3 align-items-center">
                         <label class="col-sm-3 form-label text-none" for="selectWork">
-                            Thuộc công việc
+                            Chọn công việc
                             <span class="text-danger">*</span>
                         </label>
                          
@@ -55,8 +55,6 @@
                             <input type="hidden" asp-for="workId" id="workId" />
                             <span asp-validation-for="workId" class="text-danger"></span>
                         </div>
-                        
-
                     </div>
                     <div class="row mb-3 align-items-center">
                         <label class="col-sm-3 form-label text-none" for="assignment">
@@ -106,8 +104,8 @@
                             <span class="text-danger">*</span>
                         </label>
                         <div class="col-sm-9">
-                            <input class="form-control" type="date" value="" asp-for="startDay" style="margin-left: 37px; width: 71%" />
-                            <span asp-validation-for="startDay" class="text-danger"></span>
+                            <input class="form-control" type="date" value="" asp-for="startDay" style="margin-left: 7px" />
+                            <span asp-validation-for="startDay" class="text-danger" style="margin-left: 7px"></span>
                         </div>
                     </div>
                     <div class="row mb-3 align-items-center">
@@ -116,8 +114,8 @@
                             <span class="text-danger">*</span>
                         </label>
                         <div class="col-sm-9">
-                            <input class="form-control" type="date" value="" asp-for="endDay" style="margin-left: 33px; width: 71%" />
-                            <span asp-validation-for="endDay" class="text-danger"></span>
+                            <input class="form-control" type="date" value="" asp-for="endDay" style="margin-left: 7px" />
+                            <span asp-validation-for="endDay" class="text-danger" style="margin-left: 7px"></span>
                         </div>
                     </div>
 

@@ -95,6 +95,11 @@ namespace PTASK.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateTeam(TeamCreate team)
         {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError(nameof(team.leaderId), "Thông báo lỗi của bạn");
+                return View(team);
+            }
             string projectId = _cache.Get<string>("ProjectID");
 
             string dataJson = TempData["data"] as string;
