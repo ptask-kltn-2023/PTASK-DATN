@@ -19,10 +19,16 @@
                 <form asp-area="" asp-controller="Task" asp-action="Create">
                     <input type="hidden" name="isUpdate" value="false" />
                     <div class="row mb-3 align-items-center">
-                        <label class="col-sm-3 form-label text-none" asp-for="name">Tên</label>
+                        <label class="col-sm-3 form-label text-none" asp-for="name">
+                            Tên
+                            <span class="text-danger">*</span>
+                        </label>
+
                         <div class="col-sm-9">
                             <input type="text" class="form-control" asp-for="name" placeholder="Nhập tên nhiệm vụ" />
+                            <span asp-validation-for="name" class="text-danger"></span>
                         </div>
+
                     </div>
                     <div class="row mb-3 align-items-center">
                         <label class="col-sm-3 form-label text-none" asp-for="description">Mô tả</label>
@@ -34,7 +40,11 @@
                         </div>
                     </div>
                     <div class="row mb-3 align-items-center">
-                        <label class="col-sm-3 form-label text-none" for="selectWork">Thuộc công việc</label>
+                        <label class="col-sm-3 form-label text-none" for="selectWork">
+                            Thuộc công việc
+                            <span class="text-danger">*</span>
+                        </label>
+                         
                         <div class="col-sm-9">
                             <input class="form-control"
                                    list="datalistWorks"
@@ -43,10 +53,17 @@
                             <datalist id="datalistWorks">
                             </datalist>
                             <input type="hidden" asp-for="workId" id="workId" />
+                            <span asp-validation-for="workId" class="text-danger"></span>
                         </div>
+                        
+
                     </div>
                     <div class="row mb-3 align-items-center">
-                        <label class="col-sm-3 form-label text-none" for="assignment">Phân công</label>
+                        <label class="col-sm-3 form-label text-none" for="assignment">
+                            Phân công
+                            <span class="text-danger">*</span>
+                        </label>
+                        
                         <div class="col-sm-9">
                             <div class="d-flex mb-2">
                                 <input class="form-control me-2"
@@ -67,24 +84,41 @@
                                 </ul>
                             </div>
                             <input type="hidden" asp-for="membersId" id="memberId" />
+                            <span asp-validation-for="membersId" class="text-danger"></span>
                         </div>
                     </div>
                     
                     <div class="row mb-3">
-                        <label asp-for="startHour" class="form-label text-none" style="margin-left: -6px">Thời gian bắt đầu</label>
+                        <label asp-for="startHour" class="form-label text-none" style="margin-left: -6px">
+                            Thời gian bắt đầu
+                        </label>
                         <input class="form-control" id="startHour" type="time" value="" asp-for="startHour" style="margin-left: 10px; width: 71%" />
                     </div>
                     <div class="row mb-3">
-                        <label asp-for="endHour" class="form-label text-none" style="margin-left: -6px">Thời gian kết thúc</label>
+                        <label asp-for="endHour" class="form-label text-none" style="margin-left: -6px">
+                            Thời gian kết thúc
+                        </label>
                         <input class="form-control" id="endHour" type="time" value="" asp-for="endHour" style="margin-left: 6px; width: 71%" />
                     </div>
-                    <div class="row mb-3">
-                        <label asp-for="startDay" class="form-label text-none" style="margin-left: -6px">Ngày bắt đầu</label>
-                        <input class="form-control" type="date" value="" asp-for="startDay" style="margin-left: 37px; width: 71%" />
+                    <div class="row mb-3 align-items-center">
+                        <label asp-for="startDay" class="col-sm-3 form-label text-none" style="margin-left: -6px">
+                            Ngày bắt đầu
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-9">
+                            <input class="form-control" type="date" value="" asp-for="startDay" style="margin-left: 37px; width: 71%" />
+                            <span asp-validation-for="startDay" class="text-danger"></span>
+                        </div>
                     </div>
-                    <div class="row mb-3">
-                        <label asp-for="endDay" class="form-label text-none" style="margin-left: -6px">Ngày kết thúc</label>
-                        <input class="form-control" type="date" value="" asp-for="endDay" style="margin-left: 33px; width: 71%" />
+                    <div class="row mb-3 align-items-center">
+                        <label asp-for="endDay" class="col-sm-3 form-label text-none" style="margin-left: -6px">
+                            Ngày kết thúc
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-9">
+                            <input class="form-control" type="date" value="" asp-for="endDay" style="margin-left: 33px; width: 71%" />
+                            <span asp-validation-for="endDay" class="text-danger"></span>
+                        </div>
                     </div>
 
                     <div class="row align-items-center mb-3">

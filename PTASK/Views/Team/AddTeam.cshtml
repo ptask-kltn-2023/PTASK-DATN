@@ -20,12 +20,18 @@
                     <div class="row">
                         <div class="col mb-3">
                             <label asp-for="teamName" class="form-label">Tên nhóm</label>
+                            <span class="text-danger">*</span>
+                            <span asp-validation-for="teamName" class="text-danger"></span>
+
                             <input asp-for="teamName" type="text" id="nameBasic" class="form-control" placeholder="Nhập tên nhóm" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col mb-3 ">
                             <label for="emailLeader" class="form-label">Trưởng nhóm</label>
+                            <span class="text-danger">*</span>
+                            <span asp-validation-for="leaderId" class="text-danger"></span>
+
                             <div class="d-flex mb-2">
                                 <input type="email"
                                        id="emailLeader"
@@ -37,7 +43,6 @@
                                         id="addLeader">
                                     <i class='bx bx-plus'></i>Thêm
                                 </button>
-
                             </div>
                             <ul class="list-group" id="leaderList">
                             </ul>
@@ -47,6 +52,9 @@
                     <div class="row">
                         <div class="col mb-3 ">
                             <label for="emailMember" class="form-label">Thành viên</label>
+                            <span class="text-danger">*</span>
+                            <span asp-validation-for="listMembers" class="text-danger"></span>
+
                             <div class="d-flex mb-2">
                                 <input type="email"
                                        id="emailMember"

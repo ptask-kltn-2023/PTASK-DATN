@@ -9,8 +9,9 @@ namespace PTASK.Models
         public string name { get; set; }
         public string description { get; set; }
 
-        [Required(ErrorMessage = "Vui lòng nhập tên công việc")]
         public string workName { get; set; }
+        
+        [Required(ErrorMessage = "Vui lòng nhập tên công việc")]
         public string workId { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập ngày bắt đầu")]
@@ -23,6 +24,8 @@ namespace PTASK.Models
         public bool status { get; set; }
         public int level { get; set; }
         public List<infoMemberInTask> members { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng thêm thành viên")]
         public List<string> membersId { get; set; }
     }
 

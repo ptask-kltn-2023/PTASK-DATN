@@ -27,7 +27,13 @@
                 <form asp-controller="Team" asp-action="CreateMember" id="formAddMember">
                     <div class="row">
                         <div class="col mb-3 d-flex align-items-center">
-                            <label for="emailMember" class="me-2" style="width: 180px">Email</label>
+                            <label for="emailMember" class="me-2" style="width: 180px">
+                                Email
+                                <span class="text-danger">*</span>
+                            </label>
+                           
+                            <span asp-validation-for="memberIds" class="text-danger"></span>
+
                             <input type="email"
                                    id="emailMember"
                                    class="form-control me-2"
