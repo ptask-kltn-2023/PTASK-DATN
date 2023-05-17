@@ -13,3 +13,8 @@
 /PTASK/obj/Debug/net6.0/PTASK.pdb
 /PTASK/obj
 /PTASK/bin/Debug/net6.0
+PTASK/appsettings.json
+PTASK/.vscode/iisexpress.json
+PTASK/.vscode/launch.json
+PTASK/.vscode/settings.json
+PTASK/.vscode/tasks.json
