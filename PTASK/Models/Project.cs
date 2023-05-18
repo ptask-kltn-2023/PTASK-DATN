@@ -19,7 +19,6 @@ namespace PTASK.Models
         [Required(ErrorMessage = "Vui lòng nhập ngày kết thúc")]
         public DateTime endTime { get; set; }
         public bool status { get; set; }
-        public string[] teamIds { get; set; }
         public string mainName { get; set; }
         public IFormFile BackgroundFile { get; set; }
     }

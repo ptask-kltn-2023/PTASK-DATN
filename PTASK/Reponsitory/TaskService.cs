@@ -60,8 +60,8 @@ namespace PTASK.Reponsitory
             string jsonData = JsonConvert.SerializeObject(new
             {
                 task.name,
-                startDay = task.startDay.ToString("MM-dd-yyyy"),
                 task.description,
+                startDay = task.startDay.ToString("MM-dd-yyyy"),
                 endDay = task.endDay.ToString("MM-dd-yyyy"),
                 startHour = task.startHour.ToString("HH:mm"),
                 endHour = task.endHour.ToString("HH:mm"),
