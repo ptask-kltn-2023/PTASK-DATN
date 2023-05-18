@@ -30,17 +30,6 @@ namespace PTASK.Reponsitory
             content.Add(new StringContent(project.mainProject), "mainProject");
             content.Add(new StringContent(project.startTime.ToString("MM-dd-yyyy")), "startTime");
             content.Add(new StringContent(project.endTime.ToString("MM-dd-yyyy")), "endTime");
-            if (project.teamIds != null)
-            {
-                foreach (var teamId in project.teamIds)
-                {
-                    content.Add(new StringContent(teamId), "teamIds");
-                }
-            }
-            else
-            {
-                content.Add(new StringContent(""), "teamIds");
-            }
             var fileContent = new StreamContent(project.BackgroundFile.OpenReadStream());
             content.Add(fileContent, "background", project.BackgroundFile.FileName);
             
