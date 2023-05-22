@@ -5,8 +5,8 @@ namespace PTASK.Interface
     public interface ICommentService
     {
         Task<List<Comment>> GetCommentByIdTask(string taskId);
-        Task<List<Comment>> GetCommentByIdWorl(string workId);
-        Task<bool> CreateCommentWork(Comment comment);
-        Task<bool> CreateCommentTask(Comment comment);
+        Task<List<Comment>> GetCommentByIdWork(string workId);
+        Task<Comment> CreateCommentWork(Comment comment);
+        Task<Comment> CreateCommentTask(Comment comment);
     }
 }

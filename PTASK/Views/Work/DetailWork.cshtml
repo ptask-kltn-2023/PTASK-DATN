@@ -14,6 +14,8 @@
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
          <form asp-controller="Work" asp-action="Create" style="width: 100%">
             <input type="hidden" id="_idUpdate" name="_idUpdate" value="" />
+            <input type="hidden" id="userIdComment" name="userIdComment" value="@userId" />
+
             <div class="modal-content">
                 <div class="modal-header">
                     <input class="mt-2 ms-2 ip-list" asp-for="name" id="nameWork">
@@ -66,15 +68,17 @@
                                 <label for="" class="form-label">
                                     <i class="bx bx-comment"></i> Bình luận
                                 </label>
+                                <div class="commentWork">
+                                </div>
                                 <div class="input-group avatar-group">
                                     <span class="avatar avatar-xs pull-up">
                                         <img src="@avatarUser" alt="Avatar" class="rounded-circle" />
                                     </span>
-                                    <textarea id="basic-icon-default-message commentText"
+                                    <textarea id="commentText"
                                               class="ms-1 form-control"
                                               placeholder="Viết bình luận của bạn"></textarea>
                                 </div>
-                                <button type="button" id="submitButton" class="btn btn-sm btn-primary mt-2 position-absolute end-0">Nhập</button>
+                                <button type="button" id="addCommentWork" class="btn btn-sm btn-primary mt-2 position-absolute end-0">Nhập</button>
                             </div>
                         </div>
                     </div>
@@ -94,28 +98,6 @@
                                     <i class='bx bx-user-plus me-2'></i>Phân công
                                 </a>
                                 <ul class="dropdown-menu">
-                                   @* <li>
-                                        <div class="dropend">
-                                            <button class="dropdown-item"
-                                                    data-bs-toggle="dropdown"
-                                                    aria-haspopup="true"
-                                                    aria-expanded="false"
-                                                    id="selectLeader">
-                                                Quản lý công việc
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-end w-px-300 p-2">
-                                                <div class="mb-3">
-                                                    <input type="email"
-                                                           id="emailLeader"
-                                                           list="datalistOptions"
-                                                           class="form-control me-2"
-                                                           placeholder="Tìm kiếm email" />
-                                                </div>
-                                                <button type="button" class="btn btn-primary" id="addLeader">Thêm</button>
-                                                <button type="button" class="btn btn-outline-secondary">Hủy</button>
-                                            </div>
-                                        </div>
-                                    </li>*@
                                     <li>
                                         <div class="dropend">
                                             <button class="dropdown-item selectTeam" data-bs-toggle="dropdown">
@@ -150,15 +132,16 @@
                         </div>
                     </div>
                 </div>
-                @if (userId.Equals(mainId) || (bool)isLeader)
-                {
-                    <div class="modal-footer">
+               
+                <div class="modal-footer">
+                    @if (userId.Equals(mainId))
+                    {
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                             Đóng
                         </button>
                         <button type="submit" class="btn btn-primary">Lưu</button>
-                    </div>
-                }
+                    }
+                </div>
               
             </div>
          </form>

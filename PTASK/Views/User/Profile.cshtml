@@ -66,7 +66,7 @@
                     <div class="container-xxl flex-grow-1 container-p-y">
 
                         <div class="mb-3">
-                            <a class="text-primary" href="#">
+                            <a class="text-primary" href="#" onclick="goBack()">
                                 <i class='bx bx-arrow-back'></i> Trở lại
                             </a>
                         </div>
@@ -201,5 +201,10 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </body>
 </html>

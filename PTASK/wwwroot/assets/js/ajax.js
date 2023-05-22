@@ -201,6 +201,69 @@ function getMemberByTeamId(teamId) {
     });
 }
 
+function getTeamById(teamId) {
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            url: "/api/teams/getTeamById/" + teamId,
+            method: "GET",
+            success: function (data) {
+                resolve(data);
+            },
+            error: function (error) {
+                reject(error);
+            }
+        });
+    });
+}
+
+function getAllIdLeaders() {
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            url: '/api/team/getAllIdLeader',
+            method: "GET",
+            success: function (data) {
+                // Tạo datalist từ dữ liệu nhận về
+                resolve(data);
+            },
+            error: function (error) {
+                reject(error);
+            }
+        });
+    });
+}
+
+function getCommentByTaskId(taskId) {
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            url: 'https://ptask.cyclic.app/api/notes/task/' + taskId,
+            method: "GET",
+            success: function (data) {
+                // Tạo datalist từ dữ liệu nhận về
+                resolve(data);
+            },
+            error: function (error) {
+                reject(error);
+            }
+        });
+    });
+}
+
+function getCommentByWorkId(workId) {
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            url: 'https://ptask.cyclic.app/api/notes/work/' + workId,
+            method: "GET",
+            success: function (data) {
+                // Tạo datalist từ dữ liệu nhận về
+                resolve(data);
+            },
+            error: function (error) {
+                reject(error);
+            }
+        });
+    });
+}
+
 //Function
 function convertTime(time) {
     var hours = new Date(time);

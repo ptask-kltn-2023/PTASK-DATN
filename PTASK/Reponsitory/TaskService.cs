@@ -128,10 +128,9 @@ namespace PTASK.Reponsitory
             return result;
         }
 
-        public async Task<bool> UpdateTask(PTask task)
+        public async Task<bool> UpdateTask(PTask task, string taskId)
         {
             var api = _httpClientFactory.CreateClient("apiUpdateTask");
-            var userId = _cache.Get<string>("UserId");
             string[] outputArray;
             if (task.membersId.Count > 0)
             {
@@ -164,7 +163,7 @@ namespace PTASK.Reponsitory
             // Format json
             var jsonContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             // Truyền json vào api
-            var response = await api.PatchAsync($"/api/tasks/update/{task._id}", jsonContent);
+            var response = await api.PatchAsync($"/api/tasks/update/{taskId}", jsonContent);
             //Kiểm tra dữ liệu trả về
             if (response.IsSuccessStatusCode)
             {

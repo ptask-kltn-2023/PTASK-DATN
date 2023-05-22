@@ -44,24 +44,6 @@ namespace PTASK.Reponsitory
                 outputMembers = new string[] { };
             }
 
-            string[] outputTeams;
-            if (team.listTeams.Count > 0)
-            {
-                if (team.listTeams[0].IsNullOrEmpty())
-                {
-                    outputTeams = new string[] { };
-                }
-                else
-                {
-                    outputTeams = team.listMembers[0].Split(',');
-                }
-            }
-            else
-            {
-                outputTeams = new string[] { };
-            }
-
-
             //Tạo json data
             string jsonData = JsonConvert.SerializeObject(new
             {
@@ -69,7 +51,6 @@ namespace PTASK.Reponsitory
                 createId = idUser,
                 team.leaderId,
                 listMembers = outputMembers,
-                listTeams = outputTeams,
                 projectId
             });
             // Format json
@@ -114,10 +95,10 @@ namespace PTASK.Reponsitory
             return result;
         }
 
-        public async Task<bool> DeleteTeamInProject(string teamId, string projectId)
+        public async Task<bool> DeleteTeamInProject(string teamId)
         {
             var api = _httpClientFactory.CreateClient("removeTeamInProject");
-            var response = await api.DeleteAsync($"/api/teams/{teamId}/{projectId}");
+            var response = await api.DeleteAsync($"/api/teams/{teamId}");
             if (response.IsSuccessStatusCode)
             {
                 return true;
@@ -131,12 +112,26 @@ namespace PTASK.Reponsitory
         public async Task<bool> AddMember(Member member, string teamId)
         {
             var api = _httpClientFactory.CreateClient("apiAddMember");
-            string idUser = _cache.Get<string>("UserId");
             //Tạo json data
+            string[] outputArray;
+            if (member.memberIds.Count > 0)
+            {
+                if (string.IsNullOrEmpty(member.memberIds[0]))
+                {
+                    outputArray = new string[] { };
+                }
+                else
+                {
+                    outputArray = member.memberIds[0].Split(',');
+                }
+            }
+            else
+            {
+                outputArray = new string[] { };
+            }
             string jsonData = JsonConvert.SerializeObject(new
             {
-                createId = idUser,
-                member.memberIds
+                memberIds = outputArray
             });
             // Format json
             var jsonContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
@@ -189,6 +184,81 @@ namespace PTASK.Reponsitory
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<List<string>>(content);
             return result;
+        }
+
+        public async Task<bool> DeleteMemberInProject(string memberId)
+        {
+            var api = _httpClientFactory.CreateClient("removeMemberInProject");
+            var projectId = _cache.Get<string>("ProjectID");
+
+            //Tạo json data
+            string jsonData = JsonConvert.SerializeObject(new
+            {
+                memberId
+            });
+            // Format json
+            var jsonContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            // Truyền json vào api
+            var response = await api.PatchAsync($"api/teams/remove-member/{projectId}", jsonContent);
+            //Kiểm tra dữ liệu trả về
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public async Task<Team> GetTeamById(string teamId)
+        {
+            var api = _httpClientFactory.CreateClient("apiGetTeamById");
+            var response = await api.GetAsync($"/api/teams/team/{teamId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Team>(content);
+            return result;
+        }
+
+        public async Task<bool> UpdateTeam(TeamCreate team, string teamId)
+        {
+            var api = _httpClientFactory.CreateClient("removeMemberInProject");
+            string[] outputArray;
+            if (team.listMembers.Count > 0)
+            {
+                if (string.IsNullOrEmpty(team.listMembers[0]))
+                {
+                    outputArray = new string[] { };
+                }
+                else
+                {
+                    outputArray = team.listMembers[0].Split(',');
+                }
+            }
+            else
+            {
+                outputArray = new string[] { };
+            }
+            //Tạo json data
+            string jsonData = JsonConvert.SerializeObject(new
+            {
+                team.teamName,
+                team.leaderId,
+                listMembers = outputArray
+            });
+            // Format json
+            var jsonContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            // Truyền json vào api
+            var response = await api.PatchAsync($"api/teams/{teamId}", jsonContent);
+            //Kiểm tra dữ liệu trả về
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

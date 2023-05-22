@@ -25,6 +25,8 @@ builder.Services.AddCustomHttpClient("apiCreateTeam", apiUrl);
 builder.Services.AddCustomHttpClient("apiCreateWork", apiUrl);
 builder.Services.AddCustomHttpClient("apiCreateTask", apiUrl);
 builder.Services.AddCustomHttpClient("apiAddMember", apiUrl);
+builder.Services.AddCustomHttpClient("apiCreateCommentWork", apiUrl);
+builder.Services.AddCustomHttpClient("apiCreateCommentTask", apiUrl);
 
 //API GET BY ...
 builder.Services.AddCustomHttpClient("apiGetUserByEmail", apiUrl);
@@ -40,6 +42,9 @@ builder.Services.AddCustomHttpClient("apiGetWorkById", apiUrl);
 builder.Services.AddCustomHttpClient("apiTasksByWorkId", apiUrl);
 builder.Services.AddCustomHttpClient("apiGetTeamByWorkId", apiUrl);
 builder.Services.AddCustomHttpClient("apiGetAllIdLeader", apiUrl);
+builder.Services.AddCustomHttpClient("apiGetTeamById", apiUrl);
+builder.Services.AddCustomHttpClient("apiGetCommentByTaskId", apiUrl);
+builder.Services.AddCustomHttpClient("apiGetCommentByWorkId", apiUrl);
 
 //API LOGIN
 builder.Services.AddCustomHttpClient("apiLogin", apiUrl);
@@ -50,6 +55,7 @@ builder.Services.AddCustomHttpClient("removeWork", apiUrl);
 builder.Services.AddCustomHttpClient("removeTask", apiUrl);
 builder.Services.AddCustomHttpClient("removeProject", apiUrl);
 builder.Services.AddCustomHttpClient("removeTeamInProject", apiUrl);
+builder.Services.AddCustomHttpClient("removeMemberInProject", apiUrl);
 
 //UPDATE
 builder.Services.AddCustomHttpClient("changeStatusTask", apiUrl);
@@ -76,6 +82,7 @@ builder.Services.AddSession(options =>
 builder.Services.AddSingleton<IProjectService, ProjectService>();
 builder.Services.AddSingleton<IAuthService, AuthService>();
 builder.Services.AddSingleton<IUserService, UserService>();
+builder.Services.AddSingleton<ICommentService, CommentService>();
 builder.Services.AddSingleton<IWorkService, WorkService>();
 builder.Services.AddSingleton<ITaskService, TaskService>();
 builder.Services.AddSingleton<ITeamService, TeamService>();

@@ -636,17 +636,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     $("#addNewMember").click(function () {
         var email = document.getElementById("emailMember").value;
-        addUser(email, true);
+        if (email != "") {
+            addUser(email, true);
+        } else {
+            alert("Vui lòng nhập email");
+        }
         document.getElementById("emailMember").value = '';
     });
 
     $("#btnNewMember").click(function () {
-        var email = document.getElementById("emailMember").value;
-        if (email != "") {
-            $("#formAddMember").submit();
-        } else {
-            alert("Vui lòng nhập email")
-        }
+        $("#formAddMember").submit();
     });
 
 
@@ -661,25 +660,41 @@ document.addEventListener('DOMContentLoaded', function () {
         searchUser(email).then(function (data) {
             if (data._id != null) {
                 if (isMember) {
-                    var isExist = false;
-                    if ($("#dataListTeam").length > 0) {
-                        getMemberByTeamId($("#dataListTeam").val())
-                            .then(function (members) {
-                                members.forEach(function (item, index) {
-                                    if (item._id == data._id) {
-                                        alert("Thành viên này đã tham gia nhóm");
-                                        isExist = true;
-                                        return;
-                                    }
-                                });
-                                addMemberInList(data, isExist);
-                            })
-                            .catch(function (error) {
-                                console.log(error);
+                    getAllIdLeaders()
+                        .then(function (idLeaders) {
+                            let isLeaderInOtherGroup = false;
+                            idLeaders.forEach(function (item, index) {
+                                if (item == data._id) {
+                                    isLeaderInOtherGroup = true;
+                                }
                             });
-                    } else {
-                        addMemberInList(data, isExist);
-                    }
+                            if (isLeaderInOtherGroup) {
+                                alert("Thành viên này đang là nhóm trưởng nhóm khác!");
+                                return; // Thoát khỏi hàm addUser
+                            }
+                            var isExist = false;
+                            if ($("#dataListTeam").length > 0) {
+                                getMemberByTeamId($("#dataListTeam").val())
+                                    .then(function (members) {
+                                        members.forEach(function (item, index) {
+                                            if (item._id == data._id) {
+                                                alert("Thành viên này đã tham gia nhóm");
+                                                isExist = true;
+                                                return;
+                                            }
+                                        });
+                                        addMemberInList(data, isExist);
+                                    })
+                                    .catch(function (error) {
+                                        console.log(error);
+                                    });
+                            } else {
+                                addMemberInList(data, isExist);
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
                 } else {
                     if ($("#mainId").val() == data._id) {
                         alert("Không thể thêm trưởng nhóm là chủ dự án");
@@ -882,7 +897,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     genarateAssignment(data, false);
                     $("#memberId").val(listNewMemberByWorkId.join(','));
                     listNewMemberByWorkId = [];
-                    $(this).val('');
                 }
             } else {
                 alert("Email này chưa có tài khoản")
@@ -890,7 +904,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }).catch(function (error) {
             console.log(error);
         });
-        $("#assignment").val("");
     });
 
     $('#btnAssignmentDetail').click(function () {
@@ -945,7 +958,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Hàm tạo danh sách thành viên phân công
     function genarateAssignment(data, isDetail) {
         if (!listNewMemberByWorkId.includes(data._id)) {
-            console.log(data);
             listNewMemberByWorkId.push(data._id);
             var listItem = $("<li></li>").addClass("list-group-item d-flex justify-content-between align-items-center");
             var removeButton = $("<button></button>").addClass("btn btn-sm btn-danger ms-2").html('<i class="bx bx-x"></i>');
@@ -1023,6 +1035,8 @@ document.addEventListener('DOMContentLoaded', function () {
     //Edit task
     $(".edit-task").click(function () {
         var taskId = $(this).data('id');
+        $("#_idUpdate").val(taskId);
+
         getTaskById(taskId)
             .then(function (data) {
                 $("#workId").val(data._id);
@@ -1053,6 +1067,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 $('#date-end').val(convertDate(data.endDay));
                 getUserByTaskId(taskId)
                     .then(function (userInTask) {
+                        $('#dataListMemberDetail').empty();
                         $.each(userInTask, function (index, item) {
                             genarateAssignment(item, true);
                             $("#listMemberDetail").val(listNewMemberByWorkId.join(','));
@@ -1071,6 +1086,48 @@ document.addEventListener('DOMContentLoaded', function () {
                                 datalist.append(`<option value="${member.fullName}" id="${member.id}"></option>`);
                             });
                         });
+                    })
+                    .catch(function (error) {
+                        console.error(error); // Xử lý lỗi (nếu có)
+                    });
+                getCommentByTaskId(taskId)
+                    .then(function (comment) {
+                        $('.commentTask').empty();
+                        comment.forEach(function (item, index) {
+                            console.log(item);
+                            // Tạo phần tử div mới
+                            var newComment = $('<div>', {
+                                class: 'input-group avatar-group align-items-center mb-2'
+                            });
+                            //Tạo phần tử avatar
+                            var avatar = $('<span>', {
+                                class: 'avatar avatar-xs pull-up'
+                            }).append($('<img>', {
+                                src: item.members.avatar,
+                                alt: 'Avatar',
+                                class: 'rounded-circle'
+                            }));
+
+                            // Tạo phần tử thông tin tên và bình luận
+                            var info = $('<div>', {
+                                style: 'width: 90%;'
+                            }).append($('<strong>', {
+                                class: 'ms-2 text-uppercase',
+                                style: 'font-size: 12px',
+                                text: item.members.name
+                            })).append($('<label>', {
+                                class: 'ms-2',
+                                style: 'width: 90%;',
+                                text: item.text
+                            }));
+
+                            // Gắn các phần tử vào phần tử div mới
+                            newComment.append(avatar);
+                            newComment.append(info);
+
+                            // Thêm phần tử div mới vào phần tử có lớp .commentWork
+                            $('.commentTask').append(newComment);
+                        })
                     })
                     .catch(function (error) {
                         console.error(error); // Xử lý lỗi (nếu có)
@@ -1097,7 +1154,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         var percentWork = 0;
                         var countStatus = 0;
                         $(".listToDo").empty();
-                        console.log(tasks);
 
                         if (tasks.length > 0) {
                             tasks.forEach(function (item, index) {
@@ -1120,11 +1176,19 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (tasks.length > 0) {
                             percentWork = (countStatus * 100) / tasks.length;
                         }
-                        var roundedPercentWork = percentWork.toFixed(2);
-                        let progressElement = $(".percent_work_" + data._id);
-                        progressElement.css("width", roundedPercentWork + "%");
-                        progressElement.attr("aria-valuenow", roundedPercentWork);
-                        progressElement.text(roundedPercentWork + "%");
+                        if (data.status == false) {
+                            var roundedPercentWork = percentWork.toFixed(2);
+                            let progressElement = $(".percent_work_" + data._id);
+                            progressElement.css("width", roundedPercentWork + "%");
+                            progressElement.attr("aria-valuenow", roundedPercentWork);
+                            progressElement.text(roundedPercentWork + "%");
+                        } else {
+                            let progressElement = $(".percent_work_" + data._id);
+                            progressElement.css("width", "100%");
+                            progressElement.attr("aria-valuenow", "100");
+                            progressElement.text("100%");
+                        }
+                       
                     })
                     .catch(function (error) {
                         console.error(error); // Xử lý lỗi (nếu có)
@@ -1132,12 +1196,53 @@ document.addEventListener('DOMContentLoaded', function () {
                 $('#date-start').val(convertDate(data.startTime));
                 $('#date-end').val(convertDate(data.endTime));
                 genarateTeamInDetailWork(workId);
+                getCommentByWorkId(workId)
+                    .then(function (comment) {
+                        $('.commentWork').empty();
+                        comment.forEach(function (item, index) {
+                            // Tạo phần tử div mới
+                            var newComment = $('<div>', {
+                                class: 'input-group avatar-group align-items-center mb-2'
+                            });
+
+                            //Tạo phần tử avatar
+                            var avatar = $('<span>', {
+                                class: 'avatar avatar-xs pull-up'
+                            }).append($('<img>', {
+                                src: item.members.avatar,
+                                alt: 'Avatar',
+                                class: 'rounded-circle'
+                            }));
+
+                            // Tạo phần tử thông tin tên và bình luận
+                            var info = $('<div>', {
+                                style: 'width: 90%;'
+                            }).append($('<strong>', {
+                                class: 'ms-2 text-uppercase',
+                                style: 'font-size: 12px',
+                                text: item.members.name
+                            })).append($('<label>', {
+                                class: 'ms-2',
+                                style: 'width: 90%;',
+                                text: item.text
+                            }));
+
+                            // Gắn các phần tử vào phần tử div mới
+                            newComment.append(avatar);
+                            newComment.append(info);
+
+                            // Thêm phần tử div mới vào phần tử có lớp .commentWork
+                            $('.commentWork').append(newComment);
+                        })
+                    })
+                    .catch(function (error) {
+                        console.error(error); // Xử lý lỗi (nếu có)
+                    });
             })
             .catch(function (error) {
                 console.error(error); // Xử lý lỗi (nếu có)
             });
     });
-
     
     function genarateTeamInDetailWork(workId) {
         getTeamByWorkId(workId)
@@ -1167,7 +1272,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         });
                         li.append(removeButton)
                         $(".listTeamInDetailWork").append(li);
-
                     }
                 });
                 $("#idTeamInDetailProject").val(listTeamInDeatailWork.join(','))
@@ -1228,5 +1332,306 @@ document.addEventListener('DOMContentLoaded', function () {
             $("#frmSearch").submit();
         }
     });
-   
+
+    $('#addCommentWork').click(function () {
+        var text = $('#commentText').val();
+        var workId = $('#_idUpdate').val();
+        var createId = $('#userIdComment').val();
+        if (text != '') {
+            var comment = {
+                text: text,
+                workId: workId,
+                createId: createId
+            };
+
+            $.ajax({
+                url: 'https://ptask.cyclic.app/api/notes/work',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(comment),
+                success: function (data) {
+                    // Tạo phần tử div mới
+                    var newComment = $('<div>', {
+                        class: 'input-group avatar-group align-items-center mb-2'
+                    });
+
+                    //Tạo phần tử avatar
+                    var avatar = $('<span>', {
+                        class: 'avatar avatar-xs pull-up'
+                    }).append($('<img>', {
+                        src: data.members.avatar,
+                        alt: 'Avatar',
+                        class: 'rounded-circle'
+                    }));
+
+                    // Tạo phần tử thông tin tên và bình luận
+                    var info = $('<div>', {
+                        style: 'width: 90%;'
+                    }).append($('<strong>', {
+                        class: 'ms-2 text-uppercase',
+                        style: 'font-size: 12px',
+                        text: data.members.name
+                    })).append($('<label>', {
+                        class: 'ms-2',
+                        style: 'width: 90%;',
+                        text: data.text
+                    }));
+
+                    // Gắn các phần tử vào phần tử div mới
+                    newComment.append(avatar);
+                    newComment.append(info);
+
+                    // Thêm phần tử div mới vào phần tử có lớp .commentWork
+                    $('.commentWork').append(newComment);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        } else {
+            alert("Vui lòng nhập bình luận")
+        }
+        
+        $('#commentText').val("");
+    });
+
+    $('#addCommentTask').click(function () {
+        var text = $('#commentText').val();
+        var taskId = $('#_idUpdate').val();
+        var createId = $('#userIdComment').val();
+        if (text != '') {
+            var comment = {
+                text: text,
+                taskId: taskId,
+                createId: createId
+            };
+
+            $.ajax({
+                url: 'https://ptask.cyclic.app/api/notes/task',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(comment),
+                success: function (data) {
+                    console.log(data)
+                    // Tạo phần tử div mới
+                    var newComment = $('<div>', {
+                        class: 'input-group avatar-group align-items-center mb-2'
+                    });
+                    //Tạo phần tử avatar
+                    var avatar = $('<span>', {
+                        class: 'avatar avatar-xs pull-up'
+                    }).append($('<img>', {
+                        src: data.members.avatar,
+                        alt: 'Avatar',
+                        class: 'rounded-circle'
+                    }));
+
+                    // Tạo phần tử thông tin tên và bình luận
+                    var info = $('<div>', {
+                        style: 'width: 90%;'
+                    }).append($('<strong>', {
+                        class: 'ms-2 text-uppercase',
+                        style: 'font-size: 12px',
+                        text: data.members.name
+                    })).append($('<label>', {
+                        class: 'ms-2',
+                        style: 'width: 90%;',
+                        text: data.text
+                    }));
+
+                    // Gắn các phần tử vào phần tử div mới
+                    newComment.append(avatar);
+                    newComment.append(info);
+
+                    // Thêm phần tử div mới vào phần tử có lớp .commentWork
+                    $('.commentTask').append(newComment);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        } else {
+            alert("Vui lòng nhập bình luận")
+        }
+
+        $('#commentText').val("");
+    });
+
+    $(".edit-team").click(function () {
+        var teamId = $(this).data('id');
+        var listTeamInDetailTeam = [];
+        getTeamById(teamId)
+            .then(function (team) {
+                $("#teamName").val(team.teamName);
+                $(".listMemberInDetailTeam").empty();
+                $(".leaderInDeteailTeam").empty();
+                getMemberByTeamId(team._id)
+                    .then(function (members) {
+                        members.forEach(function (item, index) {
+                            if (item._id == team.leaderId) {
+                                var li = $("<li></li>").addClass("list-group-item d-flex justify-content-between align-items-center");
+
+                                var removeButton = $("<button></button>").addClass("btn btn-sm btn-danger ms-2").html('<i class="bx bx-x"></i>');
+
+                                removeButton.on("click", function () {
+                                    li.remove();
+                                    $("#idLeaderInDetailTeam").val('');
+                                });
+                                var divWrapper = $("<div></div>").addClass("d-flex align-items-center");
+                                if (item.avatar != null) {
+                                    var avatar = $("<img>").attr({
+                                        src: item.avatar,
+                                        alt: "Avatar",
+                                        class: "rounded-circle",
+                                        width: "30"
+                                    });
+                                    divWrapper.append(avatar);
+                                }
+
+                                var username = $("<span></span>").addClass("ms-2").text(item.fullName);
+                                divWrapper.append(username);
+                                li.append(divWrapper);
+                                li.append(removeButton);
+                                $(".leaderInDeteailTeam").append(li);
+                                $("#idLeaderInDetailTeam").val(team.leaderId);
+                            } else {
+                                if (!listTeamInDetailTeam.includes(item._id)) {
+                                    listTeamInDetailTeam.push(item._id);
+
+                                    listIndex = [];
+                                    var li = $("<li></li>").addClass("list-group-item d-flex justify-content-between align-items-center");
+
+                                    var removeButton = $("<button></button>").addClass("btn btn-sm btn-danger ms-2").html('<i class="bx bx-x"></i>');
+                                    var index = listTeamInDetailTeam.indexOf(item._id);
+
+                                    removeButton.on("click", function () {
+                                        if (listIndex.length > 0) {
+                                            index = listIndex.indexOf(item._id);
+                                        }
+                                        listTeamInDetailTeam.splice(index, 1);
+                                        listIndex = listTeamInDetailTeam;
+                                        li.remove();
+                                        $("#listIdMemberInDetailTeam").val(listTeamInDetailTeam.join(','));
+                                    });
+                                    var divWrapper = $("<div></div>").addClass("d-flex align-items-center");
+                                    if (item.avatar != null) {
+                                        var avatar = $("<img>").attr({
+                                            src: item.avatar,
+                                            alt: "Avatar",
+                                            class: "rounded-circle",
+                                            width: "30"
+                                        });
+                                        divWrapper.append(avatar);
+                                    }
+
+                                    var username = $("<span></span>").addClass("ms-2").text(item.fullName);
+                                    divWrapper.append(username);
+                                    li.append(divWrapper);
+                                    li.append(removeButton);
+                                    $(".listMemberInDetailTeam").append(li);
+                                    $("#listIdMemberInDetailTeam").val(listTeamInDetailTeam.join(','));
+                                }
+                            }
+                        })
+                    })
+                    .catch(function (error) {
+                        console.error(error); // Xử lý lỗi (nếu có)
+                    });
+            })
+            .catch(function (error) {
+                console.error(error); // Xử lý lỗi (nếu có)
+            });
+    });
+
+    $('input[name="levelRadio"]').change(function () {
+        // Lấy giá trị của radio button được chọn
+        var value = $(this).val();
+
+        // Lưu giá trị vào một input hidden (nếu cần thiết)
+        $('#levelUpdate').val(value);
+    });
+
+    $('input[name="statusRadio"]').change(function () {
+        // Lấy giá trị của radio button được chọn
+        var value = $(this).val();
+
+        // Lưu giá trị vào một input hidden (nếu cần thiết)
+        $('#statusUpdate').val(value);
+    });
+
+    //$("#addMemberInDetailTeam").click(function () {
+    //    var email = document.getElementById("emailDetailTeam").value;
+    //    if (email != "") {
+    //        addUser(email, true);
+    //    } else {
+    //        alert("Vui lòng nhập email");
+    //    }
+    //    document.getElementById("emailDetailTeam").value = '';
+    //});
+
+    //var memberListDetail = [];
+    //function addUser(email, isMember) {
+    //    var inputMember = $('#listIdMemberInDetailTeam').val();
+    //    var inputLeader = $('#idLeaderInDetailTeam').val();
+
+    //    searchUser(email).then(function (data) {
+    //        if (data._id != null) {
+    //            if (isMember) {
+    //                if (inputMember.includes(data._id)) {
+    //                    alert("Thành viên này đã tham gia nhóm");
+    //                } else {
+    //                    getAllIdLeaders()
+    //                        .then(function (idLeaders) {
+    //                            let isLeaderInOtherGroup = false;
+    //                            idLeaders.forEach(function (item, index) {
+    //                                if (item == data._id) {
+    //                                    isLeaderInOtherGroup = true;
+    //                                }
+    //                            });
+    //                            if (isLeaderInOtherGroup) {
+    //                                alert("Thành viên này đang là nhóm trưởng nhóm khác!");
+    //                                return;
+    //                            }
+    //                            var isExist = false;
+    //                            if ($("#dataListTeam").length > 0) {
+    //                                getMemberByTeamId($("#dataListTeam").val())
+    //                                    .then(function (members) {
+    //                                        members.forEach(function (item, index) {
+    //                                            if (item._id == data._id) {
+    //                                                alert("Thành viên này đã tham gia nhóm");
+    //                                                isExist = true;
+    //                                                return;
+    //                                            }
+    //                                        });
+    //                                        addMemberInList(data, isExist);
+    //                                    })
+    //                                    .catch(function (error) {
+    //                                        console.log(error);
+    //                                    });
+    //                            } else {
+    //                                addMemberInList(data, isExist);
+    //                            }
+    //                        })
+    //                        .catch(function (error) {
+    //                            console.log(error);
+    //                        });
+    //                }
+    //            } else {
+    //                if ($("#mainId").val() == data._id) {
+    //                    alert("Không thể thêm trưởng nhóm là chủ dự án");
+    //                } else if (inputLeader.includes(data._id)) {
+    //                    alert("Người này đang là nhóm trưởng");
+    //                } else { 
+    //                    $(".leaderInDeteailTeam").empty();
+    //                    generateItemUser(data, $(".leaderInDeteailTeam"), $("#idLeaderInDetailTeam"), memberListDetail);
+    //                    $("#idLeaderInDetailTeam").val(data._id)
+    //                }
+    //            }
+    //        } else {
+    //            alert("Email này chưa có tài khoản")
+    //        }
+    //    }).catch(function (error) {
+    //        console.log(error);
+    //    });
+    //}
 });

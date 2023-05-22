@@ -10,16 +10,20 @@ namespace PTASK.Controllers
     public class JsonController : Controller
     {
         private readonly IMemoryCache _cache;
+
         private readonly IWorkService _work;
         private readonly ITaskService _task;
         private readonly IUserService _user;
         private readonly ITeamService _team;
+        private readonly ICommentService _comment;
+
         private readonly IProjectService _project;
         public JsonController(IMemoryCache cache, 
                               IWorkService work, 
                               ITaskService task, 
                               IUserService user, 
                               ITeamService team,
+                              ICommentService comment,
                               IProjectService project)
         {
             _cache = cache;
@@ -27,6 +31,7 @@ namespace PTASK.Controllers
             _task = task;
             _user = user;
             _team = team;
+            _comment = comment;
             _project = project;
         }
 
@@ -97,12 +102,27 @@ namespace PTASK.Controllers
             return null;
         }
 
+        [HttpGet("api/teams/getTeamById/{teamId}")]
+        public async Task<Team> GetJsonTeamById(string teamId)
+        {
+            var team = await _team.GetTeamById(teamId);
+            return team;
+        }
+
         [HttpGet("api/teams/getTeamByWorkId/{workId}")]
         public async Task<List<Team>> GetJsonTeamsByWorkId(string workId)
         {
             var teams = await _team.GetTeamByWorkId(workId);
 
             return teams;
+        }
+
+        [HttpGet("api/team/getAllIdLeader")]
+        public async Task<List<string>> GetJsonIdLeaders()
+        {
+            var idTeams = await _team.GetAllIdLeader();
+
+            return idTeams;
         }
 
         [HttpGet("api/members/getbyworkid/{workId}")]
@@ -137,6 +157,24 @@ namespace PTASK.Controllers
             var tasks = await _task.GetTasksByWorkId(workId);
 
             return tasks;
+        }
+        #endregion
+
+        #region COMMENT
+        [HttpGet("api/comment/getCommentByTaskId/{taskId}")]
+        public async Task<List<Comment>> GetJsonCommentByTaskId(string taskId)
+        {
+            var comments = await _comment.GetCommentByIdTask(taskId);
+
+            return comments;
+        }
+
+        [HttpGet("api/comment/getCommentByWorkId/{workId}")]
+        public async Task<List<Comment>> GetJsonCommentByWorkId(string workId)
+        {
+            var comments = await _comment.GetCommentByIdWork(workId);
+
+            return comments;
         }
         #endregion
     }

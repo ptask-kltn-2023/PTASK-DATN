@@ -114,7 +114,6 @@ namespace PTASK.Controllers
                         pg = page.EndPage;
                     }
                 }
-                
             }
             bool result;
             if (_idUpdate != null)
@@ -156,12 +155,6 @@ namespace PTASK.Controllers
             {
                 return View();
             }
-        }
-
-        // GET: WorkController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
         }
 
         // POST: WorkController/Delete/5

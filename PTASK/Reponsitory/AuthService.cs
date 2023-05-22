@@ -49,40 +49,39 @@ namespace PTASK.Reponsitory
 
         public async Task<string> Register(Auth model)
         {
-            //var content = new MultipartFormDataContent();
-            //content.Add(new StringContent(model.email), "email");
-            //content.Add(new StringContent(model.password), "password");
-            //content.Add(new StringContent(model.confirmPassword), "confirmPassword");
+            var content = new MultipartFormDataContent();
+            content.Add(new StringContent(model.email), "email");
+            content.Add(new StringContent(model.password), "password");
+            content.Add(new StringContent(model.confirmPassword), "confirmPassword");
 
-            //content.Add(new StringContent(model.fullName), "fullName");
-            //content.Add(new StringContent(model.birthday.ToString("MM/dd/yyyy")), "birthday");
-            //content.Add(new StringContent(model.address), "address");
-            //content.Add(new StringContent(model.phoneNumber), "phoneNumber");
-            //content.Add(new StringContent(model.gender.ToString()), "gender");
-            //content.Add(new StringContent(model.status.ToString()), "status");
+            content.Add(new StringContent(model.fullName), "fullName");
+            content.Add(new StringContent(model.birthday.ToString("MM/dd/yyyy")), "birthday");
+            content.Add(new StringContent(model.address), "address");
+            content.Add(new StringContent(model.phoneNumber), "phoneNumber");
+            content.Add(new StringContent(model.gender.ToString()), "gender");
+            content.Add(new StringContent(model.status.ToString()), "status");
 
-            //var fileContent = new StreamContent(model.avatar.OpenReadStream());
-            //content.Add(fileContent, "avatar", model.avatar.FileName);
+            var fileContent = new StreamContent(model.avatar.OpenReadStream());
+            content.Add(fileContent, "avatar", model.avatar.FileName);
 
-            //var api = _httpClientFactory.CreateClient("apiRegister");
+            var api = _httpClientFactory.CreateClient("apiRegister");
 
-            //var response = await api.PostAsync("/api/auths/sign-up", content);
-            //if (response.IsSuccessStatusCode)
-            //{
-            //    var token = await response.Content.ReadAsStringAsync();
+            var response = await api.PostAsync("api/auths/sign-up", content);
+            if (response.IsSuccessStatusCode)
+            {
+                var token = await response.Content.ReadAsStringAsync();
 
-            //    // Lưu token vào session hoặc cookie
-            //    if (_httpContextAccessor != null && _httpContextAccessor.HttpContext != null)
-            //    {
-            //        _httpContextAccessor.HttpContext.Session.SetString("Token", token);
-            //    }
-            //    return token;
-            //}
-            //else
-            //{
-            //    return null;
-            //}
-            return null;
+                // Lưu token vào session hoặc cookie
+                if (_httpContextAccessor != null && _httpContextAccessor.HttpContext != null)
+                {
+                    _httpContextAccessor.HttpContext.Session.SetString("Token", token);
+                }
+                return token;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

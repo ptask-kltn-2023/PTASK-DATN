@@ -46,6 +46,7 @@
         percentWork = (countSuccessWork * 100) / Model.Works.Count;
     }
     var userId = cache.Get("UserId");
+    var mainId = cache.Get("MainProject");
 }
 
 <partial name="~/Views/Shared/Partial/_NavLeft.cshtml" />
@@ -184,18 +185,21 @@
                                 }
                             </ul>
                         </div>
-                        <form asp-controller="DetailProject" 
+                        @if (mainId.Equals(userId))
+                        {
+                            <form asp-controller="DetailProject"
                               asp-action="DeleteProject"
-                              asp-route-projectId="@Model.Project._id" 
-                              id="delete-form-@Model.Project._id" 
-                              method="post">
-                            <a class="btnDelete btn btn-danger mt-2" 
-                               data-id="@Model.Project._id" 
-                               href="javascript:void(0);"
-                               style="width: 100%">
-                                Xóa dự án
-                           </a>
-                        </form>
+                              asp-route-projectId="@Model.Project._id"
+                                  id="delete-form-@Model.Project._id"
+                                  method="post">
+                                <a class="btnDelete btn btn-danger mt-2"
+                                   data-id="@Model.Project._id"
+                                   href="javascript:void(0);"
+                                   style="width: 100%">
+                                    Xóa dự án
+                                </a>
+                            </form>
+                        }
                     </div>
                 </div>
             </div>

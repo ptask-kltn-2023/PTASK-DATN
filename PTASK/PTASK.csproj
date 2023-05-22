@@ -50,6 +50,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="EPPlus" Version="6.2.4" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.27.0" />
