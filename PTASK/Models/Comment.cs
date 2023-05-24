@@ -7,7 +7,6 @@
         public string taskId;
         public string workId;
         public string createId;
-        public DateTime createdAt;
-        public DateTime updatedAt;
+        public infoMemberInTask members;
     }
 }

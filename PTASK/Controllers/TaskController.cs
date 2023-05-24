@@ -63,7 +63,7 @@ namespace PTASK.Controllers
         // POST: TaskController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(PTask task, bool isUpdate)
+        public async Task<ActionResult> Create(PTask task, bool isUpdate, string _idUpdate)
         {
             bool isBack = (bool)TempData["isBack"];
 
@@ -103,7 +103,7 @@ namespace PTASK.Controllers
             bool result;
             if (isUpdate)
             {
-                result = await _task.UpdateTask(task);
+                result = await _task.UpdateTask(task, _idUpdate);
             }
             else
             {

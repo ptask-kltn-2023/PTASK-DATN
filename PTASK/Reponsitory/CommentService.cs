@@ -1,6 +1,4 @@
-﻿using Amazon.Runtime.Internal.Util;
-using Microsoft.CodeAnalysis;
-using Microsoft.Extensions.Caching.Memory;
+﻿using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 using PTASK.Interface;
 using PTASK.Models;
@@ -18,7 +16,7 @@ namespace PTASK.Reponsitory
             _httpClientFactory = httpClientFactory;
             _cache = cache;
         }
-        public async Task<bool> CreateCommentTask(Comment comment)
+        public async Task<Comment> CreateCommentTask(Comment comment)
         {
             var api = _httpClientFactory.CreateClient("apiCreateCommentTask");
            
@@ -33,18 +31,12 @@ namespace PTASK.Reponsitory
             var jsonContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             // Truyền json vào api
             var response = await api.PostAsync("api/notes/task", jsonContent);
-            //Kiểm tra dữ liệu trả về
-            if (response.IsSuccessStatusCode)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Comment>(content);
+            return result;
         }
 
-        public async Task<bool> CreateCommentWork(Comment comment)
+        public async Task<Comment> CreateCommentWork(Comment comment)
         {
             var api = _httpClientFactory.CreateClient("apiCreateCommentWork");
 
@@ -59,25 +51,30 @@ namespace PTASK.Reponsitory
             var jsonContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             // Truyền json vào api
             var response = await api.PostAsync("api/notes/work", jsonContent);
-            //Kiểm tra dữ liệu trả về
-            if (response.IsSuccessStatusCode)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Comment>(content);
+            return result;
         }
 
-        public Task<List<Comment>> GetCommentByIdTask(string taskId)
+        public async Task<List<Comment>> GetCommentByIdTask(string taskId)
         {
-            throw new NotImplementedException();
+            var api = _httpClientFactory.CreateClient("apiGetCommentByTaskId");
+            var response = await api.GetAsync($"/api/notes/task/{taskId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<List<Comment>>(content);
+
+            return result;
         }
 
-        public Task<List<Comment>> GetCommentByIdWorl(string workId)
+        public async Task<List<Comment>> GetCommentByIdWork(string workId)
         {
-            throw new NotImplementedException();
+
+            var api = _httpClientFactory.CreateClient("apiGetCommentByWorkId");
+            var response = await api.GetAsync($"/api/notes/work/{workId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<List<Comment>>(content);
+
+            return result;
         }
     }
 }

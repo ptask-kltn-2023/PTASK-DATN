@@ -86,11 +86,35 @@ namespace PTASK.Controllers
             return View();
         }
 
-        public ActionResult Report()
+        public async Task<ActionResult> Report()
         {
+            Project resultProject;
+            List<Work> resultWork;
+            List<Member> resultMember;
+            List<PTask> resultTask;
+
+            //Gán dữ liệu vào bộ nhớ tạm
+            var cache = HttpContext.RequestServices.GetRequiredService<IMemoryCache>();
+            string id = cache.Get<string>("ProjectID");
+            resultProject = await _project.GetProjectById(id);
+            resultWork = await _work.GetAllWorkByIdProject(id);
+            resultTask = await _task.GetAllTasks(id);
+            resultMember = await _team.GetAllMembers(id);
+
+            cache.Set("TitleProject", resultProject.name);
+            cache.Set("MainProject", resultProject.mainProject);
+            ViewData["TitleProject"] = resultProject.name;
+
+            var detailProject = new DetailProject
+            {
+                Project = resultProject,
+                Works = resultWork,
+                PTasks = resultTask,
+                Members = resultMember
+            };
             ViewData["TitleProject"] = _cache.Get<string>("TitleProject");
 
-            return View();
+            return View(detailProject);
         }
         // GET: DetailProjectController/Details/5
         public ActionResult Details(int id)

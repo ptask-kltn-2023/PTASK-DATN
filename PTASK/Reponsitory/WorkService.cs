@@ -66,7 +66,8 @@ namespace PTASK.Reponsitory
                 work.name,
                 startTime = work.startTime.ToString("MM-dd-yyyy"),
                 endTime = work.endTime.ToString("MM-dd-yyyy"),
-                teamId = outputArray
+                teamId = outputArray,
+                projectId
             });
             // Format json
             var jsonContent = new StringContent(jsonData, Encoding.UTF8, "application/json");

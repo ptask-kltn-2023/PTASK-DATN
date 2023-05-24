@@ -1,190 +1,101 @@
 ﻿@using Microsoft.Extensions.Caching.Memory;
-@model PTASK.Models.PTask
+@model TeamCreate
+
 @{
     var cache = Context.RequestServices.GetRequiredService<IMemoryCache>();
     var mainId = cache.Get("MainProject");
     var userId = cache.Get("UserId");
     var avatarUser = cache.Get("Avatar");
     var isLeader = cache.Get("isLeader");
-
 }
-
-<div class="modal fade" id="taskDetail" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="teamDetail" tabindex="-1" aria-hidden="true">
     <input type="hidden" value="@mainId" id="mainId" />
-    <div class="modal-dialog modal-dialog-centered modalDetailTask" role="document">
-        <form asp-controller="Task" asp-action="Create">
-            <input type="hidden" name="isUpdate" value="true" />
-            <input type="hidden" asp-for="_id" id="_idUpdate" />
 
-            <div class="modal-content">
-                <div class="modal-header">
-                    <input class="mt-2 ms-2 ip-list" asp-for="name" id="nameTask">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+         <form asp-controller="Work" asp-action="Create" style="width: 100%">
+            <input type="hidden" id="_idUpdate" name="_idUpdate" value="" />
+            <form asp-controller="Team" asp-action="CreateTeam">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <input class="mt-2 ms-2 ip-list" asp-for="teamName" id="teamName">
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex justify-content-between p-3">
+                        <div class="col-9 pe-2">
+                            <div class="d-flex justify-content-between">
+                                <b>Trưởng nhóm</b>
+                                <span>
+                                    <a asp-area=""
+                                       asp-controller="Team"
+                                       asp-action="ListMembers" asp-route-isBack="true" class="text-primary view-detail">Xem chi tiết >></a>
+                                </span>
+                            </div>
+                            <div class="demo-inline-spacing">
+                                <ul class="list-group leaderInDeteailTeam">
+                                </ul>
+                                <input type="hidden" asp-for="leaderId" id="idLeaderInDetailTeam" />
+                            </div>
+                            <hr />
+                            <b>Danh sách thành viên</b>
+                            <div class="demo-inline-spacing">
+                                <ul class="list-group listMemberInDetailTeam">
+                                </ul>
+                                <input type="hidden" asp-for="listMembers" id="listIdMemberInDetailTeam" />
+                            </div>
+                        </div>
+                        <div style="width: 33%" class="ms-2">
+                            <div class="row">
+                                <div class="col ms-2">
+                                    <b>Thao tác</b>
+                                </div>
+                            </div>
+                            <div class="demo-inline-spacing mt-2">
+                                <div class="list-group list-group-flush">
+                                    <a href="javascript:void(0);"
+                                       class="list-group-item list-group-item-actio"
+                                       data-bs-toggle="dropdown"
+                                       data-bs-auto-close="outside"
+                                       aria-expanded="false">
+                                        <i class='bx bx-user-plus me-2'></i>Thêm thành viên
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <div class="p-2 d-flex align-items-center">
+                                                <label for="emailMember" class="me-2">
+                                                    Email
+                                                </label>
 
-                    <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                                                <input type="email"
+                                                       id="emailDetailTeam"
+                                                       class="form-control me-2"
+                                                       placeholder="Nhập địa chỉ email"
+                                                       style="width: 150px" />
+                                                <button type="button"
+                                                        class="btn btn-outline-info"
+                                                        id="addMemberInDetailTeam">
+                                                    <i class='bx bx-plus'></i>Thêm
+                                                </button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @if (userId.Equals(mainId) || (bool)isLeader)
+                    {
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                Đóng
+                            </button>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
+                        </div>
+                    }
                 </div>
-                <div class="modal-body d-flex justify-content-between p-3">
-                    <div class="col-9 pe-2">
-                        <div class="row">
-                            <div class="col">
-                                <textarea class="descriptTask" asp-for="description"></textarea>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="row gy-1">
-                            <b class="ps-1">Cấp độ</b>
-                            <div class="col-md d-flex justify-content-between  ">
-                                <div class="d-flex justify-content-center align-items-center bg-info rdo-status">
-                                    <input class="form-check-input inlineRadio"
-                                           type="radio"
-                                           name="levelRadio"
-                                           id="rdoNormal"
-                                           value="1" />
-                                    <label class="form-check-label text-white" asp-for="level" for="rdoNormal">Bình thường</label>
-                                </div>
-                                <div class="d-flex justify-content-center align-items-center bg-warning rdo-status">
-                                    <input class="form-check-input inlineRadio"
-                                           type="radio"
-                                           name="levelRadio"
-                                           id="rdoWarning"
-                                           value="2" />
-                                    <label class="form-check-label text-white" asp-for="level" for="rdoWarning">Quan trọng</label>
-                                </div>
-                                <div class="d-flex justify-content-center align-items-center bg-danger rdo-status">
-                                    <input class="form-check-input inlineRadio"
-                                           type="radio"
-                                           name="levelRadio"
-                                           id="rdoDanger"
-                                           value="3" />
-                                    <label class="form-check-label text-white" asp-for="level" for="rdoDanger">Khẩn cấp</label>
-                                </div>
-                                <input type="hidden" asp-for="level" id="levelUpdate" />
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="row gy-1">
-                            <b class="ps-1">Trạng thái</b>
-                            <div class="col-md d-flex">
-                                <div class="d-flex justify-content-center align-items-center bg-success rdo-status me-3">
-                                    <input class="form-check-input inlineRadio"
-                                           type="radio"
-                                           name="statusRadio"
-                                           id="rdoSuccess"
-                                           value="true" />
-                                    <label class="form-check-label text-white" asp-for="status" for="rdoSuccess">Hoàn thành</label>
-                                </div>
-                                <div class="d-flex justify-content-center align-items-center bg-warning rdo-status">
-                                    <input class="form-check-input inlineRadio"
-                                           type="radio"
-                                           name="statusRadio"
-                                           id="rdoDoing"
-                                           value="false" />
-                                    <label class="form-check-label text-white" asp-for="status" for="rdoDoing">Đang thực hiện</label>
-                                </div>
-                                <input type="hidden" asp-for="status" id="statusUpdate" />
-
-                            </div>
-                        </div>
-                        <hr class="mt-4" />
-                        <div class="row g-2 mt-2">
-                            <b>Thời gian thực hiện</b>
-                            <div class="col d-flex align-items-center justify-content-between">
-                                <label for="time-start" asp-for="startHour" class="col-form-label">Thời gian bắt đầu</label>
-                                <input class="form-control" type="time" asp-for="startHour" id="time-start" />
-                            </div>
-                            <div class="col d-flex align-items-center justify-content-between">
-                                <label for="time-end" class="col-form-label" asp-for="endHour">Thời gian thúc</label>
-                                <input class="form-control" type="time" id="time-end" asp-for="endHour" />
-                            </div>
-                        </div>
-
-                        <div class="row g-2">
-                            <b>Ngày thực hiện</b>
-                            <div class="col d-flex align-items-center justify-content-between">
-                                <label for="date-start" class="col-form-label" asp-for="startDay">Ngày bắt đầu</label>
-                                <input class="form-control" type="date" value="" id="date-start" asp-for="startDay" />
-                            </div>
-                            <div class="col d-flex align-items-center justify-content-between">
-                                <label for="date-end" class="col-form-label" asp-for="endDay">Ngày kết thúc</label>
-                                <input class="form-control" type="date" value="" id="date-end" asp-for="endDay" />
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="row mt-2">
-                            <div class="col mb-3 ">
-                                
-                                <label for="nameWithTitle" class="form-label">
-                                    <i class="bx bx-comment"></i> Bình luận
-                                </label>
-                               @* <div class="input-group avatar-group align-items-center">
-                                    <span class="avatar avatar-xs pull-up">
-                                        <img src="@avatarUser" alt="Avatar" class="rounded-circle" />
-                                    </span>
-                                    <label class="ms-2">
-                                        Bình luận ádasdasdasd
-                                    </label>
-                                </div>*@
-                                <div class="input-group avatar-group">
-                                    <span class="avatar avatar-xs pull-up">
-                                        <img src="@avatarUser" alt="Avatar" class="rounded-circle" />
-                                    </span>
-                                    <textarea id="basic-icon-default-message"
-                                              class="ms-1 form-control"
-                                              placeholder="Viết bình luận của bạn"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="width: 33%" class="ms-2">
-                        <div class="row">
-                            <div class="col ms-2">
-                                <b>Thao tác</b>
-                            </div>
-                        </div>
-                        <div class="demo-inline-spacing mt-2">
-                            <div class="list-group list-group-flush">
-                                <a href="javascript:void(0);"
-                                   class="list-group-item list-group-item-action dropdown-item"
-                                   data-bs-toggle="dropdown"
-                                   aria-haspopup="true"
-                                   aria-expanded="false">
-                                    <i class='bx bx-user-plus me-2'></i>Phân công
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end w-px-300 p-2">
-                                    <div class="mb-3">
-                                        <input class="form-control me-2"
-                                               list="datalistDetail"
-                                               id="emailMemberDetail"
-                                               placeholder="Chọn hoặc nhập email" autocomplete="off" />
-                                    </div>
-                                    <datalist id="datalistDetail">
-                                    </datalist>
-                                    <button type="button" class="btn btn-primary" id="btnAssignmentDetail">Thêm</button>
-                                    <button type="button" class="btn btn-outline-secondary">Hủy</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col m-2">
-                                <b>Người thực hiện</b>
-                            </div>
-                            <ul id="dataListMemberDetail" class="list-group ps-3"></ul>
-                            <input type="hidden" id="listMemberDetail" asp-for="membersId" />
-                        </div>
-                    </div>
-                </div>
-                @if (userId.Equals(mainId) || (bool)isLeader)
-                {
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                            Đóng
-                        </button>
-                        <button type="submit" class="btn btn-primary">Lưu</button>
-                    </div>
-                }
-            </div>
-        </form>
+            </form>
+         </form>
     </div>
 </div>

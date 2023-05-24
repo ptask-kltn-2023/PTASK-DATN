@@ -9,7 +9,7 @@ namespace PTASK.Interface
         Task<PTask> GetTaskById(string taskId);
 
         Task<bool> CreateTask(PTask task);
-        Task<bool> UpdateTask(PTask task);
+        Task<bool> UpdateTask(PTask task, string taskId);
 
         Task<bool> DeleteTask(string taskId);
         Task<bool> ChangeStatus(string taskId);
