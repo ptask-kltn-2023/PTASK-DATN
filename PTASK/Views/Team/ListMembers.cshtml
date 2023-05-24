@@ -24,6 +24,16 @@
     var mainId = cache.Get("MainProject");
     var isLeader = cache.Get("isLeader");
 
+    bool isSearch;
+    if (cache.TryGetValue("isSearch", out object isSearchValue) && isSearchValue is bool)
+    {
+        isSearch = (bool)isSearchValue;
+    }
+    else
+    {
+        // Giá trị mặc định nếu không tìm thấy trong cache
+        isSearch = false;
+    }
 }
 <partial name="~/Views/Shared/Partial/_NavLeft.cshtml"/>
 <div class="main-wrapper ">
@@ -54,8 +64,8 @@
                 <div class="card">
                     <h5 class="text-uppercase d-flex m-3 align-items-center justify-content-between">
                         <strong>Danh sách thành viên</strong>
-                        <form class="d-flex" onsubmit="return false">
-                            <input class="form-control me-2" type="search" placeholder="Tìm kiếm thành viên" aria-label="Tìm kiếm" />
+                        <form class="d-flex" asp-controller="Team" asp-action="ListMembers">
+                            <input id="searchName" name="searchName" class="form-control me-2" type="search" placeholder="Tìm kiếm thành viên" aria-label="Tìm kiếm" />
                             <button class="btn btn-outline-primary" type="submit" style="width: 200px"><i class='bx bx-search'></i>Tìm kiếm</button>
                         </form>
                     </h5>
@@ -112,9 +122,25 @@
             }
             else
             {
-                <div class="container text-center mt-4">
-                    <h5>Dự án này chưa có thành viên!</h5>
-                </div>
+                @if (isSearch) {
+                    <div class="card">
+                        <h5 class="text-uppercase d-flex m-3 align-items-center justify-content-between">
+                            <strong>Danh sách thành viên</strong>
+                            <form class="d-flex" asp-controller="Team" asp-action="ListMembers">
+                                <input id="searchName" name="searchName" class="form-control me-2" type="search" placeholder="Tìm kiếm thành viên" aria-label="Tìm kiếm" />
+                                <button class="btn btn-outline-primary" type="submit" style="width: 200px"><i class='bx bx-search'></i>Tìm kiếm</button>
+                            </form>
+                        </h5>
+                    </div>
+                    <div class="container text-center mt-4">
+                        <h5>Nhiệm vụ này chưa được tạo !</h5>
+                    </div>
+                }
+                else {
+                    <div class="container text-center mt-4">
+                        <h5>Dự án này chưa có thành viên!</h5>
+                    </div>
+                }
             }
         </div>
     </main>

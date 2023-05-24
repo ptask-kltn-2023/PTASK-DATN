@@ -1,4 +1,5 @@
 ﻿@using Microsoft.Extensions.Caching.Memory;
+@model PTASK.Models.User
 @{
     Layout = null;
     var cache = Context.RequestServices.GetRequiredService<IMemoryCache>();
@@ -20,12 +21,12 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Account settings - Account | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Thông tin cá nhân | PTASK</title>
 
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="~/assets/img/PTLOGO.jpg" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -77,13 +78,13 @@
                                     <!-- Account -->
                                     <div class="card-body">
                                         <div class="d-flex align-items-start align-items-sm-center gap-4">
-                                            <img src="@avartar"
+                                            <img src="@Model.avatar"
                                                  alt="user-avatar"
                                                  class="d-block rounded"
                                                  height="100"
                                                  width="100"
                                                  id="uploadedAvatar" />
-                                            <div class="button-wrapper">
+                                          @*  <div class="button-wrapper">
                                                 <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
                                                     <span class="d-none d-sm-block">Chọn ảnh mới</span>
                                                     <i class="bx bx-upload d-block d-sm-none"></i>
@@ -93,7 +94,7 @@
                                                            hidden
                                                            accept="image/png, image/jpeg" />
                                                 </label>
-                                            </div>
+                                            </div>*@
                                         </div>
                                     </div>
                                     <hr class="my-0" />
@@ -109,33 +110,42 @@
                                                         <input type="text"
                                                                class="form-control"
                                                                id="basic-icon-default-fullname"
-                                                               value = "@userName"
+                                                               value = "@Model.fullName"
                                                                aria-describedby="basic-icon-default-fullname2" />
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="organization" class="form-label">Ngày sinh</label>
-                                                    <input type="date"
+                                                    <input type="text"
                                                            class="form-control"
                                                            id="organization"
-                                                           name="organization" />
+                                                           name="organization" 
+                                                           value="@Model.birthday.ToString("dd/MM/yyyy")"/>
                                                 </div>
                                                 <div class="col-md">
                                                 <label class="form-label d-block">Giới tính</label>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input"
-                                                               type="radio"
-                                                               name="inlineRadioOptions"
-                                                               id="inlineRadio1"
-                                                               value="option1" />
+                                                        <div class="form-check form-check-inline">
+                                                        @if(Model.gender = true)
+                                                        {
+                                                            <input class="form-check-input"
+                                                                   type="radio"
+                                                                   name="inlineRadioOptions"
+                                                                   id="inlineRadio1"
+                                                                   value="1"  
+                                                                   checked/>
+                                                        }
                                                         <label class="form-check-label" for="inlineRadio1">Nam</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input"
-                                                               type="radio"
-                                                               name="inlineRadioOptions"
-                                                               id="inlineRadio2"
-                                                               value="option2" />
+                                                        @if (Model.gender = false)
+                                                        {
+                                                            <input class="form-check-input"
+                                                                   type="radio"
+                                                                   name="inlineRadioOptions"
+                                                                   id="inlineRadio1"
+                                                                   value="0"
+                                                                   checked />
+                                                        }
                                                         <label class="form-check-label" for="inlineRadio2">Nữ</label>
                                                     </div>
                                                 </div>
@@ -148,7 +158,8 @@
                                                         <input type="text"
                                                                id="basic-icon-default-phone"
                                                                class="form-control phone-mask"
-                                                               aria-describedby="basic-icon-default-phone2" />
+                                                               aria-describedby="basic-icon-default-phone2" 
+                                                               value="@Model.phoneNumber"/>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 col-md-6">
@@ -160,13 +171,14 @@
                                                         <input type="text"
                                                                id="basic-icon-default-phone"
                                                                class="form-control phone-mask"
-                                                               aria-describedby="basic-icon-default-phone2" />
+                                                               aria-describedby="basic-icon-default-phone2" 
+                                                               value="@Model.address"/>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="mt-2">
+                                           @* <div class="mt-2">
                                                 <button type="submit" class="btn btn-primary me-2">Lưu</button>
-                                            </div>
+                                            </div>*@
                                         </form>
                                     </div>
                                     <!-- /Account -->

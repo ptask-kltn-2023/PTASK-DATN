@@ -4,6 +4,8 @@
 
     var avartar = cache.Get("Avatar");
     var userName = cache.Get("UserName");
+    var userId = cache.Get("UserId");
+
 }
 <!DOCTYPE html>
 <html lang="en"
@@ -211,7 +213,7 @@
                     <ul class="users-item-dropdown nav-user-dropdown
                           dropdown">
                         <li>
-                            <a asp-controller="User" asp-action="Profile">
+                            <a asp-controller="User" asp-action="Profile" asp-route-userId="@userId">
                                 <i data-feather="user"
                                    aria-hidden="true"></i>
                                 <span>Cá nhân</span>

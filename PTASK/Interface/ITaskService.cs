@@ -6,6 +6,7 @@ namespace PTASK.Interface
     {
         Task<List<PTask>> GetAllTasks(string productId);
         Task<List<PTask>> GetTasksByWorkId(string workId);
+        Task<List<PTask>> GetTaskByName(string name);
         Task<PTask> GetTaskById(string taskId);
 
         Task<bool> CreateTask(PTask task);

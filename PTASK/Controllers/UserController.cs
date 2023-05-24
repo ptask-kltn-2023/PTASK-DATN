@@ -27,9 +27,10 @@ namespace PTASK.Controllers
 
        
         // GET: UserController/Details/5
-        public ActionResult Profile()
+        public async Task<ActionResult> Profile(string userId)
         {
-            return View();
+            var result = await _user.GetUserById(userId);
+            return View(result);
         }
 
         // GET: UserController/Create

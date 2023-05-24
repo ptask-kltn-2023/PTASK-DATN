@@ -45,6 +45,7 @@ builder.Services.AddCustomHttpClient("apiGetAllIdLeader", apiUrl);
 builder.Services.AddCustomHttpClient("apiGetTeamById", apiUrl);
 builder.Services.AddCustomHttpClient("apiGetCommentByTaskId", apiUrl);
 builder.Services.AddCustomHttpClient("apiGetCommentByWorkId", apiUrl);
+builder.Services.AddCustomHttpClient("apiGetTaskByName", apiUrl);
 
 //API LOGIN
 builder.Services.AddCustomHttpClient("apiLogin", apiUrl);

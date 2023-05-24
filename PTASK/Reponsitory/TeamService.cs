@@ -260,5 +260,15 @@ namespace PTASK.Reponsitory
                 return false;
             }
         }
+
+        public async Task<List<Member>> GetMembersByName(string memberName)
+        {
+            var projectId = _cache.Get<string>("ProjectID");
+            var api = _httpClientFactory.CreateClient("apiGetWorkByName");
+            var response = await api.GetAsync($"api/teams/member-project/{projectId}/{memberName}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<List<Member>>(content);
+            return result;
+        }
     }
 }
