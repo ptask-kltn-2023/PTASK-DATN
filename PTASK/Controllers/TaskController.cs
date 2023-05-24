@@ -18,10 +18,20 @@ namespace PTASK.Controllers
             _cache = cache;
         }
         // GET: TaskController
-        public async Task<IActionResult> Index(bool? isBack, int pg=1)
+        public async Task<IActionResult> Index(string searchName, bool? isBack, int pg=1)
         {
+            List<PTask> result;
             string projectId = _cache.Get<string>("ProjectID");
-            var result = await _task.GetAllTasks(projectId);
+
+            if (searchName == null || searchName == "")
+            {
+                result = await _task.GetAllTasks(projectId);
+            }
+            else
+            {
+                result = await _task.GetTaskByName(searchName);
+                _cache.Set("isSearch", true);
+            }
             ViewData["TitleProject"] = _cache.Get<string>("TitleProject");
             ViewData["isBack"] = isBack;
             TempData["isBack"] = ViewData["isBack"];

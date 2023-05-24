@@ -18,10 +18,20 @@ namespace PTASK.Controllers
         }
 
         // GET: MemberController
-        public async Task<ActionResult> ListMembers(bool? isBack, int pg=1)
+        public async Task<ActionResult> ListMembers(string searchName, bool? isBack, int pg=1)
         {
             string projectId = _cache.Get<string>("ProjectID");
-            var result = await _team.GetAllMembers(projectId);
+            List<Member> result;
+            if (searchName == null || searchName == "")
+            {
+                result = await _team.GetAllMembers(projectId);
+            }
+            else
+            {
+                result = await _team.GetMembersByName(searchName);
+                _cache.Set("isSearch", true);
+            }
+
             ViewData["TitleProject"] = _cache.Get<string>("TitleProject");
             ViewData["isBack"] = isBack;
             TempData["isBack"] = ViewData["isBack"];

@@ -118,6 +118,16 @@ namespace PTASK.Reponsitory
             return result;
         }
 
+        public async Task<List<PTask>> GetTaskByName(string name)
+        {
+            var projectId = _cache.Get<string>("ProjectID");
+            var api = _httpClientFactory.CreateClient("apiGetTaskByName");
+            var response = await api.GetAsync($"api/tasks/name/{projectId}/{name}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<List<PTask>>(content);
+            return result;
+        }
+
         public async Task<List<PTask>> GetTasksByWorkId(string workId)
         {
             var api = _httpClientFactory.CreateClient("apiTasksByWorkId");

@@ -1034,6 +1034,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //Edit task
     $(".edit-task").click(function () {
+        listNewMemberByWorkId = [];
         var taskId = $(this).data('id');
         $("#_idUpdate").val(taskId);
 
